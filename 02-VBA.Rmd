@@ -1,16 +1,18 @@
-# VBA
+# Excel & VBA
 
 
 ## Import
 
 ### Standard way to import file
 
-*Code to delete old data and to import new file*
+
 
   
   
 ```  
 Sub import_file()
+
+'Code to delete old data and to import new file
 
 Application.ScreenUpdating = False
 Application.DisplayAlerts = False
@@ -173,3 +175,16 @@ or Each r In Sheets("Sheet1").UsedRange.SpecialCells(xlCellTypeConstants)
     End If
 Next
 ```
+
+## Useful excel formulas 
+
+## Useful Bloomberg formulas
+
+**Import Rating with override function**
+
+``` 
+'Approah to import rating for specific date
+
+=BDP("SAND SS equity";"RTG_SP_LT_LC_ISSUER_CREDIT";"RATING_AS_OF_DATE_OVERRIDE="&"2020-01-01")
+```
+

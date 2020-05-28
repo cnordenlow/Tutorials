@@ -1,6 +1,35 @@
 # R
 
-This is chapter 1.
+## Create template tables
+
+### Template tables
+
+**Create table with random dates between two dates. Use max date and create a table with dates until this date.**
+
+```{r, echo=T, eval=F}
+#https://www.cyclismo.org/tutorial/R/basicOps.html#basic-operations
+library(dplyr)
+df <- tibble(
+  date = sample(seq(as.Date('2020/06/01'), as.Date('2025/01/01'), by="day"), 20)
+)
+df2 <-tibble(
+  date = seq.Date(Sys.Date(), max(as.Date(df$date)), by = "day")
+)
+```
+
+**Create new column with random number**
+
+```{r, echo=T, eval=F}
+library(tidyverse)
+df <- data.frame(Amount = 1:10)
+df %>%
+  rowwise %>%
+  mutate(newColumn = sample(1:5, 1))
+  
+  #It´s often neccessary to ungroup rowwise.
+  df <- as.data.frame(df)
+```
+
 
 ## Import & Export 
 
@@ -301,7 +330,7 @@ m3
 
 **apply(), lapply(), sapply(), tapply()**
   
-*apply()*
+**apply()**
 
 
 ```{r, echo=T, eval=F}
@@ -318,7 +347,7 @@ a_m1 <- apply(m1,1,sum)
 a_m1
 ```
 
-*lapply()*
+**lapply()**
 
 ```{r, echo=T, eval=F}
 library(dplyr)
@@ -333,7 +362,7 @@ str(movies_lower)
 
 ```
  
-*sapply()*
+**sapply()**
 
 
 ```{r, echo=T, eval=F}
@@ -381,7 +410,7 @@ identical(dt_s, dt_l)
  
 
 
-*tapply()*
+**tapply()**
 
 
  
@@ -438,7 +467,7 @@ y <- c("Stockholm City", "Uppsala City", "Malmö")
 gsub(" City","",y)
 
  
- ``` 
+``` 
  
  **rnorm**
   
@@ -454,9 +483,9 @@ rnorm(4, mean=50, sd=10)
 # To check that the distribution looks right, make a histogram of the numbers
 x <- rnorm(400, mean=50, sd=10)
 hist(x)
- ``` 
+``` 
   
- **Create table**
+**Create table**
   
 *Create a table with combination fixed and random number * 
  ```{r, echo=T, eval=F}
@@ -468,6 +497,19 @@ hist(x)
   rand = seq(10,90,1) +runif(81, min=-10, max=15)
 ) 
 ``` 
+
+## Working with strings and characters
+
+
+**Remove last n characters**
+  
+```{r, echo=T, eval=F}
+#Remove last n characters in a string
+df <- tibble(
+  program = c(rep("okv 20200528",10), rep("ftg 20200525",10))
+)
+df$program <- substr(df$program,1,nchar(df$program)-9)
+```
 
 
 ## Visualize
