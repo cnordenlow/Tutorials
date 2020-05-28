@@ -13,3 +13,5 @@ Instructions for publishing a bookdown on Github
 touch .nojekyll
 git add .nojekyll
 8) In Github, go to settings and change Github Pages to master branch /docs folder
+
+9) Finito! Update your book and Github running 5 and 6.
