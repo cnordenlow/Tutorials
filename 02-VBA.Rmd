@@ -1,0 +1,175 @@
+# VBA
+
+
+## Import
+
+### Standard way to import file
+
+*Code to delete old data and to import new file*
+
+  
+  
+```  
+Sub import_file()
+
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+
+Sheets("location_file").ClearContents
+
+  TheHomeFile = ActiveWorkbook.Name
+
+    Path = "\\riksbank.se\profile\home\chnord\My Documents\test\"
+    Name = "likvprog_history.txt"
+
+        Workbooks.OpenText Filename:= _
+          Path & Name, Local:=True
+
+        Range("a1:z10000").Copy
+      Workbooks(TheHomeFile).Activate
+      Sheets("likvprog_history").Select
+      Range("a1").PasteSpecial xlValues
+
+  Workbooks(Name).Close savechanges:=False
+
+
+Sheets("main").Select
+
+Application.CutCopyMode = False
+
+End Sub
+```  
+
+### Import file with conditions
+
+*Import files after a certain date. Check if file exists before import.*
+
+   
+
+```  
+Sub import_file()
+
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+
+Sheets("location_file").ClearContents
+
+#Input files after this date
+from_date = "2020-05-01"
+
+current_date = from_date
+
+
+  TheHomeFile = ActiveWorkbook.Name
+
+    Path = "xxx\home\chnord\My Documents\test\"
+
+
+Do Until Format(current_date, "YYYY-MM-DD") >= Format(to_date, "YYYY-MM-DD")
+
+Name = current_date & " Saldo.csv"
+
+''check if file exists
+file_exists = False
+If Dir(Path & Name) <> "" Then file_exists = True
+
+If file_exists = True Then
+
+        Workbooks.OpenText Filename:= _
+          Path & Name, Local:=True
+
+        Range("a1:z10000").Copy
+      Workbooks(TheHomeFile).Activate
+      Sheets("likvprog_history").Select
+      Range("a1").PasteSpecial xlValues
+
+  Workbooks(Name).Close savechanges:=False
+
+end if
+
+current_date = DateAdd("d", 1, current_date)
+Loop
+
+
+
+
+Application.CutCopyMode = False
+
+End Sub
+```  
+
+
+## Loops
+
+### For loop
+**Loop thru all possible scenarios.**
+  
+*Loop All alternatives. In Rows 2:4 there are three alternatives in each column. Loop all possible scenarios.*
+
+
+```  
+sub for_loop_all_alternatives
+
+Sheets("sheet1").Select
+Sheets("sheet1").Range("c2:k2") = 1
+Sheets("sheet1").Range("c3:k4") = 2
+Sheets("sheet1").Range("c4:k4") = 3
+
+Count = 1
+Row = 7
+
+For c = 2 To 4
+    For d = 2 To 4
+        For e = 2 To 4
+            For f = 2 To 4
+                For g = 2 To 4
+                    For h = 2 To 4
+                        For i = 2 To 4
+                            For j = 2 To 4
+                                For k = 2 To 4
+
+                                Cells(Row, 2) = Count
+                                Cells(Row, 3) = Range("c" & c)
+                                Cells(Row, 4) = Range("d" & d)
+                                Cells(Row, 5) = Range("e" & e)
+                                Cells(Row, 6) = Range("f" & f)
+                                Cells(Row, 7) = Range("g" & g)
+                                Cells(Row, 8) = Range("h" & h)
+                                Cells(Row, 9) = Range("i" & i)
+                                Cells(Row, 10) = Range("j" & j)
+                                Cells(Row, 11) = Range("k" & k)
+
+                                Count = Count + 1
+                                Row = Row + 1
+
+                                Next
+                            Next
+                        Next
+                    Next
+                Next
+            Next
+        Next
+    Next
+Next
+End Sub
+```  
+  
+
+
+## Misc
+
+
+### Misc
+
+ **Format from text to number**
+  
+*Format from text to number when excel "requires" a press of enter button.*
+
+``` 
+or Each r In Sheets("Sheet1").UsedRange.SpecialCells(xlCellTypeConstants)
+    If IsNumeric(r) Then
+       r.Value = CSng(r.Value)
+       r.NumberFormat = "0.00"
+    End If
+Next
+```
