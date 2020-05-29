@@ -451,9 +451,10 @@ df%>%
 
 ### Useful functions / expressions
 
-**Gsub**
+**Sub / Gsub**
   
-*gsub() replaces all matches of a string.*
+*Replace the first occurence of a pattern with a sub or replace all occurrences with gsub.*
+*Gsub() replaces all matches of a string.*
 
 ```{r, echo=T, eval=F}
 x <- "Old City"
@@ -568,7 +569,7 @@ df  %>%
 ```
 
 
-### Date Formatting
+### Date Formating
 
 **Different ways to format dates**
   
@@ -579,6 +580,25 @@ df  %>%
 ```{r, echo=T, eval=F}
 as.Date("2/15/1986", format = "%m/%d/%Y")
   
+```  
+
+*Formating date with use of gsub to adjust the the string.*
+
+
+```{r, echo=T, eval=F}
+library(tidyverse)
+
+date_to_format = "2016-10-17 UTC"
+as.Date(gsub("\\D", "", date_to_format), format = "%Y%m%d")
+
+#or changing who table
+df <- tibble(
+    date_to_format = "2016-10-17 UTC"  
+      )
+
+df <- df %>%
+mutate(date_to_format = as.Date(gsub("\\D", "", date_to_format), format = "%Y%m%d"))
+   
 ```  
 
 
