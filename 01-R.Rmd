@@ -31,6 +31,18 @@ df %>%
 ```
 
 
+**Create table with a combination of fixed and random numbers**
+  
+ ```{r, echo=T, eval=F}
+ 
+ library(tidyverse)
+ 
+ df <- tibble(
+  value = seq(10,90,1),
+  rand = seq(10,90,1) +runif(81, min=-10, max=15)
+) 
+``` 
+
 ## Import & Export 
 
 ### Import
@@ -486,18 +498,7 @@ x <- rnorm(400, mean=50, sd=10)
 hist(x)
 ``` 
   
-**Create table**
-  
-*Create a table with combination fixed and random number * 
- ```{r, echo=T, eval=F}
- 
- library(tidyverse)
- 
- df <- tibble(
-  value = seq(10,90,1),
-  rand = seq(10,90,1) +runif(81, min=-10, max=15)
-) 
-``` 
+
 
 ## Working with strings and characters
 
