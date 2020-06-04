@@ -498,7 +498,18 @@ x <- rnorm(400, mean=50, sd=10)
 hist(x)
 ``` 
   
+**slice**
+*Example: way to take out a single row.*
+```{r, echo=T, eval=F}
+library(dplyr)
+mtcars
 
+select_row = 1
+df <- arrange(mtcars, mpg)
+
+df2 <- df %>%
+  slice(which(row_number() == select_row))
+``` 
 
 ## Working with strings and characters
 
