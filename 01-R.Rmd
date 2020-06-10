@@ -550,7 +550,37 @@ exposure_graph <- ggplot(df, aes(x=value,y=rand)) +
   geom_line(aes(y=0))
 ``` 
 
+### Different tables
 
+**Create table with kableExtra**
+  
+*Create table with different colors for pos / neg numbers*
+ 
+```{r, echo=T, eval=F}
+library(tidyverse)
+library(kableExtra)
+df <- tibble(
+  type = c("gov_bond", "ssa", "ssa", "gov_bond","ssa", "ssa", "gov_bond", "gov_bond", "gov_bond", "ssa"),
+  maturity_bucket = as.integer(runif(10, min =1, max=6)),
+  diff_bm = runif(10, min = -10, max = 10)
+)
+sum_type <- df %>%
+  group_by(type, maturity_bucket)%>%
+  summarise(
+    diff_exposure = round(sum(diff_bm),1)
+  )
+## Create table with green for positive, red for negative
+sum_table <- sum_type%>%
+  
+  mutate(
+    diff_exposure = ifelse(diff_exposure < 0,
+                      cell_spec(diff_exposure, "html", color = "red", bold = T),
+                      cell_spec(diff_exposure, "html", color = "green", italic = T)))%>%
+  
+  kable("html", escape = F, format.args=list(big.mark=" ", scientific=F)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position= "right", fixed_thead = T)
+sum_table
+``` 
 
 ## Misc
 
@@ -730,130 +760,6 @@ title: "`r sprintf('Portfolio and benchmark report, %s', params$currency)`"
 ---
   
 ``` 
-
-
-## Bond Calculator
-
-### Calculate Forward Rates
-
-**Calculate Forward Rates**
-  
-*Create a table with bond (or import real ones) and calculate forward rates.*
-
-```{r, echo=T, eval=F}
-library(dplyr) 
-
-#Calculate Forward rate 
-
-#Create a table with plain vanilla bonds
-df <- tribble( 
-  ~bond, ~maturity, ~yield, 
-  1, 1.5, 1.65, 
-  2, 3, 1.55, 
-  3, 5, 1.8, 
-  4, 10, 1.9 
-) 
-
-#Create table with all bonds in columns for short vs long bond
-
-df <- df %>% 
-  mutate(dummy = 1L) %>% 
-  inner_join(., ., by = "dummy", suffix=c("_short", "_long")) %>% 
-  select(-dummy) %>% 
-  filter(bond_short < bond_long) 
-
-#Create column with maturity for length between bonds (not neccesary for below calculation)
-df <- mutate(df, maturity_between_bonds = (maturity_long  - maturity_short))
-
-day_count <- 360
-
-#Create function for calculating frw rate
-calculate_forward_rate <- function(maturity_short, yield_short, maturity_long, yield_long, day_count){
-  
-  short_bond <- (1+yield_short/100)^(maturity_short/day_count)
-  long_bond <- (1+yield_long/100)^(maturity_long/day_count)
-  days_between <- (maturity_long - maturity_short)
-  forward_rate <- ((long_bond/short_bond)^(360/days_between)-1)*100
-  return(round(forward_rate, digits=2))  
-}
-
-#run function
-df <- df %>%
-  mutate(forward_rate = calculate_forward_rate(
-    maturity_short,
-    yield_short,
-    maturity_long,
-    yield_long,
-    day_count))
-
-#Create a yield_diff. How much more/less the yield must be when its time to buy the subsequent bond       
-df <- df %>%
-  mutate(yield_diff = if_else(bond_short == bond_long, NA_real_, forward_rate - yield_short))
-``` 
-
-
-### Bond Converter
-
-**Calculate Bond Price**
-
-```{r, echo=T, eval=F}
-Maturity <- "2023-04-30"
-  Handle <- 100
-  x32 <- 25
-  x64 <- 24
-  cpn <- 2.25
-  
-  ttm <- as.numeric(as.Date(Maturity) - as.Date(Sys.Date())) / 365
-  FV <- 100
-  
-  calculate_price <- function(Handle, x32, x64){
-    bond_price <- Handle + ((x32+(x64/64))/32)
-    return(format(round(bond_price,10), nsmall=10))
-  }
-  
- bond_price <- as.numeric(calculate_price(Handle, x32, x64))
-``` 
-
-
-**Convert from Discount to Yield**
-
-```{r, echo=T, eval=F}
-  discount  <- 1.69
-  maturity_date <- as.Date("2021-05-06")
-  settlement_date <- Sys.Date() +1
-  day_count <- 360
-
-  calculate_ytm_from_discount <- function(discount, maturity_date, settlement_date, day_count){
- 
-    days <- as.numeric(maturity_date-settlement_date)
-    discount <- discount / 100
-      yield_ <- (discount / (1-(discount * (days/day_count))))
-    return(format(round(yield_*100,10),nsmall=10))
-  }
-  
-  calculate_ytm_from_discount(discount, maturity_date, settlement_date, day_count)
-``` 
-
-**Convert from Yield to Discount**
-
-```{r, echo=T, eval=F}
-  yield  <- 1.719967
-  maturity_date <- as.Date("2021-05-06")
-  settlement_date <- Sys.Date()+1
-  day_count <- 360
-  yield <- yield / 100
-
-  calculate_disc_from_yield <- function(yield, maturity_date, settlement_date, day_count){
-    
-    days <- as.numeric(maturity_date-settlement_date)
- 
-    discount <- (yield / (1+(yield /(day_count/days))))
-    return(format(round(discount*100,10),nsmall=10))
-  }
-  
-  calculate_disc_from_yield(yield, maturity_date, settlement_date, day_count)
-```   
-  
 
 
 ## Web Scraping
