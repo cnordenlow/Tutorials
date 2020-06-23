@@ -116,6 +116,24 @@ write.table(table_for_report, "...\\Operations\\LikvProg\\likvprog_history.txt",
 
 ```
 
+**Export to csv file**
+  
+```{r, echo=T, eval=F}
+#Using both write.csv2 or write.table
+
+library(data.table)
+
+#Write csv2. No row.names, na = "" and quote ("") mark as false
+write.csv2(total_purchases_commercial_papers, ".....R_tables\\Output_data\\webpage_purchases\\Total_purchases_commercial_papers.csv",row.names=FALSE,na = "", quote = FALSE)
+
+#Write.table. No row.names, na = "" and quote ("") mark as false
+write.table(total_purchases_commercial_papers,file="...\\Total_purchases_commercial_papers3.csv",row.names=FALSE,sep=";",dec = " ",quote = FALSE)
+
+
+```
+
+
+
 **Get table to paste into excel**
 
 ```{r, echo=T, eval=F}
