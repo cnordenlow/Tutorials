@@ -43,6 +43,22 @@ df %>%
 ) 
 ``` 
 
+
+**Create a list and bind together, only 1 column*
+  
+ ```{r, echo=T, eval=F}
+ 
+libary(dplyr)
+
+lst <- list(cars, cars)
+lst <- bind_rows(lst) 
+
+lst %>% select(2)
+
+
+``` 
+
+
 ## Import & Export 
 
 ### Import
@@ -737,6 +753,30 @@ value = rnorm(20)
 
 left(df$value, 3)
 right(df$Date, 3)
+
+
+```  
+
+
+**Bloomberg API in R**
+  
+*Blmrg API with package Rblpapi*
+
+```{r, echo=T, eval=F}
+
+library(Rblpapi)
+
+con <- blpConnect() 
+
+#generic
+us10 <- bdh(securities = "USGG10YR Index", 
+           fields = "PX_LAST", 
+           start.date = as.Date("2020-03-01"))
+           
+#Isin
+us10 <- bdh(securities = "US912828ZQ64 Govt", 
+            fields = "PX_LAST", 
+            start.date = as.Date("2020-03-01"))
 
 
 ```  
