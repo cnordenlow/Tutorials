@@ -55,6 +55,11 @@ lst <- bind_rows(lst)
 
 lst %>% select(2)
 
+#Bind together list, include the index number / name. Use data.table
+library(data.table)
+
+lst <- list(cars, cars)
+lst <- rbindlist(lst, idcol = TRUE)
 
 ``` 
 
