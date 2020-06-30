@@ -2,18 +2,18 @@
 
 
 ## General
-  *https://www.w3schools.com/sql/default.asp
+  *https://www.w3schools.com/sql/default.asp*
 
 ## SQL databases and R
 
 ### Accessing a database from R
 
-* Access a database from R.
-* The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation. 
+*Access a database from R.*
+*The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation.* 
 
 #### Connecting to a database
 
-* Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.*
+*Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.*
 
 
 
