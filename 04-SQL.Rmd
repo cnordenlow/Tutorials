@@ -1,0 +1,102 @@
+# SQL
+
+
+## General
+  
+
+## SQL databases and R
+
+### Accessing a database from R
+
+* Access a database from R.*
+* The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation. *
+
+#### Connecting to a database
+
+* Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.*
+
+
+
+```{r, echo=T, eval=F}
+#https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html
+library("RSQLite")
+library("plyr")
+library("dbplyr")
+
+# Downloading database for test
+dir.create("data_raw", showWarnings = FALSE)
+download.file(url = "https://ndownloader.figshare.com/files/2292171",
+              destfile = "data_raw/portal_mammals.sqlite", mode = "wb")
+
+# Connect to databse
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
+
+# Querying with SQL-syntax vs dplyr syntax
+
+#sql
+tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
+
+#dplyr
+surveys <- tbl(mammals, "surveys")
+surveys %>%
+  select(year, species_id, plot_id)
+
+#Checking head(surveys, n = 10) and nrow(surveys) we see that the  surveys at first glance looks like a data frame but there are some differences.*
+head(surveys, n = 10)
+nrow(surveys)
+
+#The reason for this is that dplyr dosen´t see the full dataset, only what was asked for when the question in dplyr was translated into SQL.
+
+```
+
+### Running SQL syntax in R
+
+
+```{r, echo=T, eval=F}
+library(sqldf)
+#https://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html#introduction
+
+sqldf('SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC')
+
+sqldf("SELECT * FROM iris")
+
+#example
+data(BOD)
+BOD
+
+#Wildcard: used to extract everything
+bod2 <- sqldf('SELECT * FROM BOD')
+bod2
+
+#LIMIT controls the number of results
+sqldf('SELECT * FROM iris LIMIT 5')
+
+#ORDER BY syntax: ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}
+sqldf("SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5")
+
+#Where can be used to add conditional statements
+sqldf('SELECT demand FROM BOD WHERE Time < 3')
+
+#WHERE with AND and OR
+sqldf('SELECT * FROM rock WHERE (peri > 5000 AND shape < .05) OR perm > 1000')
+
+#IN is used to similiar to %in%
+sqldf('SELECT * FROM BOD WHERE Time IN (1,7)')
+sqldf('SELECT * FROM BOD WHERE Time NOT IN (1,7)')
+
+#LIKE weak expression command
+sqldf('SELECT * FROM chickwts WHERE feed LIKE "%bean" LIMIT 5')
+sqldf('SELECT * FROM chickwts WHERE feed NOT LIKE "%bean" LIMIT 5')
+
+#Aggregated data: AVG, MEDIAN, MAX, MIN, SUM
+sqldf("SELECT AVG(circumference) FROM Orange")
+
+#SELECT COUNT
+d <- data.frame(a = c(1,1,1), b = c(1,NA,NA))
+d
+sqldf("SELECT COUNT() as numrows FROM d")
+sqldf("SELECT COUNT(b) FROM d")
+
+
+
+```
