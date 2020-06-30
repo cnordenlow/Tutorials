@@ -188,3 +188,14 @@ Next
 =BDP("SAND SS equity";"RTG_SP_LT_LC_ISSUER_CREDIT";"RATING_AS_OF_DATE_OVERRIDE="&"2020-01-01")
 ```
 
+**Formula for importing data to excel**
+
+``` 
+'Import data from Bloomberg, 2 cols.
+
+=BDH("INJCJC Index";"px_last";"2015-07-02";"";"Dir=V";"Dts=S";"Sort=d";"Quote=C";"QtTyp=Y";"Days=a";"Per=cd";"DtFmt=D";"Fill=P";"UseDPDF=Y";"cols=2;rows=1826")
+
+```
+
+
+
