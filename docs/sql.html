@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Templates</title>
-  <meta name="description" content="Templates" />
+  <title>4 SQL | Templates</title>
+  <meta name="description" content="4 SQL | Templates" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Templates" />
+  <meta property="og:title" content="4 SQL | Templates" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Templates" />
+  <meta name="twitter:title" content="4 SQL | Templates" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="fi-fx.html"/>
 
-<link rel="next" href="r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -208,23 +208,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Templates</h1>
-<p class="author"><em><a href="mailto:christoffer.nordenlow@riksbank.se" class="email">christoffer.nordenlow@riksbank.se</a></em></p>
-<p class="date"><em>2020-05-26</em></p>
+<div id="sql" class="section level1">
+<h1><span class="header-section-number">4</span> SQL</h1>
+<div id="general" class="section level2">
+<h2><span class="header-section-number">4.1</span> General</h2>
+<p><em><a href="https://www.w3schools.com/sql/default.asp" class="uri">https://www.w3schools.com/sql/default.asp</a></em></p>
 </div>
-<div id="intro" class="section level1 unnumbered">
-<h1>Intro</h1>
-<p><em>This repository includes useful templates, formulas and code for R and VBA, also in combination with Bloomberg formulas and Fixed Income analysis.</em></p>
+<div id="sql-databases-and-r" class="section level2">
+<h2><span class="header-section-number">4.2</span> SQL databases and R</h2>
+<div id="accessing-a-database-from-r" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Accessing a database from R</h3>
+<p><em>Access a database from R.</em>
+<em>The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation.</em></p>
+<div id="connecting-to-a-database" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> Connecting to a database</h4>
+<p><em>Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.</em></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co">#https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html</span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="kw">library</span>(<span class="st">&quot;RSQLite&quot;</span>)</a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb51-4" title="4"><span class="kw">library</span>(<span class="st">&quot;dbplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb51-5" title="5"></a>
+<a class="sourceLine" id="cb51-6" title="6"><span class="co"># Downloading database for test</span></a>
+<a class="sourceLine" id="cb51-7" title="7"><span class="kw">dir.create</span>(<span class="st">&quot;data_raw&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb51-8" title="8"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://ndownloader.figshare.com/files/2292171&quot;</span>,</a>
+<a class="sourceLine" id="cb51-9" title="9">              <span class="dt">destfile =</span> <span class="st">&quot;data_raw/portal_mammals.sqlite&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</a>
+<a class="sourceLine" id="cb51-10" title="10"></a>
+<a class="sourceLine" id="cb51-11" title="11"><span class="co"># Connect to databse</span></a>
+<a class="sourceLine" id="cb51-12" title="12">mammals &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), <span class="st">&quot;data_raw/portal_mammals.sqlite&quot;</span>)</a>
+<a class="sourceLine" id="cb51-13" title="13"></a>
+<a class="sourceLine" id="cb51-14" title="14"><span class="co"># Querying with SQL-syntax vs dplyr syntax</span></a>
+<a class="sourceLine" id="cb51-15" title="15"></a>
+<a class="sourceLine" id="cb51-16" title="16"><span class="co">#sql</span></a>
+<a class="sourceLine" id="cb51-17" title="17"><span class="kw">tbl</span>(mammals, <span class="kw">sql</span>(<span class="st">&quot;SELECT year, species_id, plot_id FROM surveys&quot;</span>))</a>
+<a class="sourceLine" id="cb51-18" title="18"></a>
+<a class="sourceLine" id="cb51-19" title="19"><span class="co">#dplyr</span></a>
+<a class="sourceLine" id="cb51-20" title="20">surveys &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;surveys&quot;</span>)</a>
+<a class="sourceLine" id="cb51-21" title="21">surveys <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-22" title="22"><span class="st">  </span><span class="kw">select</span>(year, species_id, plot_id)</a>
+<a class="sourceLine" id="cb51-23" title="23"></a>
+<a class="sourceLine" id="cb51-24" title="24"><span class="co">#Checking head(surveys, n = 10) and nrow(surveys) we see that the  surveys at first glance looks like a data frame but there are some differences.*</span></a>
+<a class="sourceLine" id="cb51-25" title="25"><span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb51-26" title="26"><span class="kw">nrow</span>(surveys)</a>
+<a class="sourceLine" id="cb51-27" title="27"></a>
+<a class="sourceLine" id="cb51-28" title="28"><span class="co">#The reason for this is that dplyr dosen´t see the full dataset, only what was asked for when the question in dplyr was translated into SQL.</span></a></code></pre></div>
+</div>
+</div>
+<div id="running-sql-syntax-in-r" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Running SQL syntax in R</h3>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">library</span>(sqldf)</a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="co">#https://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html#introduction</span></a>
+<a class="sourceLine" id="cb52-3" title="3"></a>
+<a class="sourceLine" id="cb52-4" title="4"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</a>
+<a class="sourceLine" id="cb52-5" title="5"></a>
+<a class="sourceLine" id="cb52-6" title="6"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</a>
+<a class="sourceLine" id="cb52-7" title="7"></a>
+<a class="sourceLine" id="cb52-8" title="8"><span class="co">#example</span></a>
+<a class="sourceLine" id="cb52-9" title="9"><span class="kw">data</span>(BOD)</a>
+<a class="sourceLine" id="cb52-10" title="10">BOD</a>
+<a class="sourceLine" id="cb52-11" title="11"></a>
+<a class="sourceLine" id="cb52-12" title="12"><span class="co">#Wildcard: used to extract everything</span></a>
+<a class="sourceLine" id="cb52-13" title="13">bod2 &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</a>
+<a class="sourceLine" id="cb52-14" title="14">bod2</a>
+<a class="sourceLine" id="cb52-15" title="15"></a>
+<a class="sourceLine" id="cb52-16" title="16"><span class="co">#LIMIT controls the number of results</span></a>
+<a class="sourceLine" id="cb52-17" title="17"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</a>
+<a class="sourceLine" id="cb52-18" title="18"></a>
+<a class="sourceLine" id="cb52-19" title="19"><span class="co">#ORDER BY syntax: ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}</span></a>
+<a class="sourceLine" id="cb52-20" title="20"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</a>
+<a class="sourceLine" id="cb52-21" title="21"></a>
+<a class="sourceLine" id="cb52-22" title="22"><span class="co">#Where can be used to add conditional statements</span></a>
+<a class="sourceLine" id="cb52-23" title="23"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</a>
+<a class="sourceLine" id="cb52-24" title="24"></a>
+<a class="sourceLine" id="cb52-25" title="25"><span class="co">#WHERE with AND and OR</span></a>
+<a class="sourceLine" id="cb52-26" title="26"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</a>
+<a class="sourceLine" id="cb52-27" title="27"></a>
+<a class="sourceLine" id="cb52-28" title="28"><span class="co">#IN is used to similiar to %in%</span></a>
+<a class="sourceLine" id="cb52-29" title="29"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</a>
+<a class="sourceLine" id="cb52-30" title="30"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</a>
+<a class="sourceLine" id="cb52-31" title="31"></a>
+<a class="sourceLine" id="cb52-32" title="32"><span class="co">#LIKE weak expression command</span></a>
+<a class="sourceLine" id="cb52-33" title="33"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a>
+<a class="sourceLine" id="cb52-34" title="34"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a>
+<a class="sourceLine" id="cb52-35" title="35"></a>
+<a class="sourceLine" id="cb52-36" title="36"><span class="co">#Aggregated data: AVG, MEDIAN, MAX, MIN, SUM</span></a>
+<a class="sourceLine" id="cb52-37" title="37"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT AVG(circumference) FROM Orange&quot;</span>)</a>
+<a class="sourceLine" id="cb52-38" title="38"></a>
+<a class="sourceLine" id="cb52-39" title="39"><span class="co">#SELECT COUNT</span></a>
+<a class="sourceLine" id="cb52-40" title="40">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb52-41" title="41">d</a>
+<a class="sourceLine" id="cb52-42" title="42"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT COUNT() as numrows FROM d&quot;</span>)</a>
+<a class="sourceLine" id="cb52-43" title="43"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT COUNT(b) FROM d&quot;</span>)</a></code></pre></div>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="fi-fx.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

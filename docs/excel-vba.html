@@ -184,6 +184,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="fi-fx.html"><a href="fi-fx.html#foreign-exchange"><i class="fa fa-check"></i><b>3.2</b> Foreign Exchange</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>4</b> SQL</a><ul>
+<li class="chapter" data-level="4.1" data-path="sql.html"><a href="sql.html#general"><i class="fa fa-check"></i><b>4.1</b> General</a></li>
+<li class="chapter" data-level="4.2" data-path="sql.html"><a href="sql.html#sql-databases-and-r"><i class="fa fa-check"></i><b>4.2</b> SQL databases and R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="sql.html"><a href="sql.html#accessing-a-database-from-r"><i class="fa fa-check"></i><b>4.2.1</b> Accessing a database from R</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sql.html"><a href="sql.html#running-sql-syntax-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Running SQL syntax in R</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -367,6 +374,11 @@ Next</code></pre>
 <pre><code>&#39;Approah to import rating for specific date
 
 =BDP(&quot;SAND SS equity&quot;;&quot;RTG_SP_LT_LC_ISSUER_CREDIT&quot;;&quot;RATING_AS_OF_DATE_OVERRIDE=&quot;&amp;&quot;2020-01-01&quot;)</code></pre>
+<p><strong>Formula for importing data to excel</strong></p>
+<pre><code>&#39;Import data from Bloomberg, 2 cols.
+
+=BDH(&quot;INJCJC Index&quot;;&quot;px_last&quot;;&quot;2015-07-02&quot;;&quot;&quot;;&quot;Dir=V&quot;;&quot;Dts=S&quot;;&quot;Sort=d&quot;;&quot;Quote=C&quot;;&quot;QtTyp=Y&quot;;&quot;Days=a&quot;;&quot;Per=cd&quot;;&quot;DtFmt=D&quot;;&quot;Fill=P&quot;;&quot;UseDPDF=Y&quot;;&quot;cols=2;rows=1826&quot;)
+</code></pre>
 
 </div>
 </div>
