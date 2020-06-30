@@ -550,6 +550,19 @@ df2 <- df %>%
   slice(which(row_number() == select_row))
 ``` 
 
+**unique**
+*Example: get all unique values in a column*
+```{r, echo=T, eval=F}
+
+library(dplyr)
+library(data.table)
+
+df <- mtcars
+
+unique(df$cyl, incomparables = FALSE)
+``` 
+
+
 ## Working with strings and characters
 
 
@@ -783,6 +796,16 @@ us10 <- bdh(securities = "US912828ZQ64 Govt",
             fields = "PX_LAST", 
             start.date = as.Date("2020-03-01"))
 
+##Multiple fields
+
+bonds <- c("CA135087K601 Govt","CA563469UP83 Govt")
+
+fields <- c("PX_LAST", "YLD_YTM_MID", "PX_DIRTY_MID", "Issuer", "SHORT_NAME", "YRS_TO_MTY_ISSUE","YAS_ASW_SPREAD", "CPN", "AMT_OUTSTANDING", "%_OF_TSY_HLD_IN_THE_FED_RES_SOMA", "YLD_CHG_NET_1D", "YLD_CHG_NET_1M", "INTERVAL_Z_SCORE", "MTY_YEARS_TDY", "YLD_CHG_NET_5D")
+
+df <- bdp(securities = bonds,
+          fields = fields)
+
+df <- tibble::rownames_to_column(df, "isin_govt")
 
 ```  
 
