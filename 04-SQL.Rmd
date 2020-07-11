@@ -3,6 +3,63 @@
 
 ## General
   *https://www.w3schools.com/sql/default.asp*
+  
+### Basic commands
+
+#### SELECT
+
+```{r, echo=T, eval=F}
+
+SELECT * FROM CUSTOMER;
+
+SELECT CUSTOMER_ID,  NAME FROM CUSTOMER;
+
+# Generate a calculated column
+SELECT
+PRODUCT_ID,
+DESCRIPTION,
+PRICE AS UNTAXED_PRICE,
+round(PRICE * 1.07,2) AS TAXED_PRICE
+FROM PRODUCT;
+
+# Text concatenation. Concatenation works with any data type.
+SELECT NAME,
+CITY || ', ' || STATE AS LOCATION
+FROM CUSTOMER;
+```
+
+#### WHERE
+
+```{r, echo=T, eval=F}
+
+SELECT * FROM STATION_DATA
+WHERE year = 2010;
+
+#Use != or <> to get everything but 2010
+SELECT * FROM STATION_DATA
+WHERE year != 2010;
+
+#AND, OR, IN statements
+SELECT * FROM STATION_DATA
+WHERE year >= 2005 AND year <= 2010;
+
+#in
+SELECT * FROM STATION_DATA
+WHERE MONTH IN (3,6,9,12)
+
+#not in
+SELECT * FROM STATION_DATA
+WHERE MONTH NOT IN (3,6,9,12)
+
+#modulus operator
+#modulus returns the remainder instead of the quotient. A remainder of 0 means there is no remainder at all
+SELECT * FROM STATION_DATA
+WHERE MONTH %  3 = 0
+
+
+```
+
+
 
 ## SQL databases and R
 
