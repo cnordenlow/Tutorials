@@ -56,6 +56,23 @@ WHERE MONTH NOT IN (3,6,9,12)
 SELECT * FROM STATION_DATA
 WHERE MONTH %  3 = 0
 
+#using where on text
+SELECT * FROM STATION_DATA
+WHERE report_code in ('513A63', '1F8A7B')
+
+SELECT * FROM STATION_DATA
+WHERE length(report_code) = 6
+
+#wildcards
+SELECT * FROM STATION_DATA
+WHERE report_code LIKE 'A%'
+
+#B as the first, C as the third letter
+
+SELECT * FROM STATION_DATA
+WHERE report_code LIKE 'B_C%'
+
+
 
 ```
 
