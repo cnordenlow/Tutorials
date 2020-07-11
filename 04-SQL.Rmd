@@ -72,6 +72,19 @@ WHERE report_code LIKE 'A%'
 SELECT * FROM STATION_DATA
 WHERE report_code LIKE 'B_C%'
 
+#Other text functions as INSTR, SUBSTR, REPLACE ETC
+
+SELECT * FROM  station_data
+WHERE snow_depth IS NULL;
+
+#Use coalesce to conert NULL to 0, "N/A" etc
+
+SELECT * FROM  station_data
+WHERE coalesce(precipitation,0) <= 0.5;
+
+SELECT * FROM station_data
+WHERE (rain = 1 AND temperature <= 32)
+OR snow_depth > 0;
 
 
 ```
