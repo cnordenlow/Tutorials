@@ -185,11 +185,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="fi-fx.html"><a href="fi-fx.html#foreign-exchange"><i class="fa fa-check"></i><b>3.2</b> Foreign Exchange</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>4</b> SQL</a><ul>
-<li class="chapter" data-level="4.1" data-path="sql.html"><a href="sql.html#general"><i class="fa fa-check"></i><b>4.1</b> General</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="sql.html"><a href="sql.html#basic-commands"><i class="fa fa-check"></i><b>4.1.1</b> Basic commands</a></li>
+<li class="chapter" data-level="4.1" data-path="sql.html"><a href="sql.html#basic"><i class="fa fa-check"></i><b>4.1</b> Basic</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="sql.html"><a href="sql.html#select"><i class="fa fa-check"></i><b>4.1.1</b> SELECT</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sql.html"><a href="sql.html#group-by"><i class="fa fa-check"></i><b>4.1.2</b> GROUP BY</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sql.html"><a href="sql.html#case-statements"><i class="fa fa-check"></i><b>4.1.3</b> CASE statements</a></li>
+<li class="chapter" data-level="4.1.4" data-path="sql.html"><a href="sql.html#join"><i class="fa fa-check"></i><b>4.1.4</b> JOIN</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="sql.html"><a href="sql.html#sql-databases-and-r"><i class="fa fa-check"></i><b>4.2</b> SQL databases and R</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="sql.html"><a href="sql.html#accessing-a-database-from-r"><i class="fa fa-check"></i><b>4.2.1</b> Accessing a database from R</a></li>
+<li class="chapter" data-level="4.2.1" data-path="sql.html"><a href="sql.html#connecting-to-a-database-from-r"><i class="fa fa-check"></i><b>4.2.1</b> Connecting to a database from R</a></li>
 <li class="chapter" data-level="4.2.2" data-path="sql.html"><a href="sql.html#running-sql-syntax-in-r"><i class="fa fa-check"></i><b>4.2.2</b> Running SQL syntax in R</a></li>
 </ul></li>
 </ul></li>
@@ -212,15 +215,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="sql" class="section level1">
 <h1><span class="header-section-number">4</span> SQL</h1>
-<div id="general" class="section level2">
-<h2><span class="header-section-number">4.1</span> General</h2>
+<div id="basic" class="section level2">
+<h2><span class="header-section-number">4.1</span> Basic</h2>
 <p><em><a href="https://www.w3schools.com/sql/default.asp" class="uri">https://www.w3schools.com/sql/default.asp</a></em>
 <em>‘Getting started with SQL’ using SQLite.</em>
 <em><a href="https://github.com/thomasnield/oreilly_getting_started_with_sql" class="uri">https://github.com/thomasnield/oreilly_getting_started_with_sql</a></em></p>
-<div id="basic-commands" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Basic commands</h3>
-<div id="select" class="section level4">
-<h4><span class="header-section-number">4.1.1.1</span> SELECT</h4>
+<div id="select" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> SELECT</h3>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">SELECT <span class="op">*</span><span class="st"> </span>FROM CUSTOMER;</a>
 <a class="sourceLine" id="cb51-2" title="2"></a>
 <a class="sourceLine" id="cb51-3" title="3">SELECT CUSTOMER_ID,  NAME FROM CUSTOMER;</a>
@@ -237,9 +238,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb51-14" title="14">SELECT NAME,</a>
 <a class="sourceLine" id="cb51-15" title="15">CITY <span class="op">||</span><span class="st"> &#39;, &#39;</span> <span class="op">||</span><span class="st"> </span>STATE AS LOCATION</a>
 <a class="sourceLine" id="cb51-16" title="16">FROM CUSTOMER;</a></code></pre></div>
-</div>
 <div id="where" class="section level4">
-<h4><span class="header-section-number">4.1.1.2</span> WHERE</h4>
+<h4><span class="header-section-number">4.1.1.1</span> WHERE</h4>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
 <a class="sourceLine" id="cb52-2" title="2">WHERE year =<span class="st"> </span><span class="dv">2010</span>;</a>
 <a class="sourceLine" id="cb52-3" title="3"></a>
@@ -294,8 +294,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb52-52" title="52"><span class="kw">WHERE</span> (<span class="dt">rain =</span> <span class="dv">1</span> AND temperature <span class="op">&lt;=</span><span class="st"> </span><span class="dv">32</span>)</a>
 <a class="sourceLine" id="cb52-53" title="53">OR snow_depth <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>;</a></code></pre></div>
 </div>
-<div id="group-by" class="section level4">
-<h4><span class="header-section-number">4.1.1.3</span> GROUP BY</h4>
+</div>
+<div id="group-by" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> GROUP BY</h3>
 <p><em>WHERE filters individual records while HAVING filters aggregations.</em></p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">SELECT year, month, <span class="kw">COUNT</span>(<span class="op">*</span>) AS record_count FROM station_data</a>
 <a class="sourceLine" id="cb53-2" title="2">WHERE tornado =<span class="st"> </span><span class="dv">1</span></a>
@@ -317,8 +318,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb53-18" title="18">GROUP BY year</a>
 <a class="sourceLine" id="cb53-19" title="19">HAVING <span class="kw">sum</span>(precipitation) <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
 </div>
-<div id="case-statements" class="section level4">
-<h4><span class="header-section-number">4.1.1.4</span> CASE statements</h4>
+<div id="case-statements" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> CASE statements</h3>
 <p><em>CASE statements are read from top to bottom, so the first true condition is the one it uses.</em>
 <em>A great benefit of CASE statements compared to WHERE is that you can apply different filters for different aggregate values.</em></p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">SELECT report_code, year, month, day, wind_speed,</a>
@@ -353,8 +354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb54-30" title="30">WHERE year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2000</span></a>
 <a class="sourceLine" id="cb54-31" title="31">GROUP BY month</a></code></pre></div>
 </div>
-<div id="join" class="section level4">
-<h4><span class="header-section-number">4.1.1.5</span> JOIN</h4>
+<div id="join" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> JOIN</h3>
 <p><em>In multiple joins, it may be erroundous to mix LEFT JOIN with INNER JOIN. This is becasue null values cannot be inner joined on and will get filtered out. LEFT JOIN tolerates null values.</em></p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co">#INNER JOIN</span></a>
 <a class="sourceLine" id="cb55-2" title="2">SELECT ORDER_ID,</a>
@@ -425,16 +426,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb55-67" title="67">GROUP BY <span class="dv">1</span>,<span class="dv">2</span></a></code></pre></div>
 </div>
 </div>
-</div>
 <div id="sql-databases-and-r" class="section level2">
 <h2><span class="header-section-number">4.2</span> SQL databases and R</h2>
-<div id="accessing-a-database-from-r" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Accessing a database from R</h3>
+<div id="connecting-to-a-database-from-r" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Connecting to a database from R</h3>
 <p><em>Access a database from R.</em>
-<em>The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation.</em></p>
-<div id="connecting-to-a-database" class="section level4">
-<h4><span class="header-section-number">4.2.1.1</span> Connecting to a database</h4>
-<p><em>Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.</em></p>
+<em>The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation.</em>
+<em>Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.</em></p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co">#https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html</span></a>
 <a class="sourceLine" id="cb56-2" title="2"><span class="kw">library</span>(<span class="st">&quot;RSQLite&quot;</span>)</a>
 <a class="sourceLine" id="cb56-3" title="3"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
@@ -463,7 +461,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb56-26" title="26"><span class="kw">nrow</span>(surveys)</a>
 <a class="sourceLine" id="cb56-27" title="27"></a>
 <a class="sourceLine" id="cb56-28" title="28"><span class="co">#The reason for this is that dplyr dosen´t see the full dataset, only what was asked for when the question in dplyr was translated into SQL.</span></a></code></pre></div>
-</div>
 </div>
 <div id="running-sql-syntax-in-r" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Running SQL syntax in R</h3>
