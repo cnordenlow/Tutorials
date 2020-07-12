@@ -1,14 +1,13 @@
 # SQL
 
 
-## General
+## Basic
   *https://www.w3schools.com/sql/default.asp*
   *'Getting started with SQL' using SQLite.*
   *https://github.com/thomasnield/oreilly_getting_started_with_sql*
 
-### Basic commands
 
-#### SELECT
+### SELECT
 
 ```{r, echo=T, eval=F}
 
@@ -91,7 +90,7 @@ OR snow_depth > 0;
 
 ```
 
-#### GROUP BY
+### GROUP BY
 
 *WHERE filters individual records while HAVING filters aggregations.*
 ```{r, echo=T, eval=F}
@@ -121,7 +120,7 @@ HAVING sum(precipitation) > 30
 ```
 
 
-#### CASE statements
+### CASE statements
 
 *CASE statements are read from top to bottom, so the first true condition is the one it uses.*
 *A great benefit of CASE statements compared to WHERE is that you can apply different filters for different aggregate values.*
@@ -162,7 +161,7 @@ GROUP BY month
 ```
 
 
-#### JOIN
+### JOIN
 
 *In multiple joins, it may be erroundous to mix LEFT JOIN with INNER JOIN. This is becasue null values cannot be inner joined on and will get filtered out. LEFT JOIN tolerates null values.*
 
@@ -239,16 +238,13 @@ GROUP BY 1,2
 
 
 
-
 ## SQL databases and R
 
-### Accessing a database from R
+
+### Connecting to a database from R
 
 *Access a database from R.*
 *The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation.* 
-
-#### Connecting to a database
-
 *Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.*
 
 
