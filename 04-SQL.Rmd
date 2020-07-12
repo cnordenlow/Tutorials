@@ -89,6 +89,77 @@ OR snow_depth > 0;
 
 ```
 
+#### GROUP BY
+
+*WHERE filters individual records while HAVING filters aggregations.*
+```{r, echo=T, eval=F}
+
+SELECT year, month, COUNT(*) AS record_count FROM station_data
+WHERE tornado = 1
+GROUP BY year, month
+ORDER BY year, month
+
+#aggregate
+SELECT month, AVG(temperature) as avg_temp
+FROM station_data
+WHERE year >= 2000
+GROUP BY month
+
+#HAVING statement
+#To be able to filter on aggregate data you need to use HAVING instead of WHERE
+
+SELECT year,
+SUM(precipitation) as total_precipitation
+FROM station_data
+GROUP BY year
+HAVING sum(precipitation) > 30
+
+
+
+```
+
+
+#### CASE statements
+
+*CASE statements are read from top to bottom, so the first true condition is the one it uses.*
+*A great benefit of CASE statements compared to WHERE is that you can apply different filters for different aggregate values.*
+```{r, echo=T, eval=F}
+
+SELECT report_code, year, month, day, wind_speed,
+
+CASE
+ WHEN wind_speed >= 40 THEN 'HIGH'
+ WHEN wind_speed >= 30 THEN 'MODERATE'
+ ELSE 'LOW'
+ END as wind_severity
+ 
+FROM station_data
+
+# Use of CASE to apply different filters
+SELECT year, month,
+
+SUM(CASE WHEN tornado = 1 THEN precipitation ELSE 0 END) as tornado_precipitation,
+
+SUM(CASE WHEN tornado = 0 THEN precipitation ELSE 0 END) as non_tornado_precipitation
+
+FROM station_data
+GROUP BY year, month
+
+# Use of boolean expression
+
+SELECT month, 
+
+AVG(CASE WHEN rain OR hail THEN temperature ELSE null END) AS avg_precipitation_temp,
+
+AVG(CASE WHEN NOT (rain OR hail) THEN temperature ELSE null END) AS avg_non_precipitation_temp
+
+FROM station_data
+WHERE year > 2000
+GROUP BY month
+
+```
+
+
 
 
 ## SQL databases and R
