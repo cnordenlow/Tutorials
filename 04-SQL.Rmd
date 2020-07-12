@@ -3,7 +3,8 @@
 
 ## General
   *https://www.w3schools.com/sql/default.asp*
-  
+  *'Getting started with SQL' using SQLite.*
+  *https://github.com/thomasnield/oreilly_getting_started_with_sql*
 ### Basic commands
 
 #### SELECT
@@ -162,6 +163,7 @@ GROUP BY month
 
 #### JOIN
 
+*In multiple joins, it may be erroundous to mix LEFT JOIN with INNER JOIN. This is becasue null values cannot be inner joined on and will get filtered out. LEFT JOIN tolerates null values.*
 
 ```{r, echo=T, eval=F}
 #INNER JOIN
@@ -193,6 +195,44 @@ ON CUSTOMER.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
 
 WHERE ORDER_ID IS NULL
 
+#Multiple joins
+SELECT
+ORDER_ID,
+CUSTOMER.CUSTOMER_ID,
+'NAME AS CUSTOMER.NAME,'
+STREET_ADDRESS,
+CITY,
+STATE,
+ZIP,
+ORDER_DATE,
+PRODUCT_ID,
+DESCRIPTION,
+ORDER_QTY
+
+FROM CUSTOMER
+
+INNER JOIN 
+CUSTOMER_ORDER ON CUSTOMER_ORDER.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
+
+INNER JOIN 
+PRODUCT ON CUSTOMER_ORDER.PRODUCT_ID = PRODUCT.PRODUCT_ID
+
+#Use coalesce() to turn nulls into zeros.
+
+SELECT
+CUSTOMER.CUSTOMER_ID,
+NAME AS CUSTOMER_NAME,
+coalesce(sum(ORDER_QTY * PRICE), 0) as TOTAL_REVENUE
+
+FROM CUSTOMER
+
+LEFT JOIN CUSTOMER_ORDER
+ON CUSTOMER.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID
+
+LEFT JOIN PRODUCT
+ON CUSTOMER_ORDER.PRODUCT_ID = PRODUCT.PRODUCT_ID
+
+GROUP BY 1,2
 
 ```
 
