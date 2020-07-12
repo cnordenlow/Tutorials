@@ -5,6 +5,7 @@
   *https://www.w3schools.com/sql/default.asp*
   *'Getting started with SQL' using SQLite.*
   *https://github.com/thomasnield/oreilly_getting_started_with_sql*
+
 ### Basic commands
 
 #### SELECT
