@@ -3,7 +3,7 @@
 
 ## General
   *https://www.w3schools.com/sql/default.asp*
-  *'Getting started with SQL' using SQLite.*
+  *'Getting started with SQL' using SQLite. Download database found in link by vlicking the ZIP button and copy the contents to a folder of choice. The navigate in the top menu to Database -> add a database.*
   *https://github.com/thomasnield/oreilly_getting_started_with_sql*
 
 
@@ -29,7 +29,7 @@ CITY || ', ' || STATE AS LOCATION
 FROM CUSTOMER;
 ```
 
-#### WHERE
+### WHERE
 
 ```{r, echo=T, eval=F}
 
@@ -236,6 +236,7 @@ GROUP BY 1,2
 
 ```
 
+
 ## Setting up a database
 
 *Always strive to gave a primary key on every table, which provides a unique identify to each record. Foreign key in a child table points to the primary key in its parent table.*
@@ -392,6 +393,26 @@ df2 <- data.frame(tbl(con, "ATTENDEE"))
 # When data is fetched, disconnect to db.
 dbDisconnect(con)
 ```
+
+## Useful expressions
+
+
+| Operator    | Description               | Example | 
+| :----------- | :----------------------: | -----------: |
+| abs()      | Calculates the absolute value | abs(x) |
+| coalesce() | Converts a possible null value into a default | coalesce(z,y)  |
+| instr()    | Checks if a text string contains another text string | instr('HTX', 'TX') |
+| length()   | Provides the number of characters in a string | length('Test') |
+| trim()     | Removes extraneous on both sides of a string | trim(' Test ') |
+| ltrim()     | Removes extraneous on the left side of a string | ltrim(' Test') |
+| rtrim()     | Removes extraneous on the right side of a string | rtrim('Test ') |
+| random()     | Returns a random number | random() |
+| round()     | Rounds a decimal to specified number | round(100.101, 2) |
+| replace()     | Replaces a substring of text in a string | replace('Test df', ' df', '') |
+| substr()     | Extracts a range of characters from a string with their num position | substr('Test', 2,3) |
+| lower()     | Turns all letters in a string to lowercase | lower('Test') |
+| upper()     | Turns all letters in a string to uppercase | upper('Test') |
+
 
 
 ## SQL databases and R
