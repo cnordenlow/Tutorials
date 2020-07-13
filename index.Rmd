@@ -11,4 +11,4 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Intro {-}
 
-*This repository includes useful templates, formulas and code for R and VBA, also in combination with Bloomberg formulas and Fixed Income analysis.*
+*This repository includes useful templates, formulas and code for R, VBA, SQL, also in combination with Bloomberg formulas and Fixed Income analytics.*
