@@ -366,6 +366,33 @@ UPDATE ATTENDEE SET VIP = 1
 WHERE ATTENDEE_ID IN (3,4)
 ```
 
+### Connecting to database from R
+
+*Connecting to the database from R.*
+
+
+```{r, echo=T, eval=F}
+
+#https://db.rstudio.com/dplyr/
+
+library(dplyr)
+library(DBI)
+library(RSQLite)
+con <- dbConnect(SQLite(), "C:\\Users\\chris\\Documents\\oreilly_getting_started_with_sql-master\\surgetech_conferencev2.db")
+
+#Show list of table
+as.data.frame(dbListTables(con))
+
+#get data in data frame with sql syntax
+df <- data.frame(tbl(con, sql("SELECT * FROM ATTENDEE")))
+
+#with dplyr syntax
+df2 <- data.frame(tbl(con, "ATTENDEE"))
+
+# When data is fetched, disconnect to db.
+dbDisconnect(con)
+```
+
 
 ## SQL databases and R
 
