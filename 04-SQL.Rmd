@@ -244,6 +244,8 @@ GROUP BY 1,2
 ### Creating tables
 
 ```{r, echo=T, eval=F}
+#Autoincrement allows a unique number to be generated automatically when a new record is inserted into a table. Not needed for SQLite, but for MySQL and some other platforms.
+#Allowing fields to be NULL can be done for fields that are not mandatory, while using NOT NULL should be done for fields that needs to be populated.
 
 CREATE TABLE COMPANY (
 COMPANY_ID             INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -311,6 +313,59 @@ CREATE VIEW PRESENTATION_VW AS
 SELECT * FROM PRESENTATION_VW
 WHERE SEAT_CAPACITY >= 30
 ```
+
+### Populating database
+
+#### INSERT
+
+
+```{r, echo=T, eval=F}
+INSERT INTO ATTENDEE (FIRST_NAME, LAST_NAME)
+VALUES ('THOMAS', 'NIELD')
+
+SELECT * FROM ATTENDEE
+
+#Multiple inserts. Can be used with Python to populate large amounts of data.
+
+INSERT INTO ATTENDEE (FIRST_NAME, LAST_NAME, PHONE, EMAIL, VIP)
+VALUES
+('Jon', 'Skeeter', 3525253523, 'john.skeeter@rex.net', 1),
+('Sam', 'Jones', 25235235235, 'sam.jones@hej.se', 0),
+('Karl', 'Andersson', 5235235, 'karl.andersson@gmail.com',1)
+
+#Inserting with a SELECT from another table
+
+INSERT INTO ATTENDEE (FIRST_NAME, LAST_NAME, PHONE, EMAIL)
+SELECT FIRST_NAME, LAST_NAME, PHONE, EMAIL
+FROM ANOTHER_TABLE
+
+```
+
+#### DELETE
+
+*Combining DELETE with WHERE. It could be good to replace DELETE with SELECT to get a preview what will be deleted.*
+
+```{r, echo=T, eval=F}
+DELETE FROM ATTENDEE
+WHERE PHONE IS NULL
+AND EMAIL IS NULL
+
+# On some platforms the preferred way to delete all records from a table is to use TRUNCATE TABLE.
+
+```
+
+#### UPDATE
+
+*UPDATE modifies existing records.*
+
+```{r, echo=T, eval=F}
+UPDATE ATTENDEE SET FIRST_NAME = UPPER(FIRST_NAME),
+LAST_NAME = UPPER(LAST_NAME)
+
+UPDATE ATTENDEE SET VIP = 1
+WHERE ATTENDEE_ID IN (3,4)
+```
+
 
 ## SQL databases and R
 
