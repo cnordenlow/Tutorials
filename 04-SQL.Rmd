@@ -1,5 +1,21 @@
 # SQL
 
+| Operator    | Description               | Example | 
+| :----------- | :----------------------: | -----------: |
+| abs()      | Calculates the absolute value | abs(x) |
+| coalesce() | Converts a possible null value into a default | coalesce(z,y)  |
+| instr()    | Checks if a text string contains another text string | instr('HTX', 'TX') |
+| length()   | Provides the number of characters in a string | length('Test') |
+| trim()     | Removes extraneous on both sides of a string | trim(' Test ') |
+| ltrim()     | Removes extraneous on the left side of a string | ltrim(' Test') |
+| rtrim()     | Removes extraneous on the right side of a string | rtrim('Test ') |
+| random()     | Returns a random number | random() |
+| round()     | Rounds a decimal to specified number | round(100.101, 2) |
+| replace()     | Replaces a substring of text in a string | replace('Test df', ' df', '') |
+| substr()     | Extracts a range of characters from a string with their num position | substr('Test', 2,3) |
+| lower()     | Turns all letters in a string to lowercase | lower('Test') |
+| upper()     | Turns all letters in a string to uppercase | upper('Test') |
+
 
 ## Basic
   *https://www.w3schools.com/sql/default.asp*
