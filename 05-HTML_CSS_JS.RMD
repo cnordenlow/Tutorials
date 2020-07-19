@@ -37,11 +37,61 @@
 | ||      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
 | !       | Inverts the boolean value of the operand | !true (false) |
 
-#### Calculate Forward Rates
+### Statements
 
-**Calculate Forward Rates**
+#### If statements
   
 
 ```{r, echo=T, eval=F}
 
+# Multiple statements
+if(condition) {
+  statement_1;
+  statement_2;
+  statement_3;
+ }
+ 
+ # Else clause
+ if(condition) {
+  statement(s);
+  } else {
+  statement(s);
+ }
+ 
+ #Else if clause. Branching logical structure can get very complex.
+ if(condition) {
+  statement(s);
+ } else if(condition) {
+  statement(s);
+ }
+ 
+ #Switch statement
+ switch(condition) {
+  case label_1:
+    statement(s);
+    break;
+   
+   case label_2:
+    statement(s);
+    break;
+   
+   default:
+    statement(s);
+    break;
+}
+
+#While loops
+while(condition) {
+  statement(s);
+}
+
+#Do while
+do {
+  statement(s);
+} while(condition);
+
+#For loops
+for(initialize ; condition ; iteration) {
+  statement(s);
+}
 ``` 
