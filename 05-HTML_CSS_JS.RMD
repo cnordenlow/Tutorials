@@ -3,11 +3,11 @@
 
 ## HTML
   
-### Bond Calculator in R
+### Basic
 
-#### Calculate Forward Rates
+#### Basic
 
-**Calculate Forward Rates**
+**Basic**
   
 
 ```{r, echo=T, eval=F}
@@ -16,11 +16,11 @@
 
 ## CSS
   
-### Bond Calculator in R
+### Basic
 
-#### Calculate Forward Rates
+#### Basic
 
-**Calculate Forward Rates**
+*Test*
   
 
 ```{r, echo=T, eval=F}
