@@ -29,7 +29,13 @@
 
 ## JAVASCRIPT
 
-### Bond Calculator in R
+### Operators
+
+| Operator    | Description               | Example | 
+| :----------- | :----------------------: | -----------: |
+| ??      | Returns true if both operands evaluate to true | true && false (false) |
+| ||      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
+| !       | Inverts the boolean value of the operand | !true (false) |
 
 #### Calculate Forward Rates
 
