@@ -94,14 +94,16 @@ if(condition) {
 }
 ``` 
 
+
+
+#### Loops
+  
+```{r, echo=T, eval=F}
 #While loops
 while(condition) {
   statement(s);
 }
 
-#### Loops
-  
-```{r, echo=T, eval=F}
 #Do while
 do {
   statement(s);
@@ -191,3 +193,77 @@ new com.flametreepublishing.QuizQuestion(
 }
 
 ```
+
+
+### DOM and events of JS
+
+#### DOM programming
+*Document Object Model programming allows JavaScript to make changes to a page after it has been loaded.*
+
+```{r, echo=T, eval=F}
+var com;
+if(!com) {
+	com = {};
+}
+if(!com.flametreepublishing) {
+	com.flametreepublishing = {};
+}
+
+com.flametreepublishing.QuizQuestion = function(aQuestionNum, aQuestionText, aAnswers, aCorrectAnswerIndex) {
+	this.questionNum = aQuestionNum;
+	this.questionText = aQuestionText;
+	this.answers = aAnswers;
+	this.correctAnswerIndex = aCorrectAnswerIndex;
+}
+
+com.flametreepublishing.QuizQuestion.prototype.checkUserAnswer = function(answerIndex) {
+	var theResult;
+	if(answerIndex == this.correctAnswerIndex) {
+		theResult = true;
+	} else {
+		theResult = false;
+	}
+	return(theResult);
+}
+
+#//We've updated substantially the renderQuestion method. Now, rather than
+#//relying on document.write, which only works when the page is being loaded,
+#//we're now using DOM programming techniques to create HTML elements 
+#//on-the-fly from within JavaScript.
+
+com.flametreepublishing.QuizQuestion.prototype.renderQuestion = function() {
+#	//First we create a <div> element in which to store the question's
+#	//content. This <div> is created but does not yet exist on the page
+	var questionDiv = document.createElement("div");
+#	//We'll set an id attribute on the <div> - later, this will help us to
+#	//identify which question a user clicks on. We'll give the id a leading
+#	//'q' because it is bad practice to start an id value with a number.
+	questionDiv.id = "q" + this.questionNum;
+#	//Now we create an <h2> element for the question's title
+	var questionHeading = document.createElement("h2");
+#	//An element's innerHtml property allows us to write HTML that will be
+#	//rendered within that element...
+	questionHeading.innerHTML = "QUESTION " + this.questionNum;
+#	//Now we add the <h2> to the <div>
+	questionDiv.appendChild(questionHeading);
+#	//Next, we create a <p> to hold the question text itself, and add
+#	//this to the <div> too.
+	var questionTextPara = document.createElement("p");
+	questionTextPara.innerHTML = this.questionText;
+	questionDiv.appendChild(questionTextPara);
+#	//Now we'll loop through the QuizQuestion object's 'answers'
+#	//array, creating a <p> for each and and adding them 
+#	//to our <div> element
+	for(var i = 0; i < this.answers.length; i++) {
+		var answerPara = document.createElement("p");
+		answerPara.innerHTML = this.answers[i];
+		answerPara.id = "a" + i;
+		questionDiv.appendChild(answerPara);		
+	}
+#	//Finally, we add the <div> to the body of the page
+	document.body.appendChild(questionDiv);	
+}
+```
+#### Events
+
+*Clickhandler*
