@@ -102,3 +102,49 @@ for(initialize ; condition ; iteration) {
   statement(s);
 }
 ``` 
+
+### Functions and classes
+
+#### Named and anonymous functions
+
+*Using anonymous functions we use a variable name instead of a function name.*
+```{r, echo=T, eval=F}
+#//Named function
+function calculateRectArea(rectWidth, rectHeight) {
+  return(rectWidth * rectheight)
+}
+
+#//Anonymous function
+var calculateRectHypotenuse = function(rectWidth, rectHeight) {
+  var widthsquared = rectWidth * rectWidth;
+  var heigthSquared = rectHeight * rectHeight;
+  return(Math.sqrt(widthSquared + heightSquared));
+ }
+ 
+#//calling
+var myRectArea = calculateRectArea(49, 28);
+var myRectHypotenuse = calculateRectHypotenuse(49,28);
+
+``` 
+
+#### Namespace
+
+*Namespaces are notional spaces or contexts in which a set of names can be defined, to avoid name clashed. Two names can be identical as long as they exist in different namespace.
+
+```{r, echo=T, eval=F}
+#//Creating a namespace in js script. It is a good practise to include your namespace declaration in top of all your scripts. Functions needs to be anonymous.
+#//First we create an object called com inside the global namespace, and then we create an object called flametreepublishing inside the com project.
+#// After declaring, but not initializing, we test that each namespace object does not exist before using it.
+
+
+var com:
+if(!com) {
+	com = {};
+}
+
+if (!com.flametreepublishing) {
+	com.flametreepublishing = {}
+}
+
+
+```
