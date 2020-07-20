@@ -137,7 +137,7 @@ var myRectHypotenuse = calculateRectHypotenuse(49,28);
 #// After declaring, but not initializing, we test that each namespace object does not exist before using it.
 
 
-var com:
+var com;
 if(!com) {
 	com = {};
 }
