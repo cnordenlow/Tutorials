@@ -201,30 +201,7 @@ new com.flametreepublishing.QuizQuestion(
 *Document Object Model programming allows JavaScript to make changes to a page after it has been loaded.*
 
 ```{r, echo=T, eval=F}
-var com;
-if(!com) {
-	com = {};
-}
-if(!com.flametreepublishing) {
-	com.flametreepublishing = {};
-}
 
-com.flametreepublishing.QuizQuestion = function(aQuestionNum, aQuestionText, aAnswers, aCorrectAnswerIndex) {
-	this.questionNum = aQuestionNum;
-	this.questionText = aQuestionText;
-	this.answers = aAnswers;
-	this.correctAnswerIndex = aCorrectAnswerIndex;
-}
-
-com.flametreepublishing.QuizQuestion.prototype.checkUserAnswer = function(answerIndex) {
-	var theResult;
-	if(answerIndex == this.correctAnswerIndex) {
-		theResult = true;
-	} else {
-		theResult = false;
-	}
-	return(theResult);
-}
 
 #//We've updated substantially the renderQuestion method. Now, rather than
 #//relying on document.write, which only works when the page is being loaded,
@@ -266,4 +243,49 @@ com.flametreepublishing.QuizQuestion.prototype.renderQuestion = function() {
 ```
 #### Events
 
-*Clickhandler*
+**Event Handler**
+
+*W3C event model*
+
+
+```{r, echo=T, eval=F}
+
+#//Create a method for handling user 'click' events
+com.flametreepublishing.SimpleQuiz.prototype.clickHandler = function(e) {
+#	//The handler will always be passed an objec that contains data
+#	//about the event that triggered the handler. We're using an identifier
+#	//of 'e' for this. With a 'click' event, 'e.target' will always refer to 
+#	//the HTML element on which the click event occurred.
+#	//First we'll get the id attribute of the clicked answer
+	var clickedAnswerId = e.target.id;
+#	//Now we need to extract the answer index, a Number, from the id value,
+#	//which is a string. We do this by extracting the second character of the
+#	//id using the 'substr' method of the String class, and then casting this to
+#	//a number. Notice that we can do this all within one compound expression.
+	var clickedAnswerIndex = Number(clickedAnswerId.substr(1, 1));
+#	//Next we need to know which question has been answered. Recall that we added
+#	//an id attribute to the <div> that contains the question - this <div> is the
+#	//parent of the answer <p> that was clicked, so we can access it using
+#	//'e.target.parentNode'.
+#	//Once we have a reference to the <div> we can extract the question index in
+#	//much the same way as we did the answer index
+	var clickedQuestionId = e.target.parentNode.id;
+	var clickedQuestionNum = Number(clickedQuestionId.substr(1, 1));
+#	//The question number stored in the containg <div> id attribute is one-based, but
+#	//we need a zero-based number when accessing the questions array - for this reason
+#	//we subtract '1' from the clickedQuestionNum when retrieving the QuizQuestion object
+	var clickedQuestion = com.flametreepublishing.simpleQuiz.questions[clickedQuestionNum -1];
+#	//Now that we have the correct QuizQuestion object we can call its 'checkUserAnswer'
+#	//method to see if the user was correct. Recall that 'checkUserAnswer' returns
+#	//'true' or 'false' - all we need do, then, is call the method as the conditional 
+#	//expression of an 'if' statement.
+	if(clickedQuestion.checkUserAnswer(clickedAnswerIndex)) {
+		alert("Correct! Well done.");
+	} else {
+		alert("No - that's not correct. Try again.");
+	}	
+}
+	
+```
+
+**Event Listener**
