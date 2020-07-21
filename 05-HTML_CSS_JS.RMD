@@ -3,16 +3,16 @@
 
 ## HTML
 
-*HTML is made up of a structure of elements which acts like a set of instructions for a web browser.
+*HTML is made up of a structure of elements which acts like a set of instructions for a web browser.*
 
-```{r, echo=T, eval=F}
-#<!-- Doctype declares which dialects of HTML that is used. In this case HTML5 -->
+```html
+<!-- Doctype declares which dialects of HTML that is used. In this case HTML5 -->
 <!DOCTYPE HTML>
 
-#<!-- <html> is the parent element for the page. All other elements are nested within this. <html> always has two child elements: <head> and <body>.  -->
+<!-- <html> is the parent element for the page. All other elements are nested within this. <html> always has two child elements: <head> and <body>.  -->
 <html>
 
-#<!-- <head> element contains information about the web page such as its title, links to other resources etc. Nothing in the this element is visible on the page. -->
+<!-- <head> element contains information about the web page such as its title, links to other resources etc. Nothing in the this element is visible on the page. -->
 
 	<head>
 		<title> Web Page Test</title>
@@ -20,7 +20,7 @@
 		
 	</head>
 
-#<!-- <body> element takes care of the actual visible content on the page. -->
+<!-- <body> element takes care of the actual visible content on the page. -->
 
 	<body>
 		<header>
@@ -36,6 +36,7 @@
 </html>	
 
 ``` 
+
 ### Basic
 
 #### Basic
@@ -69,7 +70,7 @@
 | Operator    | Description               | Example | 
 | :----------- | :----------------------: | -----------: |
 | ??      | Returns true if both operands evaluate to true | true && false (false) |
-| ||      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
+| "||"      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
 | !       | Inverts the boolean value of the operand | !true (false) |
 
 
@@ -84,13 +85,13 @@
 | Operator    | Description               | Example | 
 | :----------- | :----------------------: | -----------: |
 | This      | Returns true if both operands evaluate to true | true && false (false) |
-| ||      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
+| "||"      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
 | !       | Inverts the boolean value of the operand | !true (false) |
 
 
 #### If statements
   
-```{r, echo=T, eval=F}
+```js
 
 # Multiple statements
 if(condition) {
@@ -133,18 +134,18 @@ if(condition) {
 
 #### Loops
   
-```{r, echo=T, eval=F}
-#While loops
+```js
+//While loops
 while(condition) {
   statement(s);
 }
 
-#Do while
+//Do while
 do {
   statement(s);
 } while(condition);
 
-#For loops
+//For loops
 for(initialize ; condition ; iteration) {
   statement(s);
 }
@@ -155,20 +156,20 @@ for(initialize ; condition ; iteration) {
 #### Named and anonymous functions
 
 *Using anonymous functions we use a variable name instead of a function name.*
-```{r, echo=T, eval=F}
-#//Named function
+```js
+//Named function
 function calculateRectArea(rectWidth, rectHeight) {
   return(rectWidth * rectheight)
 }
 
-#//Anonymous function
+//Anonymous function
 var calculateRectHypotenuse = function(rectWidth, rectHeight) {
   var widthsquared = rectWidth * rectWidth;
   var heigthSquared = rectHeight * rectHeight;
   return(Math.sqrt(widthSquared + heightSquared));
  }
  
-#//calling
+//calling
 var myRectArea = calculateRectArea(49, 28);
 var myRectHypotenuse = calculateRectHypotenuse(49,28);
 
@@ -176,12 +177,12 @@ var myRectHypotenuse = calculateRectHypotenuse(49,28);
 
 #### Namespace
 
-*Namespaces are notional spaces or contexts in which a set of names can be defined, to avoid name clashed. Two names can be identical as long as they exist in different namespace.
+*Namespaces are notional spaces or contexts in which a set of names can be defined, to avoid name clashed. Two names can be identical as long as they exist in different namespace.*
 
-```{r, echo=T, eval=F}
-#//Creating a namespace in js script. It is a good practise to include your namespace declaration in top of all your scripts. Functions needs to be anonymous.
-#//First we create an object called com inside the global namespace, and then we create an object called flametreepublishing inside the com project.
-#// After declaring, but not initializing, we test that each namespace object does not exist before using it.
+```js
+//Creating a namespace in js script. It is a good practise to include your namespace declaration in top of all your scripts. Functions needs to be anonymous.
+//First we create an object called com inside the global namespace, and then we create an object called flametreepublishing inside the com project.
+// After declaring, but not initializing, we test that each namespace object does not exist before using it.
 
 
 var com;
@@ -200,8 +201,8 @@ if (!com.flametreepublishing) {
 
 *While JavaScript is not a true OOP language, it is still used in a OOP style. We write scripts called classes that define properties.*
 
-```{r, echo=T, eval=F}
-#//Example: Define a custom class, then create an instance.
+```js
+//Example: Define a custom class, then create an instance.
 
 var com;
 if(!com) {
@@ -218,7 +219,7 @@ com.flametreepublishing.QuizQuestion = functio(aQustionNum, AQuestionText, aAnsw
 	this.correctAnswerIndex = aCorrectAnswerIndex;
 
 
-#Creating an instance
+//Creating an instance
 new com.flametreepublishing.QuizQuestion(
 	1,
 	"Approx how far away from the Earth is the Sun?",
@@ -235,44 +236,62 @@ new com.flametreepublishing.QuizQuestion(
 #### DOM programming
 *Document Object Model programming allows JavaScript to make changes to a page after it has been loaded.*
 
-```{r, echo=T, eval=F}
+```js
 
 
-#//We've updated substantially the renderQuestion method. Now, rather than
-#//relying on document.write, which only works when the page is being loaded,
-#//we're now using DOM programming techniques to create HTML elements 
-#//on-the-fly from within JavaScript.
+//We've updated substantially the renderQuestion method. Now, rather than
+//relying on document.write, which only works when the page is being loaded,
+//we're now using DOM programming techniques to create HTML elements 
+//on-the-fly from within JavaScript.
 
 com.flametreepublishing.QuizQuestion.prototype.renderQuestion = function() {
-#	//First we create a <div> element in which to store the question's
-#	//content. This <div> is created but does not yet exist on the page
+
+	//First we create a <div> element in which to store the question's
+	//content. This <div> is created but does not yet exist on the page
+	
 	var questionDiv = document.createElement("div");
-#	//We'll set an id attribute on the <div> - later, this will help us to
-#	//identify which question a user clicks on. We'll give the id a leading
-#	//'q' because it is bad practice to start an id value with a number.
+	
+	//We'll set an id attribute on the <div> - later, this will help us to
+	//identify which question a user clicks on. We'll give the id a leading
+	//'q' because it is bad practice to start an id value with a number.
+	
 	questionDiv.id = "q" + this.questionNum;
-#	//Now we create an <h2> element for the question's title
+	
+	//Now we create an <h2> element for the question's title
+	
 	var questionHeading = document.createElement("h2");
-#	//An element's innerHtml property allows us to write HTML that will be
-#	//rendered within that element...
+	
+	//An element's innerHtml property allows us to write HTML that will be
+	//rendered within that element...
+	
 	questionHeading.innerHTML = "QUESTION " + this.questionNum;
-#	//Now we add the <h2> to the <div>
+	
+	//Now we add the <h2> to the <div>
+	
 	questionDiv.appendChild(questionHeading);
-#	//Next, we create a <p> to hold the question text itself, and add
-#	//this to the <div> too.
+	
+	//Next, we create a <p> to hold the question text itself, and add
+	//this to the <div> too.
+	
 	var questionTextPara = document.createElement("p");
+	
 	questionTextPara.innerHTML = this.questionText;
+	
 	questionDiv.appendChild(questionTextPara);
-#	//Now we'll loop through the QuizQuestion object's 'answers'
-#	//array, creating a <p> for each and and adding them 
-#	//to our <div> element
+
+	//Now we'll loop through the QuizQuestion object's 'answers'
+	//array, creating a <p> for each and and adding them 
+	//to our <div> element
+
 	for(var i = 0; i < this.answers.length; i++) {
 		var answerPara = document.createElement("p");
 		answerPara.innerHTML = this.answers[i];
 		answerPara.id = "a" + i;
 		questionDiv.appendChild(answerPara);		
 	}
-#	//Finally, we add the <div> to the body of the page
+	
+//Finally, we add the <div> to the body of the page
+
 	document.body.appendChild(questionDiv);	
 }
 ```
@@ -283,41 +302,56 @@ com.flametreepublishing.QuizQuestion.prototype.renderQuestion = function() {
 *W3C event model*
 
 
-```{r, echo=T, eval=F}
+```js
 
-#//Create a method for handling user 'click' events
+//Create a method for handling user 'click' events
+
 com.flametreepublishing.SimpleQuiz.prototype.clickHandler = function(e) {
-#	//The handler will always be passed an objec that contains data
-#	//about the event that triggered the handler. We're using an identifier
-#	//of 'e' for this. With a 'click' event, 'e.target' will always refer to 
-#	//the HTML element on which the click event occurred.
-#	//First we'll get the id attribute of the clicked answer
+
+	//The handler will always be passed an objec that contains data
+	//about the event that triggered the handler. We're using an identifier
+	//of 'e' for this. With a 'click' event, 'e.target' will always refer to 
+	//the HTML element on which the click event occurred.
+	//First we'll get the id attribute of the clicked answer
+	
 	var clickedAnswerId = e.target.id;
-#	//Now we need to extract the answer index, a Number, from the id value,
-#	//which is a string. We do this by extracting the second character of the
-#	//id using the 'substr' method of the String class, and then casting this to
-#	//a number. Notice that we can do this all within one compound expression.
+	
+	//Now we need to extract the answer index, a Number, from the id value,
+	//which is a string. We do this by extracting the second character of the
+	//id using the 'substr' method of the String class, and then casting this to
+	//a number. Notice that we can do this all within one compound expression.
+	
 	var clickedAnswerIndex = Number(clickedAnswerId.substr(1, 1));
-#	//Next we need to know which question has been answered. Recall that we added
-#	//an id attribute to the <div> that contains the question - this <div> is the
-#	//parent of the answer <p> that was clicked, so we can access it using
-#	//'e.target.parentNode'.
-#	//Once we have a reference to the <div> we can extract the question index in
-#	//much the same way as we did the answer index
+	
+	//Next we need to know which question has been answered. Recall that we added
+	//an id attribute to the <div> that contains the question - this <div> is the
+	//parent of the answer <p> that was clicked, so we can access it using
+	//'e.target.parentNode'.
+	//Once we have a reference to the <div> we can extract the question index in
+	//much the same way as we did the answer index
+	
 	var clickedQuestionId = e.target.parentNode.id;
 	var clickedQuestionNum = Number(clickedQuestionId.substr(1, 1));
-#	//The question number stored in the containg <div> id attribute is one-based, but
-#	//we need a zero-based number when accessing the questions array - for this reason
-#	//we subtract '1' from the clickedQuestionNum when retrieving the QuizQuestion object
+	
+	//The question number stored in the containg <div> id attribute is one-based, but
+	//we need a zero-based number when accessing the questions array - for this reason
+	//we subtract '1' from the clickedQuestionNum when retrieving the QuizQuestion object
+	
 	var clickedQuestion = com.flametreepublishing.simpleQuiz.questions[clickedQuestionNum -1];
-#	//Now that we have the correct QuizQuestion object we can call its 'checkUserAnswer'
-#	//method to see if the user was correct. Recall that 'checkUserAnswer' returns
-#	//'true' or 'false' - all we need do, then, is call the method as the conditional 
-#	//expression of an 'if' statement.
+	
+	//Now that we have the correct QuizQuestion object we can call its 'checkUserAnswer'
+	//method to see if the user was correct. Recall that 'checkUserAnswer' returns
+	//'true' or 'false' - all we need do, then, is call the method as the conditional 
+	//expression of an 'if' statement.
+	
 	if(clickedQuestion.checkUserAnswer(clickedAnswerIndex)) {
+	
 		alert("Correct! Well done.");
+		
 	} else {
+	
 		alert("No - that's not correct. Try again.");
+		
 	}	
 }
 	

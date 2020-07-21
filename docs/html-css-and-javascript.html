@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 HTML, CSS and JAVASCRIPT | Templates</title>
+  <meta name="description" content="5 HTML, CSS and JAVASCRIPT | Templates" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 HTML, CSS and JAVASCRIPT | Templates" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 HTML, CSS and JAVASCRIPT | Templates" />
+  
+  
+  
+
+<meta name="author" content="christoffer.nordenlow@riksbank.se" />
+
+
+<meta name="date" content="2020-05-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sql.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="1" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>1</b> R</a><ul>
+<li class="chapter" data-level="1.1" data-path="r.html"><a href="r.html#create-template-tables"><i class="fa fa-check"></i><b>1.1</b> Create template tables</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r.html"><a href="r.html#template-tables"><i class="fa fa-check"></i><b>1.1.1</b> Template tables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r.html"><a href="r.html#import-export"><i class="fa fa-check"></i><b>1.2</b> Import &amp; Export</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r.html"><a href="r.html#import"><i class="fa fa-check"></i><b>1.2.1</b> Import</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r.html"><a href="r.html#export"><i class="fa fa-check"></i><b>1.2.2</b> Export</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r.html"><a href="r.html#tidy-transform"><i class="fa fa-check"></i><b>1.3</b> Tidy &amp; Transform</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r.html"><a href="r.html#cleaning"><i class="fa fa-check"></i><b>1.3.1</b> Cleaning</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r.html"><a href="r.html#expand"><i class="fa fa-check"></i><b>1.3.2</b> Expand</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r.html"><a href="r.html#join-and-merge"><i class="fa fa-check"></i><b>1.3.3</b> Join and Merge</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r.html"><a href="r.html#transforming-data-with-apply-etc"><i class="fa fa-check"></i><b>1.3.4</b> Transforming data with Apply etc</a></li>
+<li class="chapter" data-level="1.3.5" data-path="r.html"><a href="r.html#tally-function"><i class="fa fa-check"></i><b>1.3.5</b> Tally-function</a></li>
+<li class="chapter" data-level="1.3.6" data-path="r.html"><a href="r.html#useful-functions-expressions"><i class="fa fa-check"></i><b>1.3.6</b> Useful functions / expressions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r.html"><a href="r.html#working-with-strings-and-characters"><i class="fa fa-check"></i><b>1.4</b> Working with strings and characters</a></li>
+<li class="chapter" data-level="1.5" data-path="r.html"><a href="r.html#visualize"><i class="fa fa-check"></i><b>1.5</b> Visualize</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="r.html"><a href="r.html#ggplots"><i class="fa fa-check"></i><b>1.5.1</b> Ggplots</a></li>
+<li class="chapter" data-level="1.5.2" data-path="r.html"><a href="r.html#different-tables"><i class="fa fa-check"></i><b>1.5.2</b> Different tables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="r.html"><a href="r.html#misc"><i class="fa fa-check"></i><b>1.6</b> Misc</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r.html"><a href="r.html#moving-average"><i class="fa fa-check"></i><b>1.6.1</b> Moving average</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r.html"><a href="r.html#date-formating"><i class="fa fa-check"></i><b>1.6.2</b> Date Formating</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r.html"><a href="r.html#loops"><i class="fa fa-check"></i><b>1.6.3</b> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="r.html"><a href="r.html#r-markdown"><i class="fa fa-check"></i><b>1.7</b> R Markdown</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="r.html"><a href="r.html#render-multiple-reports"><i class="fa fa-check"></i><b>1.7.1</b> Render multiple reports</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="r.html"><a href="r.html#web-scraping"><i class="fa fa-check"></i><b>1.8</b> Web Scraping</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="r.html"><a href="r.html#scrape-all-sub-page"><i class="fa fa-check"></i><b>1.8.1</b> Scrape all sub page</a></li>
+<li class="chapter" data-level="1.8.2" data-path="r.html"><a href="r.html#scrape-pl-table"><i class="fa fa-check"></i><b>1.8.2</b> Scrape PL table</a></li>
+<li class="chapter" data-level="1.8.3" data-path="r.html"><a href="r.html#scrape-all-tables"><i class="fa fa-check"></i><b>1.8.3</b> Scrape all tables</a></li>
+<li class="chapter" data-level="1.8.4" data-path="r.html"><a href="r.html#scrape-title"><i class="fa fa-check"></i><b>1.8.4</b> Scrape title</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="excel-vba.html"><a href="excel-vba.html"><i class="fa fa-check"></i><b>2</b> Excel &amp; VBA</a><ul>
+<li class="chapter" data-level="2.1" data-path="excel-vba.html"><a href="excel-vba.html#import-1"><i class="fa fa-check"></i><b>2.1</b> Import</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="excel-vba.html"><a href="excel-vba.html#standard-way-to-import-file"><i class="fa fa-check"></i><b>2.1.1</b> Standard way to import file</a></li>
+<li class="chapter" data-level="2.1.2" data-path="excel-vba.html"><a href="excel-vba.html#import-file-with-conditions"><i class="fa fa-check"></i><b>2.1.2</b> Import file with conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="excel-vba.html"><a href="excel-vba.html#loops-1"><i class="fa fa-check"></i><b>2.2</b> Loops</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="excel-vba.html"><a href="excel-vba.html#for-loop"><i class="fa fa-check"></i><b>2.2.1</b> For loop</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="excel-vba.html"><a href="excel-vba.html#misc-1"><i class="fa fa-check"></i><b>2.3</b> Misc</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="excel-vba.html"><a href="excel-vba.html#misc-2"><i class="fa fa-check"></i><b>2.3.1</b> Misc</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="excel-vba.html"><a href="excel-vba.html#useful-excel-formulas"><i class="fa fa-check"></i><b>2.4</b> Useful excel formulas</a></li>
+<li class="chapter" data-level="2.5" data-path="excel-vba.html"><a href="excel-vba.html#useful-bloomberg-formulas"><i class="fa fa-check"></i><b>2.5</b> Useful Bloomberg formulas</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="fi-fx.html"><a href="fi-fx.html"><i class="fa fa-check"></i><b>3</b> FI &amp; FX</a><ul>
+<li class="chapter" data-level="3.1" data-path="fi-fx.html"><a href="fi-fx.html#fixed-income"><i class="fa fa-check"></i><b>3.1</b> Fixed Income</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="fi-fx.html"><a href="fi-fx.html#bond-calculator-in-r"><i class="fa fa-check"></i><b>3.1.1</b> Bond Calculator in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="fi-fx.html"><a href="fi-fx.html#foreign-exchange"><i class="fa fa-check"></i><b>3.2</b> Foreign Exchange</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>4</b> SQL</a><ul>
+<li class="chapter" data-level="4.1" data-path="sql.html"><a href="sql.html#general"><i class="fa fa-check"></i><b>4.1</b> General</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="sql.html"><a href="sql.html#select"><i class="fa fa-check"></i><b>4.1.1</b> SELECT</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sql.html"><a href="sql.html#where"><i class="fa fa-check"></i><b>4.1.2</b> WHERE</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sql.html"><a href="sql.html#group-by"><i class="fa fa-check"></i><b>4.1.3</b> GROUP BY</a></li>
+<li class="chapter" data-level="4.1.4" data-path="sql.html"><a href="sql.html#case-statements"><i class="fa fa-check"></i><b>4.1.4</b> CASE statements</a></li>
+<li class="chapter" data-level="4.1.5" data-path="sql.html"><a href="sql.html#join"><i class="fa fa-check"></i><b>4.1.5</b> JOIN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="sql.html"><a href="sql.html#setting-up-a-database"><i class="fa fa-check"></i><b>4.2</b> Setting up a database</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="sql.html"><a href="sql.html#creating-tables"><i class="fa fa-check"></i><b>4.2.1</b> Creating tables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sql.html"><a href="sql.html#creating-views"><i class="fa fa-check"></i><b>4.2.2</b> Creating views</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sql.html"><a href="sql.html#populating-database"><i class="fa fa-check"></i><b>4.2.3</b> Populating database</a></li>
+<li class="chapter" data-level="4.2.4" data-path="sql.html"><a href="sql.html#connecting-to-database-from-r"><i class="fa fa-check"></i><b>4.2.4</b> Connecting to database from R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sql.html"><a href="sql.html#useful-expressions"><i class="fa fa-check"></i><b>4.3</b> Useful expressions</a></li>
+<li class="chapter" data-level="4.4" data-path="sql.html"><a href="sql.html#sql-databases-and-r"><i class="fa fa-check"></i><b>4.4</b> SQL databases and R</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="sql.html"><a href="sql.html#connecting-to-a-database-from-r"><i class="fa fa-check"></i><b>4.4.1</b> Connecting to a database from R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="sql.html"><a href="sql.html#running-sql-syntax-in-r"><i class="fa fa-check"></i><b>4.4.2</b> Running SQL syntax in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html"><i class="fa fa-check"></i><b>5</b> HTML, CSS and JAVASCRIPT</a><ul>
+<li class="chapter" data-level="5.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#html"><i class="fa fa-check"></i><b>5.1</b> HTML</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#basic"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#css"><i class="fa fa-check"></i><b>5.2</b> CSS</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#basic-2"><i class="fa fa-check"></i><b>5.2.1</b> Basic</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#javascript"><i class="fa fa-check"></i><b>5.3</b> JAVASCRIPT</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#operators"><i class="fa fa-check"></i><b>5.3.1</b> Operators</a></li>
+<li class="chapter" data-level="5.3.2" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#anatomy"><i class="fa fa-check"></i><b>5.3.2</b> Anatomy</a></li>
+<li class="chapter" data-level="5.3.3" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#functions-and-classes"><i class="fa fa-check"></i><b>5.3.3</b> Functions and classes</a></li>
+<li class="chapter" data-level="5.3.4" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#dom-and-events-of-js"><i class="fa fa-check"></i><b>5.3.4</b> DOM and events of JS</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Templates</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="html-css-and-javascript" class="section level1">
+<h1><span class="header-section-number">5</span> HTML, CSS and JAVASCRIPT</h1>
+<div id="html" class="section level2">
+<h2><span class="header-section-number">5.1</span> HTML</h2>
+<p><em>HTML is made up of a structure of elements which acts like a set of instructions for a web browser.</em></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb64-1" title="1"><span class="co">&lt;!-- Doctype declares which dialects of HTML that is used. In this case HTML5 --&gt;</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="dt">&lt;!DOCTYPE </span>HTML<span class="dt">&gt;</span></a>
+<a class="sourceLine" id="cb64-3" title="3"></a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="co">&lt;!-- &lt;html&gt; is the parent element for the page. All other elements are nested within this. &lt;html&gt; always has two child elements: &lt;head&gt; and &lt;body&gt;.  --&gt;</span></a>
+<a class="sourceLine" id="cb64-5" title="5"><span class="kw">&lt;html&gt;</span></a>
+<a class="sourceLine" id="cb64-6" title="6"></a>
+<a class="sourceLine" id="cb64-7" title="7"><span class="co">&lt;!-- &lt;head&gt; element contains information about the web page such as its title, links to other resources etc. Nothing in the this element is visible on the page. --&gt;</span></a>
+<a class="sourceLine" id="cb64-8" title="8"></a>
+<a class="sourceLine" id="cb64-9" title="9">    <span class="kw">&lt;head&gt;</span></a>
+<a class="sourceLine" id="cb64-10" title="10">        <span class="kw">&lt;title&gt;</span> Web Page Test<span class="kw">&lt;/title&gt;</span></a>
+<a class="sourceLine" id="cb64-11" title="11">        <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&quot;https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300</span><span class="er">&amp;</span><span class="st">display=swap&quot;</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb64-12" title="12">        </a>
+<a class="sourceLine" id="cb64-13" title="13">    <span class="kw">&lt;/head&gt;</span></a>
+<a class="sourceLine" id="cb64-14" title="14"></a>
+<a class="sourceLine" id="cb64-15" title="15"><span class="co">&lt;!-- &lt;body&gt; element takes care of the actual visible content on the page. --&gt;</span></a>
+<a class="sourceLine" id="cb64-16" title="16"></a>
+<a class="sourceLine" id="cb64-17" title="17">    <span class="kw">&lt;body&gt;</span></a>
+<a class="sourceLine" id="cb64-18" title="18">        <span class="kw">&lt;header&gt;</span></a>
+<a class="sourceLine" id="cb64-19" title="19">            <span class="kw">&lt;nav&gt;</span>Home | About | Contact <span class="kw">&lt;/nav&gt;</span></a>
+<a class="sourceLine" id="cb64-20" title="20">            <span class="kw">&lt;hgroup&gt;</span></a>
+<a class="sourceLine" id="cb64-21" title="21">                <span class="kw">&lt;h1&gt;</span>Web page test<span class="kw">&lt;/h1&gt;</span></a>
+<a class="sourceLine" id="cb64-22" title="22">                <span class="kw">&lt;h2&gt;</span>Not very complexed<span class="kw">&lt;/h2&gt;</span></a>
+<a class="sourceLine" id="cb64-23" title="23">            <span class="kw">&lt;/hgroup&gt;</span></a>
+<a class="sourceLine" id="cb64-24" title="24">        <span class="kw">&lt;/header&gt;</span></a>
+<a class="sourceLine" id="cb64-25" title="25"></a>
+<a class="sourceLine" id="cb64-26" title="26">    <span class="kw">&lt;/body&gt;</span></a>
+<a class="sourceLine" id="cb64-27" title="27"></a>
+<a class="sourceLine" id="cb64-28" title="28"><span class="kw">&lt;/html&gt;</span> </a></code></pre></div>
+<div id="basic" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Basic</h3>
+<div id="basic-1" class="section level4">
+<h4><span class="header-section-number">5.1.1.1</span> Basic</h4>
+<p><strong>Basic</strong></p>
+</div>
+</div>
+</div>
+<div id="css" class="section level2">
+<h2><span class="header-section-number">5.2</span> CSS</h2>
+*There are two ways to include CSS in the HTML document. Embedded style sheet is one where all of the selectors and style rules appear in the
+<head>
+<p>element of the HTML. With an external style sheet, CSS is written in a separate file and then linked.*</p>
+<div id="basic-2" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Basic</h3>
+<div id="basic-3" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> Basic</h4>
+<p><em>Test</em></p>
+</div>
+</div>
+</div>
+<div id="javascript" class="section level2">
+<h2><span class="header-section-number">5.3</span> JAVASCRIPT</h2>
+<div id="operators" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Operators</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operator</th>
+<th align="center">Description</th>
+<th align="right">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">??</td>
+<td align="center">Returns true if both operands evaluate to true</td>
+<td align="right">true &amp;&amp; false (false)</td>
+</tr>
+<tr class="even">
+<td align="left">"</td>
+<td align="center"></td>
+<td align="right">"</td>
+</tr>
+<tr class="odd">
+<td align="left">!</td>
+<td align="center">Inverts the boolean value of the operand</td>
+<td align="right">!true (false)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="anatomy" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Anatomy</h3>
+<div id="keywords" class="section level4">
+<h4><span class="header-section-number">5.3.2.1</span> Keywords</h4>
+<p><strong>JavaScript defines a set of keywords known as reserved words, these include: break, case, catch, continue, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with.</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operator</th>
+<th align="center">Description</th>
+<th align="right">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">This</td>
+<td align="center">Returns true if both operands evaluate to true</td>
+<td align="right">true &amp;&amp; false (false)</td>
+</tr>
+<tr class="even">
+<td align="left">"</td>
+<td align="center"></td>
+<td align="right">"</td>
+</tr>
+<tr class="odd">
+<td align="left">!</td>
+<td align="center">Inverts the boolean value of the operand</td>
+<td align="right">!true (false)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="if-statements" class="section level4">
+<h4><span class="header-section-number">5.3.2.2</span> If statements</h4>
+<div class="sourceCode" id="cb65"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb65-1" title="1"></a>
+<a class="sourceLine" id="cb65-2" title="2"># Multiple statements</a>
+<a class="sourceLine" id="cb65-3" title="3"><span class="cf">if</span>(condition) <span class="op">{</span></a>
+<a class="sourceLine" id="cb65-4" title="4">  statement_1<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-5" title="5">  statement_2<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-6" title="6">  statement_3<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-7" title="7"> <span class="op">}</span></a>
+<a class="sourceLine" id="cb65-8" title="8"> </a>
+<a class="sourceLine" id="cb65-9" title="9"> # Else clause</a>
+<a class="sourceLine" id="cb65-10" title="10"> <span class="cf">if</span>(condition) <span class="op">{</span></a>
+<a class="sourceLine" id="cb65-11" title="11">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-12" title="12">  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb65-13" title="13">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-14" title="14"> <span class="op">}</span></a>
+<a class="sourceLine" id="cb65-15" title="15"> </a>
+<a class="sourceLine" id="cb65-16" title="16"> #Else <span class="cf">if</span> <span class="va">clause</span>. <span class="at">Branching</span> logical structure can get very <span class="va">complex</span>.</a>
+<a class="sourceLine" id="cb65-17" title="17"> <span class="cf">if</span>(condition) <span class="op">{</span></a>
+<a class="sourceLine" id="cb65-18" title="18">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-19" title="19"> <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span>(condition) <span class="op">{</span></a>
+<a class="sourceLine" id="cb65-20" title="20">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-21" title="21"> <span class="op">}</span></a>
+<a class="sourceLine" id="cb65-22" title="22"> </a>
+<a class="sourceLine" id="cb65-23" title="23"> #Switch statement</a>
+<a class="sourceLine" id="cb65-24" title="24"> <span class="cf">switch</span>(condition) <span class="op">{</span></a>
+<a class="sourceLine" id="cb65-25" title="25">  <span class="cf">case</span> <span class="dt">label_1</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb65-26" title="26">    <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-27" title="27">    <span class="cf">break</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb65-28" title="28">   </a>
+<a class="sourceLine" id="cb65-29" title="29">   <span class="cf">case</span> <span class="dt">label_2</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb65-30" title="30">    <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-31" title="31">    <span class="cf">break</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb65-32" title="32">   </a>
+<a class="sourceLine" id="cb65-33" title="33">   <span class="cf">default</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb65-34" title="34">    <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb65-35" title="35">    <span class="cf">break</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb65-36" title="36"><span class="op">}</span></a></code></pre></div>
+</div>
+<div id="loops-2" class="section level4">
+<h4><span class="header-section-number">5.3.2.3</span> Loops</h4>
+<div class="sourceCode" id="cb66"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb66-1" title="1"><span class="co">//While loops</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="cf">while</span>(condition) <span class="op">{</span></a>
+<a class="sourceLine" id="cb66-3" title="3">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="op">}</span></a>
+<a class="sourceLine" id="cb66-5" title="5"></a>
+<a class="sourceLine" id="cb66-6" title="6"><span class="co">//Do while</span></a>
+<a class="sourceLine" id="cb66-7" title="7"><span class="cf">do</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb66-8" title="8">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb66-9" title="9"><span class="op">}</span> <span class="cf">while</span>(condition)<span class="op">;</span></a>
+<a class="sourceLine" id="cb66-10" title="10"></a>
+<a class="sourceLine" id="cb66-11" title="11"><span class="co">//For loops</span></a>
+<a class="sourceLine" id="cb66-12" title="12"><span class="cf">for</span>(initialize <span class="op">;</span> condition <span class="op">;</span> iteration) <span class="op">{</span></a>
+<a class="sourceLine" id="cb66-13" title="13">  <span class="at">statement</span>(s)<span class="op">;</span></a>
+<a class="sourceLine" id="cb66-14" title="14"><span class="op">}</span></a></code></pre></div>
+</div>
+</div>
+<div id="functions-and-classes" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> Functions and classes</h3>
+<div id="named-and-anonymous-functions" class="section level4">
+<h4><span class="header-section-number">5.3.3.1</span> Named and anonymous functions</h4>
+<p><em>Using anonymous functions we use a variable name instead of a function name.</em></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb67-1" title="1"><span class="co">//Named function</span></a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="kw">function</span> <span class="at">calculateRectArea</span>(rectWidth<span class="op">,</span> rectHeight) <span class="op">{</span></a>
+<a class="sourceLine" id="cb67-3" title="3">  <span class="cf">return</span>(rectWidth <span class="op">*</span> rectheight)</a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="op">}</span></a>
+<a class="sourceLine" id="cb67-5" title="5"></a>
+<a class="sourceLine" id="cb67-6" title="6"><span class="co">//Anonymous function</span></a>
+<a class="sourceLine" id="cb67-7" title="7"><span class="kw">var</span> calculateRectHypotenuse <span class="op">=</span> <span class="kw">function</span>(rectWidth<span class="op">,</span> rectHeight) <span class="op">{</span></a>
+<a class="sourceLine" id="cb67-8" title="8">  <span class="kw">var</span> widthsquared <span class="op">=</span> rectWidth <span class="op">*</span> rectWidth<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-9" title="9">  <span class="kw">var</span> heigthSquared <span class="op">=</span> rectHeight <span class="op">*</span> rectHeight<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-10" title="10">  <span class="cf">return</span>(<span class="va">Math</span>.<span class="at">sqrt</span>(widthSquared <span class="op">+</span> heightSquared))<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-11" title="11"> <span class="op">}</span></a>
+<a class="sourceLine" id="cb67-12" title="12"> </a>
+<a class="sourceLine" id="cb67-13" title="13"><span class="co">//calling</span></a>
+<a class="sourceLine" id="cb67-14" title="14"><span class="kw">var</span> myRectArea <span class="op">=</span> <span class="at">calculateRectArea</span>(<span class="dv">49</span><span class="op">,</span> <span class="dv">28</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-15" title="15"><span class="kw">var</span> myRectHypotenuse <span class="op">=</span> <span class="at">calculateRectHypotenuse</span>(<span class="dv">49</span><span class="op">,</span><span class="dv">28</span>)<span class="op">;</span></a></code></pre></div>
+</div>
+<div id="namespace" class="section level4">
+<h4><span class="header-section-number">5.3.3.2</span> Namespace</h4>
+<p><em>Namespaces are notional spaces or contexts in which a set of names can be defined, to avoid name clashed. Two names can be identical as long as they exist in different namespace.</em></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb68-1" title="1"><span class="co">//Creating a namespace in js script. It is a good practise to include your namespace declaration in top of all your scripts. Functions needs to be anonymous.</span></a>
+<a class="sourceLine" id="cb68-2" title="2"><span class="co">//First we create an object called com inside the global namespace, and then we create an object called flametreepublishing inside the com project.</span></a>
+<a class="sourceLine" id="cb68-3" title="3"><span class="co">// After declaring, but not initializing, we test that each namespace object does not exist before using it.</span></a>
+<a class="sourceLine" id="cb68-4" title="4"></a>
+<a class="sourceLine" id="cb68-5" title="5"></a>
+<a class="sourceLine" id="cb68-6" title="6"><span class="kw">var</span> com<span class="op">;</span></a>
+<a class="sourceLine" id="cb68-7" title="7"><span class="cf">if</span>(<span class="op">!</span>com) <span class="op">{</span></a>
+<a class="sourceLine" id="cb68-8" title="8">    com <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb68-9" title="9"><span class="op">}</span></a>
+<a class="sourceLine" id="cb68-10" title="10"></a>
+<a class="sourceLine" id="cb68-11" title="11"><span class="cf">if</span> (<span class="op">!</span><span class="va">com</span>.<span class="at">flametreepublishing</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb68-12" title="12">    <span class="va">com</span>.<span class="at">flametreepublishing</span> <span class="op">=</span> <span class="op">{}</span></a>
+<a class="sourceLine" id="cb68-13" title="13"><span class="op">}</span></a>
+<a class="sourceLine" id="cb68-14" title="14"></a></code></pre></div>
+</div>
+<div id="object-oriented" class="section level4">
+<h4><span class="header-section-number">5.3.3.3</span> Object-Oriented</h4>
+<p><em>While JavaScript is not a true OOP language, it is still used in a OOP style. We write scripts called classes that define properties.</em></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb69-1" title="1"><span class="co">//Example: Define a custom class, then create an instance.</span></a>
+<a class="sourceLine" id="cb69-2" title="2"></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="kw">var</span> com<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-4" title="4"><span class="cf">if</span>(<span class="op">!</span>com) <span class="op">{</span></a>
+<a class="sourceLine" id="cb69-5" title="5">    com <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb69-6" title="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb69-7" title="7"><span class="cf">if</span>(<span class="op">!</span><span class="va">com</span>.<span class="at">flametreepublishing</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb69-8" title="8">    <span class="va">com</span>.<span class="at">flametreepublishing</span> <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb69-9" title="9"><span class="op">}</span></a>
+<a class="sourceLine" id="cb69-10" title="10"></a>
+<a class="sourceLine" id="cb69-11" title="11"><span class="va">com</span>.<span class="va">flametreepublishing</span>.<span class="at">QuizQuestion</span> <span class="op">=</span> <span class="at">functio</span>(aQustionNum<span class="op">,</span> AQuestionText<span class="op">,</span> aAnswer<span class="op">,</span> aCorrectAnswerIndex)<span class="op">{</span></a>
+<a class="sourceLine" id="cb69-12" title="12">    <span class="kw">this</span>.<span class="at">questionNum</span> <span class="op">=</span> aQustionNum<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-13" title="13">    <span class="kw">this</span>.<span class="at">questionText</span> <span class="op">=</span> AQuestionText<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-14" title="14">    <span class="kw">this</span>.<span class="at">answers</span> <span class="op">=</span> aAnswer<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-15" title="15">    <span class="kw">this</span>.<span class="at">correctAnswerIndex</span> <span class="op">=</span> aCorrectAnswerIndex<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-16" title="16"></a>
+<a class="sourceLine" id="cb69-17" title="17"></a>
+<a class="sourceLine" id="cb69-18" title="18"><span class="co">//Creating an instance</span></a>
+<a class="sourceLine" id="cb69-19" title="19"><span class="kw">new</span> <span class="va">com</span>.<span class="va">flametreepublishing</span>.<span class="at">QuizQuestion</span>(</a>
+<a class="sourceLine" id="cb69-20" title="20">    <span class="dv">1</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb69-21" title="21">    <span class="st">&quot;Approx how far away from the Earth is the Sun?&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb69-22" title="22">    [<span class="st">&quot;200 miles&quot;</span><span class="op">,</span> <span class="st">&quot;93 000 000 miles&quot;</span><span class="op">,</span> <span class="st">&quot;49 000 000 miles&quot;</span><span class="op">,</span> <span class="st">&quot;150 000 miles&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb69-23" title="23">    <span class="dv">1</span></a>
+<a class="sourceLine" id="cb69-24" title="24">)</a>
+<a class="sourceLine" id="cb69-25" title="25"><span class="op">}</span></a></code></pre></div>
+</div>
+</div>
+<div id="dom-and-events-of-js" class="section level3">
+<h3><span class="header-section-number">5.3.4</span> DOM and events of JS</h3>
+<div id="dom-programming" class="section level4">
+<h4><span class="header-section-number">5.3.4.1</span> DOM programming</h4>
+<p><em>Document Object Model programming allows JavaScript to make changes to a page after it has been loaded.</em></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb70-1" title="1"></a>
+<a class="sourceLine" id="cb70-2" title="2"></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="co">//We&#39;ve updated substantially the renderQuestion method. Now, rather than</span></a>
+<a class="sourceLine" id="cb70-4" title="4"><span class="co">//relying on document.write, which only works when the page is being loaded,</span></a>
+<a class="sourceLine" id="cb70-5" title="5"><span class="co">//we&#39;re now using DOM programming techniques to create HTML elements </span></a>
+<a class="sourceLine" id="cb70-6" title="6"><span class="co">//on-the-fly from within JavaScript.</span></a>
+<a class="sourceLine" id="cb70-7" title="7"></a>
+<a class="sourceLine" id="cb70-8" title="8"><span class="va">com</span>.<span class="va">flametreepublishing</span>.<span class="va">QuizQuestion</span>.<span class="va">prototype</span>.<span class="at">renderQuestion</span> <span class="op">=</span> <span class="kw">function</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb70-9" title="9"></a>
+<a class="sourceLine" id="cb70-10" title="10">    <span class="co">//First we create a &lt;div&gt; element in which to store the question&#39;s</span></a>
+<a class="sourceLine" id="cb70-11" title="11">    <span class="co">//content. This &lt;div&gt; is created but does not yet exist on the page</span></a>
+<a class="sourceLine" id="cb70-12" title="12">    </a>
+<a class="sourceLine" id="cb70-13" title="13">    <span class="kw">var</span> questionDiv <span class="op">=</span> <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-14" title="14">    </a>
+<a class="sourceLine" id="cb70-15" title="15">    <span class="co">//We&#39;ll set an id attribute on the &lt;div&gt; - later, this will help us to</span></a>
+<a class="sourceLine" id="cb70-16" title="16">    <span class="co">//identify which question a user clicks on. We&#39;ll give the id a leading</span></a>
+<a class="sourceLine" id="cb70-17" title="17">    <span class="co">//&#39;q&#39; because it is bad practice to start an id value with a number.</span></a>
+<a class="sourceLine" id="cb70-18" title="18">    </a>
+<a class="sourceLine" id="cb70-19" title="19">    <span class="va">questionDiv</span>.<span class="at">id</span> <span class="op">=</span> <span class="st">&quot;q&quot;</span> <span class="op">+</span> <span class="kw">this</span>.<span class="at">questionNum</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb70-20" title="20">    </a>
+<a class="sourceLine" id="cb70-21" title="21">    <span class="co">//Now we create an &lt;h2&gt; element for the question&#39;s title</span></a>
+<a class="sourceLine" id="cb70-22" title="22">    </a>
+<a class="sourceLine" id="cb70-23" title="23">    <span class="kw">var</span> questionHeading <span class="op">=</span> <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;h2&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-24" title="24">    </a>
+<a class="sourceLine" id="cb70-25" title="25">    <span class="co">//An element&#39;s innerHtml property allows us to write HTML that will be</span></a>
+<a class="sourceLine" id="cb70-26" title="26">    <span class="co">//rendered within that element...</span></a>
+<a class="sourceLine" id="cb70-27" title="27">    </a>
+<a class="sourceLine" id="cb70-28" title="28">    <span class="va">questionHeading</span>.<span class="at">innerHTML</span> <span class="op">=</span> <span class="st">&quot;QUESTION &quot;</span> <span class="op">+</span> <span class="kw">this</span>.<span class="at">questionNum</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb70-29" title="29">    </a>
+<a class="sourceLine" id="cb70-30" title="30">    <span class="co">//Now we add the &lt;h2&gt; to the &lt;div&gt;</span></a>
+<a class="sourceLine" id="cb70-31" title="31">    </a>
+<a class="sourceLine" id="cb70-32" title="32">    <span class="va">questionDiv</span>.<span class="at">appendChild</span>(questionHeading)<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-33" title="33">    </a>
+<a class="sourceLine" id="cb70-34" title="34">    <span class="co">//Next, we create a &lt;p&gt; to hold the question text itself, and add</span></a>
+<a class="sourceLine" id="cb70-35" title="35">    <span class="co">//this to the &lt;div&gt; too.</span></a>
+<a class="sourceLine" id="cb70-36" title="36">    </a>
+<a class="sourceLine" id="cb70-37" title="37">    <span class="kw">var</span> questionTextPara <span class="op">=</span> <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;p&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-38" title="38">    </a>
+<a class="sourceLine" id="cb70-39" title="39">    <span class="va">questionTextPara</span>.<span class="at">innerHTML</span> <span class="op">=</span> <span class="kw">this</span>.<span class="at">questionText</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb70-40" title="40">    </a>
+<a class="sourceLine" id="cb70-41" title="41">    <span class="va">questionDiv</span>.<span class="at">appendChild</span>(questionTextPara)<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-42" title="42"></a>
+<a class="sourceLine" id="cb70-43" title="43">    <span class="co">//Now we&#39;ll loop through the QuizQuestion object&#39;s &#39;answers&#39;</span></a>
+<a class="sourceLine" id="cb70-44" title="44">    <span class="co">//array, creating a &lt;p&gt; for each and and adding them </span></a>
+<a class="sourceLine" id="cb70-45" title="45">    <span class="co">//to our &lt;div&gt; element</span></a>
+<a class="sourceLine" id="cb70-46" title="46"></a>
+<a class="sourceLine" id="cb70-47" title="47">    <span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="kw">this</span>.<span class="va">answers</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb70-48" title="48">        <span class="kw">var</span> answerPara <span class="op">=</span> <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;p&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-49" title="49">        <span class="va">answerPara</span>.<span class="at">innerHTML</span> <span class="op">=</span> <span class="kw">this</span>.<span class="at">answers</span>[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-50" title="50">        <span class="va">answerPara</span>.<span class="at">id</span> <span class="op">=</span> <span class="st">&quot;a&quot;</span> <span class="op">+</span> i<span class="op">;</span></a>
+<a class="sourceLine" id="cb70-51" title="51">        <span class="va">questionDiv</span>.<span class="at">appendChild</span>(answerPara)<span class="op">;</span>        </a>
+<a class="sourceLine" id="cb70-52" title="52">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb70-53" title="53">    </a>
+<a class="sourceLine" id="cb70-54" title="54"><span class="co">//Finally, we add the &lt;div&gt; to the body of the page</span></a>
+<a class="sourceLine" id="cb70-55" title="55"></a>
+<a class="sourceLine" id="cb70-56" title="56">    <span class="va">document</span>.<span class="va">body</span>.<span class="at">appendChild</span>(questionDiv)<span class="op">;</span> </a>
+<a class="sourceLine" id="cb70-57" title="57"><span class="op">}</span></a></code></pre></div>
+</div>
+<div id="events" class="section level4">
+<h4><span class="header-section-number">5.3.4.2</span> Events</h4>
+<p><strong>Event Handler</strong></p>
+<p><em>W3C event model</em></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb71-1" title="1"></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="co">//Create a method for handling user &#39;click&#39; events</span></a>
+<a class="sourceLine" id="cb71-3" title="3"></a>
+<a class="sourceLine" id="cb71-4" title="4"><span class="va">com</span>.<span class="va">flametreepublishing</span>.<span class="va">SimpleQuiz</span>.<span class="va">prototype</span>.<span class="at">clickHandler</span> <span class="op">=</span> <span class="kw">function</span>(e) <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-5" title="5"></a>
+<a class="sourceLine" id="cb71-6" title="6">    <span class="co">//The handler will always be passed an objec that contains data</span></a>
+<a class="sourceLine" id="cb71-7" title="7">    <span class="co">//about the event that triggered the handler. We&#39;re using an identifier</span></a>
+<a class="sourceLine" id="cb71-8" title="8">    <span class="co">//of &#39;e&#39; for this. With a &#39;click&#39; event, &#39;e.target&#39; will always refer to </span></a>
+<a class="sourceLine" id="cb71-9" title="9">    <span class="co">//the HTML element on which the click event occurred.</span></a>
+<a class="sourceLine" id="cb71-10" title="10">    <span class="co">//First we&#39;ll get the id attribute of the clicked answer</span></a>
+<a class="sourceLine" id="cb71-11" title="11">    </a>
+<a class="sourceLine" id="cb71-12" title="12">    <span class="kw">var</span> clickedAnswerId <span class="op">=</span> <span class="va">e</span>.<span class="va">target</span>.<span class="at">id</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb71-13" title="13">    </a>
+<a class="sourceLine" id="cb71-14" title="14">    <span class="co">//Now we need to extract the answer index, a Number, from the id value,</span></a>
+<a class="sourceLine" id="cb71-15" title="15">    <span class="co">//which is a string. We do this by extracting the second character of the</span></a>
+<a class="sourceLine" id="cb71-16" title="16">    <span class="co">//id using the &#39;substr&#39; method of the String class, and then casting this to</span></a>
+<a class="sourceLine" id="cb71-17" title="17">    <span class="co">//a number. Notice that we can do this all within one compound expression.</span></a>
+<a class="sourceLine" id="cb71-18" title="18">    </a>
+<a class="sourceLine" id="cb71-19" title="19">    <span class="kw">var</span> clickedAnswerIndex <span class="op">=</span> <span class="at">Number</span>(<span class="va">clickedAnswerId</span>.<span class="at">substr</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-20" title="20">    </a>
+<a class="sourceLine" id="cb71-21" title="21">    <span class="co">//Next we need to know which question has been answered. Recall that we added</span></a>
+<a class="sourceLine" id="cb71-22" title="22">    <span class="co">//an id attribute to the &lt;div&gt; that contains the question - this &lt;div&gt; is the</span></a>
+<a class="sourceLine" id="cb71-23" title="23">    <span class="co">//parent of the answer &lt;p&gt; that was clicked, so we can access it using</span></a>
+<a class="sourceLine" id="cb71-24" title="24">    <span class="co">//&#39;e.target.parentNode&#39;.</span></a>
+<a class="sourceLine" id="cb71-25" title="25">    <span class="co">//Once we have a reference to the &lt;div&gt; we can extract the question index in</span></a>
+<a class="sourceLine" id="cb71-26" title="26">    <span class="co">//much the same way as we did the answer index</span></a>
+<a class="sourceLine" id="cb71-27" title="27">    </a>
+<a class="sourceLine" id="cb71-28" title="28">    <span class="kw">var</span> clickedQuestionId <span class="op">=</span> <span class="va">e</span>.<span class="va">target</span>.<span class="va">parentNode</span>.<span class="at">id</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb71-29" title="29">    <span class="kw">var</span> clickedQuestionNum <span class="op">=</span> <span class="at">Number</span>(<span class="va">clickedQuestionId</span>.<span class="at">substr</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-30" title="30">    </a>
+<a class="sourceLine" id="cb71-31" title="31">    <span class="co">//The question number stored in the containg &lt;div&gt; id attribute is one-based, but</span></a>
+<a class="sourceLine" id="cb71-32" title="32">    <span class="co">//we need a zero-based number when accessing the questions array - for this reason</span></a>
+<a class="sourceLine" id="cb71-33" title="33">    <span class="co">//we subtract &#39;1&#39; from the clickedQuestionNum when retrieving the QuizQuestion object</span></a>
+<a class="sourceLine" id="cb71-34" title="34">    </a>
+<a class="sourceLine" id="cb71-35" title="35">    <span class="kw">var</span> clickedQuestion <span class="op">=</span> <span class="va">com</span>.<span class="va">flametreepublishing</span>.<span class="va">simpleQuiz</span>.<span class="at">questions</span>[clickedQuestionNum <span class="dv">-1</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-36" title="36">    </a>
+<a class="sourceLine" id="cb71-37" title="37">    <span class="co">//Now that we have the correct QuizQuestion object we can call its &#39;checkUserAnswer&#39;</span></a>
+<a class="sourceLine" id="cb71-38" title="38">    <span class="co">//method to see if the user was correct. Recall that &#39;checkUserAnswer&#39; returns</span></a>
+<a class="sourceLine" id="cb71-39" title="39">    <span class="co">//&#39;true&#39; or &#39;false&#39; - all we need do, then, is call the method as the conditional </span></a>
+<a class="sourceLine" id="cb71-40" title="40">    <span class="co">//expression of an &#39;if&#39; statement.</span></a>
+<a class="sourceLine" id="cb71-41" title="41">    </a>
+<a class="sourceLine" id="cb71-42" title="42">    <span class="cf">if</span>(<span class="va">clickedQuestion</span>.<span class="at">checkUserAnswer</span>(clickedAnswerIndex)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-43" title="43">    </a>
+<a class="sourceLine" id="cb71-44" title="44">        <span class="at">alert</span>(<span class="st">&quot;Correct! Well done.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-45" title="45">        </a>
+<a class="sourceLine" id="cb71-46" title="46">    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-47" title="47">    </a>
+<a class="sourceLine" id="cb71-48" title="48">        <span class="at">alert</span>(<span class="st">&quot;No - that&#39;s not correct. Try again.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-49" title="49">        </a>
+<a class="sourceLine" id="cb71-50" title="50">    <span class="op">}</span>   </a>
+<a class="sourceLine" id="cb71-51" title="51"><span class="op">}</span></a>
+<a class="sourceLine" id="cb71-52" title="52">    </a></code></pre></div>
+<p><strong>Event Listener</strong></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sql.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

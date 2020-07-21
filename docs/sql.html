@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="fi-fx.html"/>
-
+<link rel="next" href="html-css-and-javascript.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -204,6 +204,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.2" data-path="sql.html"><a href="sql.html#running-sql-syntax-in-r"><i class="fa fa-check"></i><b>4.4.2</b> Running SQL syntax in R</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html"><i class="fa fa-check"></i><b>5</b> HTML, CSS and JAVASCRIPT</a><ul>
+<li class="chapter" data-level="5.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#html"><i class="fa fa-check"></i><b>5.1</b> HTML</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#basic"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#css"><i class="fa fa-check"></i><b>5.2</b> CSS</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#basic-2"><i class="fa fa-check"></i><b>5.2.1</b> Basic</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#javascript"><i class="fa fa-check"></i><b>5.3</b> JAVASCRIPT</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#operators"><i class="fa fa-check"></i><b>5.3.1</b> Operators</a></li>
+<li class="chapter" data-level="5.3.2" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#anatomy"><i class="fa fa-check"></i><b>5.3.2</b> Anatomy</a></li>
+<li class="chapter" data-level="5.3.3" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#functions-and-classes"><i class="fa fa-check"></i><b>5.3.3</b> Functions and classes</a></li>
+<li class="chapter" data-level="5.3.4" data-path="html-css-and-javascript.html"><a href="html-css-and-javascript.html#dom-and-events-of-js"><i class="fa fa-check"></i><b>5.3.4</b> DOM and events of JS</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -223,87 +237,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="sql" class="section level1">
 <h1><span class="header-section-number">4</span> SQL</h1>
-<table>
-<colgroup>
-<col width="25%" />
-<col width="50%" />
-<col width="25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Operator</th>
-<th align="center">Description</th>
-<th align="right">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">abs()</td>
-<td align="center">Calculates the absolute value</td>
-<td align="right">abs(x)</td>
-</tr>
-<tr class="even">
-<td align="left">coalesce()</td>
-<td align="center">Converts a possible null value into a default</td>
-<td align="right">coalesce(z,y)</td>
-</tr>
-<tr class="odd">
-<td align="left">instr()</td>
-<td align="center">Checks if a text string contains another text string</td>
-<td align="right">instr(‘HTX’, ‘TX’)</td>
-</tr>
-<tr class="even">
-<td align="left">length()</td>
-<td align="center">Provides the number of characters in a string</td>
-<td align="right">length(‘Test’)</td>
-</tr>
-<tr class="odd">
-<td align="left">trim()</td>
-<td align="center">Removes extraneous on both sides of a string</td>
-<td align="right">trim(’ Test ’)</td>
-</tr>
-<tr class="even">
-<td align="left">ltrim()</td>
-<td align="center">Removes extraneous on the left side of a string</td>
-<td align="right">ltrim(’ Test’)</td>
-</tr>
-<tr class="odd">
-<td align="left">rtrim()</td>
-<td align="center">Removes extraneous on the right side of a string</td>
-<td align="right">rtrim(‘Test’)</td>
-</tr>
-<tr class="even">
-<td align="left">random()</td>
-<td align="center">Returns a random number</td>
-<td align="right">random()</td>
-</tr>
-<tr class="odd">
-<td align="left">round()</td>
-<td align="center">Rounds a decimal to specified number</td>
-<td align="right">round(100.101, 2)</td>
-</tr>
-<tr class="even">
-<td align="left">replace()</td>
-<td align="center">Replaces a substring of text in a string</td>
-<td align="right">replace(‘Test df’, ’ df’, ’’)</td>
-</tr>
-<tr class="odd">
-<td align="left">substr()</td>
-<td align="center">Extracts a range of characters from a string with their num position</td>
-<td align="right">substr(‘Test’, 2,3)</td>
-</tr>
-<tr class="even">
-<td align="left">lower()</td>
-<td align="center">Turns all letters in a string to lowercase</td>
-<td align="right">lower(‘Test’)</td>
-</tr>
-<tr class="odd">
-<td align="left">upper()</td>
-<td align="center">Turns all letters in a string to uppercase</td>
-<td align="right">upper(‘Test’)</td>
-</tr>
-</tbody>
-</table>
 <div id="general" class="section level2">
 <h2><span class="header-section-number">4.1</span> General</h2>
 <p><em><a href="https://www.w3schools.com/sql/default.asp" class="uri">https://www.w3schools.com/sql/default.asp</a></em>
@@ -823,8 +756,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="fi-fx.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="fi-fx.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="html-css-and-javascript.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
