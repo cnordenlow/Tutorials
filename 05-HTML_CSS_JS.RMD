@@ -93,28 +93,28 @@
   
 ```js
 
-# Multiple statements
+// Multiple statements
 if(condition) {
   statement_1;
   statement_2;
   statement_3;
  }
  
- # Else clause
+ // Else clause
  if(condition) {
   statement(s);
   } else {
   statement(s);
  }
  
- #Else if clause. Branching logical structure can get very complex.
+ //Else if clause. Branching logical structure can get very complex.
  if(condition) {
   statement(s);
  } else if(condition) {
   statement(s);
  }
  
- #Switch statement
+ //Switch statement
  switch(condition) {
   case label_1:
     statement(s);
