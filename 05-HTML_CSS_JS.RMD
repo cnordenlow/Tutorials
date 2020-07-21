@@ -2,7 +2,40 @@
 
 
 ## HTML
-  
+
+*HTML is made up of a structure of elements which acts like a set of instructions for a web browser.
+
+```{r, echo=T, eval=F}
+#<!-- Doctype declares which dialects of HTML that is used. In this case HTML5 -->
+<!DOCTYPE HTML>
+
+#<!-- <html> is the parent element for the page. All other elements are nested within this. <html> always has two child elements: <head> and <body>.  -->
+<html>
+
+#<!-- <head> element contains information about the web page such as its title, links to other resources etc. Nothing in the this element is visible on the page. -->
+
+	<head>
+		<title> Web Page Test</title>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+		
+	</head>
+
+#<!-- <body> element takes care of the actual visible content on the page. -->
+
+	<body>
+		<header>
+			<nav>Home | About | Contact </nav>
+			<hgroup>
+				<h1>Web page test</h1>
+				<h2>Not very complexed</h2>
+			</hgroup>
+		</header>
+
+	</body>
+
+</html>	
+
+``` 
 ### Basic
 
 #### Basic
@@ -15,6 +48,8 @@
 ``` 
 
 ## CSS
+
+*There are two ways to include CSS in the HTML document. Embedded style sheet is one where all of the selectors and style rules appear in the <head> element of the HTML. With an external style sheet, CSS is written in a separate file and then linked.*
   
 ### Basic
 
