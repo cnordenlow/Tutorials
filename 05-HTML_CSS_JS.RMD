@@ -509,3 +509,13 @@ com.flametreepublishing.SimpleQuiz.prototype.clickHandler = function(e) {
 ```
 
 **Event Listener**
+
+```js
+//The user will click on the answer they believe to be correct, so let's
+//add an event listener to the answer's <p>. Note that we don't include
+//parentheses '()' after the handler method reference - if we did then
+//the handler would be evaluated when the event listener is added to the
+//<p>, and this is definitely NOT what we want!
+
+answerPara.addEventListener("click", com.flametreepublishing.simpleQuiz.clickHandler, false)
+```
