@@ -3,7 +3,74 @@
 
 ## HTML
 
-*HTML is made up of a structure of elements which acts like a set of instructions for a web browser.*
+
+*https://www.w3schools.com/tags/ref_byfunc.asp*
+
+<style>
+th {
+  text-align: left;
+}
+</style>
+
+<table class="a">
+
+  <tr>
+    <th>Tag</th>
+    <th>Description</th>
+  </tr>
+
+    <tr>
+    <td>!DOCTYPE</td>
+    <td>Defines the document type</td>
+  </tr>
+  
+  <tr>
+    <td>html</td>
+    <td>Defines an HTML document</td>
+  </tr>
+  
+  <tr>
+    <td>head</td>
+    <td>Contains information for the document</td>
+  </tr>
+  
+  <tr>
+    <td>title</td>
+    <td>Defines a title </td>
+  </tr>
+
+  <tr>
+    <td>body</td>
+    <td>Defines the documents body</td>
+  </tr>
+  
+  <tr>
+    <td>h1 to h6</td>
+    <td>Defines headings</td>
+  </tr>
+
+  <tr>
+    <td>p</td>
+    <td>Defines a paragraph</td>
+  </tr>
+
+  <tr>
+    <td>br</td>
+    <td>Inserts a single break</td>
+  </tr>
+  
+  <tr>
+    <td>hr</td>
+    <td>Defines a thematic change in the content</td>
+  </tr>
+
+
+</table>
+
+
+
+
+**HTML is made up of a structure of elements which acts like a set of instructions for a web browser.**
 
 ```html
 <!-- Doctype declares which dialects of HTML that is used. In this case HTML5 -->
@@ -37,70 +104,154 @@
 
 ``` 
 
-### Basic
-
-#### Basic
-
-**Basic**
-  
-
-```{r, echo=T, eval=F}
-
-``` 
 
 ## CSS
 
-*There are two ways to include CSS in the HTML document. Embedded style sheet is one where all of the selectors and style rules appear in the <head> element of the HTML. With an external style sheet, CSS is written in a separate file and then linked.*
-  
-### Basic
-
-#### Basic
-
-*Test*
-  
+*There are two ways to include CSS in the HTML document. Embedded style sheet is one where all of the selectors and style rules appear in the "head" element of the HTML. With an external style sheet, CSS is written in a separate file and then linked.*
 
 ```{r, echo=T, eval=F}
+<head>
+		<title> Web Page Test</title>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+		<style>
+			body {
+			font-family:"Lato";
+			}
 
-``` 
+			#wrapper {
+				width: 80%;
+				height: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			section {
+				width: 70%;
+				height: auto;
+				float: left;
+				}
+
+			aside {
+				width: 30%;
+				float: right;
+			}
+
+			footer {
+				width: 100%;
+				height: auto;
+				float:left;
+			}
+
+			h1 {
+				font-weight: bold;
+				font-size: 26px;
+				color:#990000;
+			}
+
+
+
+			hgroup > h1 {
+				margin-bottom: 3px;
+			}
+
+
+			#homepageImage {
+				float:left;
+				border-style:none;
+			}
+		</style>
+	</head>
+```
 
 ## JAVASCRIPT
+*Sublime can be used as a starting IDE.*<br><br>
+*Link scripts to page. Write the script in a separate file and save with a .js filename. The script is then lnked to a page using the src attribute of the script element.*
 
 ### Operators
 
-| Operator    | Description               | Example | 
-| :----------- | :----------------------: | -----------: |
-| ??      | Returns true if both operands evaluate to true | true && false (false) |
-| "||"      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
-| !       | Inverts the boolean value of the operand | !true (false) |
+<style>
+th {
+  text-align: left;
+}
+</style>
+
+<table class="d">
+  <tr>
+    <th>Operator</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>??</td>
+    <td>Returns true if both operands evaluate to true</td>
+    <td>true && false (false)</td>
+  </tr>
+  <tr>
+    <td>||</td>
+    <td>Returns true if either operand evaluates to true, otherwise false</td>
+    <td>if  (x == y || y > z)</td>
+  </tr>
+  <tr>
+    <td>!</td>
+    <td>Inverts the boolean value of the operand</td>
+    <td>!true (false)</td>
+  </tr>
+</table>
 
 
 
-### Anatomy
 
-#### Keywords
+
+### Keywords
 
 **JavaScript defines a set of keywords known as reserved words, these include: break, case, catch, continue, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with.**
 
 
-| Operator    | Description               | Example | 
-| :----------- | :----------------------: | -----------: |
-| This      | Returns true if both operands evaluate to true | true && false (false) |
-| "||"      | Returns true if either operand evaluates to true, otherwise false | if  (x == y || y > z) |
-| !       | Inverts the boolean value of the operand | !true (false) |
+<style>
+th {
+  text-align: left;
+}
+</style>
 
+<table class="d">
+  <tr>
+    <th>Keyword</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  
+  <tr>
+    <td>var</td>
+    <td>The "var" keyword tells the browser to create variables.</td>
+    <td>var x,y;</td>
+  </tr>
+  
+  <tr>
+    <td>this</td>
+    <td>The "this" keyword refers to the object it belongs to. </td>
+    <td>fullName : function() {
+  return this.firstName + " " + this.lastName;
+}</td>
+  </tr>
 
-#### If statements
+</table>
+
+### Anatomy
+
+**All JavaScript instructions are contained within statements. Related statements can be grouped together into a block by wrapping the statement in braces. **
+
+#### Conditional statements
   
 ```js
 
-// Multiple statements
+//Multiple statements
 if(condition) {
   statement_1;
   statement_2;
   statement_3;
  }
  
- // Else clause
+//Else clause
  if(condition) {
   statement(s);
   } else {
