@@ -233,8 +233,16 @@ th {
   return this.firstName + " " + this.lastName;
 }</td>
   </tr>
+  
+   <tr>
+    <td>const</td>
+    <td>For varibles that don´t change, we use const.</td>
+    <td>const taxRate = 0.3050</td>
+  </tr>
 
 </table>
+
+
 
 ### Anatomy
 
@@ -346,6 +354,25 @@ if (!com.flametreepublishing) {
 }
 
 
+```
+
+### Misc
+
+*When JavaScript is referenced from a separate file, the use of async makes the page load ahead of the script.*
+
+```js
+<script async src="js/main.js"></script>
+```
+
+*Variables defines outsisde of a function are global variables, which can be accessed from any function. Local variables only live inside a function. If you forgets to preface with var, the variable becomes global.*
+
+```js
+var imAGlobalVar = 10;
+
+function foo() {
+   var imALocalVar = 11;  //local variable
+   imAGlobalVar2 = 12;    //global variable, not good practice
+}
 ```
 
 #### Object-Oriented
