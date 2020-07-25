@@ -64,6 +64,10 @@ th {
     <td>Defines a thematic change in the content</td>
   </tr>
 
+  <tr>
+    <td>span and div</td>
+    <td>A div is a block-level element and a span is an inline element. Div should be used to wrap sections of a document, while span to wrap small portions of text, imgages etc.</td>
+  </tr>
 
 </table>
 
@@ -442,6 +446,42 @@ if (!com.flametreepublishing) {
 
 ```
 
+
+#### Object-Oriented
+
+*While JavaScript is not a true OOP language, it is still used in a OOP style. We write scripts called classes that define properties.*
+
+```js
+//Example: Define a custom class, then create an instance.
+
+var com;
+if(!com) {
+	com = {};
+}
+if(!com.flametreepublishing) {
+	com.flametreepublishing = {};
+}
+
+com.flametreepublishing.QuizQuestion = functio(aQustionNum, AQuestionText, aAnswer, aCorrectAnswerIndex){
+	this.questionNum = aQustionNum;
+	this.questionText = AQuestionText;
+	this.answers = aAnswer;
+	this.correctAnswerIndex = aCorrectAnswerIndex;
+
+
+//Creating an instance
+new com.flametreepublishing.QuizQuestion(
+	1,
+	"Approx how far away from the Earth is the Sun?",
+	["200 miles", "93 000 000 miles", "49 000 000 miles", "150 000 miles"],
+	1
+)
+}
+
+```
+
+
+
 ### Misc
 
 *When JavaScript is referenced from a separate file, the use of async makes the page load ahead of the script.*
@@ -461,7 +501,7 @@ function foo() {
 }
 ```
 
-*Associating functions with objects*
+**Associating functions with objects**
 ```html
 <!DOCTYPE html>
 <html>
@@ -526,7 +566,7 @@ document.write("<br />Office Space a comedy? "+officeSpace.isComedy);
 </html>
 ```
 
-*Error handling*
+**Error handling**
 
 ```js
 try {
@@ -539,7 +579,7 @@ try {
 }
 ```
 
-*To execute a method repeatedly*
+**To execute a method repeatedly**
 ```js
 function timer(){
      setTimeout('myMethod()',2000);
@@ -550,40 +590,150 @@ var myId;
 myId = setInterval('myMethod()',2000);
 ```
 
+**To close a window**
+```html
+<a href='javascript:window.close()' class='mainnav'> Close </a>
+  </body>
+```
+
+**Link**
+```html
+<a href="https://www.espn.com/nba/">NBA is fun!</a>
+```
+
+
 ### Working with HTML Elements
 
-#### Object-Oriented
+**Buttons**
 
-*While JavaScript is not a true OOP language, it is still used in a OOP style. We write scripts called classes that define properties.*
-
-```js
-//Example: Define a custom class, then create an instance.
-
-var com;
-if(!com) {
-	com = {};
-}
-if(!com.flametreepublishing) {
-	com.flametreepublishing = {};
-}
-
-com.flametreepublishing.QuizQuestion = functio(aQustionNum, AQuestionText, aAnswer, aCorrectAnswerIndex){
-	this.questionNum = aQustionNum;
-	this.questionText = AQuestionText;
-	this.answers = aAnswer;
-	this.correctAnswerIndex = aCorrectAnswerIndex;
+```html
+<form name="buttonGalore" method="get">
+Your Name: <input type="text" name="mytext"/>
+<br/>
+<input type="submit" value ="GO!" />
+<input type = "reset" value ="Clear All"/>
+</form>
+```
 
 
-//Creating an instance
-new com.flametreepublishing.QuizQuestion(
-	1,
-	"Approx how far away from the Earth is the Sun?",
-	["200 miles", "93 000 000 miles", "49 000 000 miles", "150 000 miles"],
-	1
-)
-}
+**Onclick**
+```html
+<form  name="buttonsGalore" method="get">
+<fieldset style="margin: 1em; text-align: center; padding: 1em;">
+<legend>Select a Movie</legend>
+<input type="button" value="Godfather" onclick="displayMovie(this)" />
+<input type="button" value="Bodyguard" onclick="displayMovie(this)" />
+<input type="button" value="Remember the Titans" onclick="displayMovie(this)" />
+</fieldset>
+</form>
 
 ```
+
+**Radio button**
+```html
+<script>
+function findButton() {
+var myForm = document.forms.animalForm;
+var i;
+for(i=0;i<myForm.marsupial.length; i++) {
+   if(myForm.marsupial[i].checked) {
+      break;
+   }
+}
+alert("You selected \""+myForm.marsupial[i].value+"\".");
+}
+</script>
+<form name="animalForm">
+<input type="radio" name="marsupial" value="kangaroo" />Kangaroo
+<br /><input type="radio" name="marsupial" value="Opossum" />Opossum
+<br /><input type="radio" name="marsupial" value="Tasmanian Tiger" />Tasmanian Tiger
+<br />
+<input type="button" name="GO" value="GO" onclick="findButton()" />
+</form>
+```
+
+**Accessing Elements**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    		<title>Testing</title>		
+		<script type="text/javascript" src="js/main2.js"></script>
+
+<form name="teamForm">
+<select name="team">
+   <option selected="selected">Select NBA team to win it</option>
+   <option>Lakers</option>
+   <option>Utah</option>
+   <option>Golden State</option>
+   <option>Chicago</option>
+   <option>Charlotte</option>
+</select>
+
+<input type="button" name="submitbutton" value="Team"  
+        onclick="showStatus()" />
+</form>
+
+  </head>
+
+  <body>
+
+
+  </body>
+
+</html>
+
+```
+
+```js
+function showStatus() {
+ var selectWidget = document.forms.teamForm.elements["team"];
+ var myValue = selectWidget.options[selectWidget.selectedIndex].value;
+  alert('You picked \"'+ myValue +"\"");
+  return true;
+}
+```
+
+#### Dynamic HTML elements
+
+**Creating a grocery store list**
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    		<title>Testing</title>		
+
+<!-- Adding new elements to a list -->
+<script>
+function addItem() {
+ var myitem = document.getElementById("ItemToAdd").value;
+ var mylistItems = document.getElementById("mylist");
+ var newP = document.createElement("li");
+ var textNode = document.createTextNode(myitem);
+ newP.appendChild(textNode);
+ document.getElementById("mylist").appendChild(newP);
+ return false;
+}
+</script>
+<form onsubmit="return addItem()" action="#">
+<span>Grocery Items:</span>
+<input type="text" id="ItemToAdd" value="Milk" />
+<input type="button" value="Add" onclick="addItem()" />
+</form>
+<span>Grocery List:</span> 
+<ol id="mylist"></ol>
+
+ </head>
+
+  <body>
+  </body>
+
+</html>
+```
+
 
 
 ### DOM and events of JS
