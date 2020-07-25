@@ -167,6 +167,8 @@ th {
 *Sublime can be used as a starting IDE.*<br><br>
 *Link scripts to page. Write the script in a separate file and save with a .js filename. The script is then lnked to a page using the src attribute of the script element.*
 
+*https://www.fincher.org/tips/Languages/javascript.shtml*
+
 ### Operators
 
 <style>
@@ -273,6 +275,20 @@ if(condition) {
   statement(s);
  }
  
+ //example
+ 
+var balance = 400;
+if(balance < 0.0){
+	status= "bankrupt";
+} else if(balance < 100.0) {
+	status = "ok";
+} else {
+	status = "rich";
+}
+document.write("customer is " +status)
+
+
+ 
  //Switch statement
  switch(condition) {
   case label_1:
@@ -287,6 +303,22 @@ if(condition) {
     statement(s);
     break;
 }
+
+//switch examplevar flavor = "vanilla";
+switch(flavor) {
+   case "chocolate":
+      document.write("I like chocolate too.");
+      break;
+   case "strawberry":
+      document.write("Strawberry is for sissies.");
+      break;
+   case "vanilla":
+      document.write("Vanilla is boring.");
+      //no break statement so control will continue to the statement below
+   default:
+      document.write("Ice cream is cool.");
+}
+
 ``` 
 
 
@@ -299,6 +331,14 @@ while(condition) {
   statement(s);
 }
 
+//example
+var total = 1;
+while(total < 100) {
+   document.write(total+",");
+   total = total * 2;
+}
+
+
 //Do while
 do {
   statement(s);
@@ -308,7 +348,26 @@ do {
 for(initialize ; condition ; iteration) {
   statement(s);
 }
+
+//Go to (should be used carefully)
+for(var i=0; i < 2; i++) {
+   outerloop:
+   for(var j=0; j < 10; j++) {    
+      if(j > 3) {
+         break outerloop;
+      }
+      document.write(" "+i+j+", ");
+   }
+}
 ``` 
+
+*Loop: existing a loop*
+```js
+for(var i=0; i<100; i++) {
+   document.write(i);
+   if(i > 5) { break; }
+}
+```
 
 ### Functions and classes
 
@@ -467,6 +526,31 @@ document.write("<br />Office Space a comedy? "+officeSpace.isComedy);
 </html>
 ```
 
+*Error handling*
+
+```js
+try {
+   obj = null;
+   null.to_s();
+} catch (e) {
+   document.write("Exception: "+e);
+} finally {
+   document.write("<br />Bye.");
+}
+```
+
+*To execute a method repeatedly*
+```js
+function timer(){
+     setTimeout('myMethod()',2000);
+}
+
+var myId;
+...
+myId = setInterval('myMethod()',2000);
+```
+
+### Working with HTML Elements
 
 #### Object-Oriented
 
