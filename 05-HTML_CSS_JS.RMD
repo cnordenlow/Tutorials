@@ -334,6 +334,33 @@ var myRectHypotenuse = calculateRectHypotenuse(49,28);
 
 ``` 
 
+*Anonymous function*
+
+´´´html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    		<title>A Simple Quiz</title>		
+			<form action="#">
+			<input type="button" value="Click Me" id="anonbutton" />
+			</form>
+				<script type="text/javascript">
+						var anonbutton = document.getElementById("anonbutton");
+					anonbutton.onclick = function() {
+		    		alert("anonymous function called.");
+					}
+				</script>
+
+  </head>
+
+  <body>
+  </body>
+
+</html>
+
+´´´
+
 #### Namespace
 
 *Namespaces are notional spaces or contexts in which a set of names can be defined, to avoid name clashed. Two names can be identical as long as they exist in different namespace.*
@@ -374,6 +401,72 @@ function foo() {
    imAGlobalVar2 = 12;    //global variable, not good practice
 }
 ```
+
+*Associating functions with objects*
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    		<title>A Simple Quiz</title>		
+
+			<script type="text/javascript">
+				function movie(title, director) {
+					this.title = title;
+					this.director = director;
+					this.toString = function movieToString() {
+						return("title: "+this.title+" director: "+this.director);
+
+					}
+				}
+				var narnia = new movie("Narnia", "Andew Adamson");
+				document.write(narnia.toString());
+			</script>
+
+  </head>
+
+  <body>
+  </body>
+
+</html>
+```
+
+*Prototypes. Objects can have prototypes from which they may inherit fields and functions.*
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    		<title>A Simple Quiz</title>		
+
+			<script type="text/javascript">
+function movieToString() {
+   return("title: "+this.title+"  director: "+this.director);
+   }
+function movie(title, director) {
+   this.title = title;
+   this.director = director || "unknown"; //if null assign to "unknown"
+   this.toString = movieToString; //assign function to this method pointer
+   }
+   
+var officeSpace = new movie("OfficeSpace");
+var narnia = new movie("Narnia","Andrew Adamson");
+movie.prototype.isComedy = false; //add a field to the movie's prototype
+document.write(narnia.toString());
+document.write("<br />Narnia a comedy? "+narnia.isComedy);
+officeSpace.isComedy = true; //override the default just for this object
+document.write("<br />Office Space a comedy? "+officeSpace.isComedy);
+			</script>
+
+  </head>
+
+  <body>
+  </body>
+
+</html>
+```
+
 
 #### Object-Oriented
 
