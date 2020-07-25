@@ -1,4 +1,4 @@
-# HTML, CSS and JAVASCRIPT
+# HTML, CSS and JavaScript
 
 
 ## HTML
@@ -167,7 +167,7 @@ th {
 	</head>
 ```
 
-## JAVASCRIPT
+## JavaScript
 *Sublime can be used as a starting IDE.*<br><br>
 *Link scripts to page. Write the script in a separate file and save with a .js filename. The script is then lnked to a page using the src attribute of the script element.*
 
