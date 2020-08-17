@@ -515,68 +515,6 @@ df%>%
  
  
 
-### Useful functions / expressions
-
-**Sub / Gsub**
-  
-*Replace the first occurence of a pattern with a sub or replace all occurrences with gsub.*
-*Gsub() replaces all matches of a string.*
-
-```{r, echo=T, eval=F}
-x <- "Old City"
-gsub("Old", "New", x)
-
-#case insensitive
-gsub("old", "New", x, ignore.case=T)
-
-#Vector replacement
-y <- c("Stockholm City", "Uppsala City", "Malmö")
-gsub(" City","",y)
-
- 
-``` 
- 
- **rnorm**
-  
-*Generate number from a normal distribution.*
-```{r, echo=T, eval=F}
- rnorm(4)
-#> [1] -2.3308287 -0.9073857 -0.7638332 -0.2193786
-
-# Use a different mean and standard deviation
-rnorm(4, mean=50, sd=10)
-#> [1] 59.20927 40.12440 44.58840 41.97056
-
-# To check that the distribution looks right, make a histogram of the numbers
-x <- rnorm(400, mean=50, sd=10)
-hist(x)
-``` 
-  
-**slice**
-*Example: way to take out a single row.*
-```{r, echo=T, eval=F}
-library(dplyr)
-mtcars
-
-select_row = 1
-df <- arrange(mtcars, mpg)
-
-df2 <- df %>%
-  slice(which(row_number() == select_row))
-``` 
-
-**unique**
-*Example: get all unique values in a column*
-```{r, echo=T, eval=F}
-
-library(dplyr)
-library(data.table)
-
-df <- mtcars
-
-unique(df$cyl, incomparables = FALSE)
-``` 
-
 
 ## Working with strings and characters
 
@@ -983,5 +921,102 @@ lego_movie %>%
 ```  
 
 
+
+## Useful functions / expressions
+
+
+
+
+
+### Sub / Gsub
+  
+*Replace the first occurence of a pattern with a sub or replace all occurrences with gsub.*
+*Gsub() replaces all matches of a string.*
+
+```{r, echo=T, eval=F}
+x <- "Old City"
+gsub("Old", "New", x)
+
+#case insensitive
+gsub("old", "New", x, ignore.case=T)
+
+#Vector replacement
+y <- c("Stockholm City", "Uppsala City", "Malmö")
+gsub(" City","",y)
+
+ 
+``` 
+ 
+ ### rnorm
+  
+*Generate number from a normal distribution.*
+```{r, echo=T, eval=F}
+ rnorm(4)
+#> [1] -2.3308287 -0.9073857 -0.7638332 -0.2193786
+
+# Use a different mean and standard deviation
+rnorm(4, mean=50, sd=10)
+#> [1] 59.20927 40.12440 44.58840 41.97056
+
+# To check that the distribution looks right, make a histogram of the numbers
+x <- rnorm(400, mean=50, sd=10)
+hist(x)
+``` 
+  
+### slice
+*Example: way to take out a single row.*
+```{r, echo=T, eval=F}
+library(dplyr)
+mtcars
+
+select_row = 1
+df <- arrange(mtcars, mpg)
+
+df2 <- df %>%
+  slice(which(row_number() == select_row))
+``` 
+
+### unique
+*Example: get all unique values in a column*
+```{r, echo=T, eval=F}
+
+library(dplyr)
+library(data.table)
+
+df <- mtcars
+
+unique(df$cyl, incomparables = FALSE)
+``` 
+
+### Map (purrr)
+*Apply a function to each element of as list or vector.
+https://purrr.tidyverse.org/reference/map.html*
+
+```{r, echo=T, eval=F}
+# map_dfr
+# apply a function to each element
+
+library(tidyverse)
+
+leading_indicators <- c(
+  "INJCJC Index",
+  "INJCJC4 Index",
+  "INJCSP Index",
+  "RSTAMOM Index",
+  "SAARTOTL Index",
+  "USHBTRAF Index",
+  "DGNOCHNG Index",
+  "DGNOYOY Index",
+  "LEI CHNG Index"
+)
+
+get_data <- function(indicator) {
+  tibble(ind = indicator, data = 1)
+}
+
+leading_indicators %>% 
+  map_dfr(get_data) 
+
+``` 
 
 
