@@ -15,3 +15,14 @@ git add .nojekyll
 8) In Github, go to settings and change Github Pages to master branch /docs folder
 
 9) Finito! Update your book and Github running 5 and 6.
+
+
+
+In the index.rmd file, create as below
+---
+title: "Testing"
+author: "christoffer.nordenlow@outlook.se"
+date: '2020-05-26'
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+---
