@@ -3,7 +3,7 @@
 
 Instructions for publishing a bookdown on Github
 
-1) Create an easy rmd-file called Index.rmd.
+1) Create a rmd-file called Index.rmd as below.
 2) Create an repository on GitHub.
 3) Clone to Repository using R-studio and Git (create new project) and create a local folder.
 4) In Github-repository, create a file named "_bookdown.yml"_ with the code output_dir: "docs".
