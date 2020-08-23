@@ -615,6 +615,14 @@ df  %>%
   
 ```
 
+### Number rows within group
+
+```{r, echo=T, eval=F}
+library(dplyr)
+mtcars %>%
+  group_by(cyl) %>%
+  mutate(num = 1:n())
+```
 
 ### Date Formating
 
