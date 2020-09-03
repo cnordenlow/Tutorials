@@ -721,6 +721,78 @@ df%>%
   invoke_map(f, param, n= 5)%>% str()
 ``` 
 
+**Purrr pattern finders**
+```{r, echo=T, eval=F}
+
+  
+  ## Keep elements of input where the predicate is true
+  
+  iris %>%
+    keep(is.factor) %>%
+    str()
+  
+  #discard elements 
+  iris %>%
+    discard(is.factor) %>%
+    str()
+  
+  #some determine if the predicate is true for any 
+  x <- list(1:5, letters, list(10))
+  
+  x %>%
+    some(is_character)
+  
+  #every determine if the predicate is true for all
+  x %>%
+    every(is_vector)
+  
+  # detect() finds the first element where the predicate is true
+  x <- sample(10)
+  x
+  
+  x %>%
+    detect(~ . > 5)
+  
+  x %>%
+    detect_index(~ . >5)
+  
+  #head_While
+ 
+  #take elements from the start or end of a vector while a predicate is true.
+  pos <- function(x) x >= 0
+  head_while(5:-5, pos)
+  
+  big <- function(x) x > 5
+  head_while(0:10, big)
+  tail_while(0:10, big)
+
+  
+  #reduce and accumulate
+  dfs <- list(
+    age = tibble(name = "john", age = 30),
+    sex = tibble(name = c("john", "mary"), sex = c("M", "F")),
+    trt = tibble(name = "mary", treatment = "A")
+  )
+  
+  dfs %>% reduce(full_join)
+
+  # find the intersection
+  
+  
+  vs <- list(
+    c(1,3,5,6,10),
+    c(1,2,3,6,7,8),
+    c(1,2,3,4,5,6)
+  )
+  
+  vs %>% reduce(intersect)
+  
+  #accumulate
+   x <- sample(10)
+   x
+   
+   x %>% accumulate(`+`)
+``` 
 
 ## Working with strings and characters
 
