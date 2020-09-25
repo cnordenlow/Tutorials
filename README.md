@@ -16,6 +16,8 @@ git add .nojekyll
 
 9) Finito! Update your book and Github running 5 and 6.
 
+https://cnordenlow.github.io/tutorials/index.html
+
 
 ```
 In the index.rmd file, create as below
