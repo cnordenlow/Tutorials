@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Excel &amp; VBA | Templates</title>
-  <meta name="description" content="2 Excel &amp; VBA | Templates" />
+  <title>6 Python | Templates</title>
+  <meta name="description" content="6 Python | Templates" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Excel &amp; VBA | Templates" />
+  <meta property="og:title" content="6 Python | Templates" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Excel &amp; VBA | Templates" />
+  <meta name="twitter:title" content="6 Python | Templates" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="r.html"/>
-<link rel="next" href="fi-fx.html"/>
+<link rel="prev" href="html-css-and-javascript.html"/>
+<link rel="next" href="git.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -249,177 +249,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="excel-vba" class="section level1">
-<h1><span class="header-section-number">2</span> Excel &amp; VBA</h1>
-<div id="import-1" class="section level2">
-<h2><span class="header-section-number">2.1</span> Import</h2>
-<div id="standard-way-to-import-file" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Standard way to import file</h3>
-<pre><code>Sub import_file()
-
-&#39;Code to delete old data and to import new file
-
-Application.ScreenUpdating = False
-Application.DisplayAlerts = False
-
-Sheets(&quot;location_file&quot;).ClearContents
-
-  TheHomeFile = ActiveWorkbook.Name
-
-    Path = &quot;\\riksbank.se\profile\home\chnord\My Documents\test\&quot;
-    Name = &quot;likvprog_history.txt&quot;
-
-        Workbooks.OpenText Filename:= _
-          Path &amp; Name, Local:=True
-
-        Range(&quot;a1:z10000&quot;).Copy
-      Workbooks(TheHomeFile).Activate
-      Sheets(&quot;likvprog_history&quot;).Select
-      Range(&quot;a1&quot;).PasteSpecial xlValues
-
-  Workbooks(Name).Close savechanges:=False
-
-
-Sheets(&quot;main&quot;).Select
-
-Application.CutCopyMode = False
-
-End Sub</code></pre>
+<div id="python" class="section level1">
+<h1><span class="header-section-number">6</span> Python</h1>
+<div id="basic" class="section level2">
+<h2><span class="header-section-number">6.1</span> Basic</h2>
 </div>
-<div id="import-file-with-conditions" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Import file with conditions</h3>
-<p><em>Import files after a certain date. Check if file exists before import.</em></p>
-<pre><code>Sub import_file()
-
-Application.ScreenUpdating = False
-Application.DisplayAlerts = False
-
-Sheets(&quot;location_file&quot;).ClearContents
-
-#Input files after this date
-from_date = &quot;2020-05-01&quot;
-
-current_date = from_date
-
-
-  TheHomeFile = ActiveWorkbook.Name
-
-    Path = &quot;xxx\home\chnord\My Documents\test\&quot;
-
-
-Do Until Format(current_date, &quot;YYYY-MM-DD&quot;) &gt;= Format(to_date, &quot;YYYY-MM-DD&quot;)
-
-Name = current_date &amp; &quot; Saldo.csv&quot;
-
-&#39;&#39;check if file exists
-file_exists = False
-If Dir(Path &amp; Name) &lt;&gt; &quot;&quot; Then file_exists = True
-
-If file_exists = True Then
-
-        Workbooks.OpenText Filename:= _
-          Path &amp; Name, Local:=True
-
-        Range(&quot;a1:z10000&quot;).Copy
-      Workbooks(TheHomeFile).Activate
-      Sheets(&quot;likvprog_history&quot;).Select
-      Range(&quot;a1&quot;).PasteSpecial xlValues
-
-  Workbooks(Name).Close savechanges:=False
-
-end if
-
-current_date = DateAdd(&quot;d&quot;, 1, current_date)
-Loop
-
-
-
-
-Application.CutCopyMode = False
-
-End Sub</code></pre>
-</div>
-</div>
-<div id="loops-1" class="section level2">
-<h2><span class="header-section-number">2.2</span> Loops</h2>
-<div id="for-loop" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> For loop</h3>
-<p><strong>Loop thru all possible scenarios.</strong></p>
-<p><em>Loop All alternatives. In Rows 2:4 there are three alternatives in each column. Loop all possible scenarios.</em></p>
-<pre><code>sub for_loop_all_alternatives
-
-Sheets(&quot;sheet1&quot;).Select
-Sheets(&quot;sheet1&quot;).Range(&quot;c2:k2&quot;) = 1
-Sheets(&quot;sheet1&quot;).Range(&quot;c3:k4&quot;) = 2
-Sheets(&quot;sheet1&quot;).Range(&quot;c4:k4&quot;) = 3
-
-Count = 1
-Row = 7
-
-For c = 2 To 4
-    For d = 2 To 4
-        For e = 2 To 4
-            For f = 2 To 4
-                For g = 2 To 4
-                    For h = 2 To 4
-                        For i = 2 To 4
-                            For j = 2 To 4
-                                For k = 2 To 4
-
-                                Cells(Row, 2) = Count
-                                Cells(Row, 3) = Range(&quot;c&quot; &amp; c)
-                                Cells(Row, 4) = Range(&quot;d&quot; &amp; d)
-                                Cells(Row, 5) = Range(&quot;e&quot; &amp; e)
-                                Cells(Row, 6) = Range(&quot;f&quot; &amp; f)
-                                Cells(Row, 7) = Range(&quot;g&quot; &amp; g)
-                                Cells(Row, 8) = Range(&quot;h&quot; &amp; h)
-                                Cells(Row, 9) = Range(&quot;i&quot; &amp; i)
-                                Cells(Row, 10) = Range(&quot;j&quot; &amp; j)
-                                Cells(Row, 11) = Range(&quot;k&quot; &amp; k)
-
-                                Count = Count + 1
-                                Row = Row + 1
-
-                                Next
-                            Next
-                        Next
-                    Next
-                Next
-            Next
-        Next
-    Next
-Next
-End Sub</code></pre>
-</div>
-</div>
-<div id="misc-1" class="section level2">
-<h2><span class="header-section-number">2.3</span> Misc</h2>
-<div id="misc-2" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Misc</h3>
-<p><strong>Format from text to number</strong></p>
-<p><em>Format from text to number when excel “requires” a press of enter button.</em></p>
-<pre><code>or Each r In Sheets(&quot;Sheet1&quot;).UsedRange.SpecialCells(xlCellTypeConstants)
-    If IsNumeric(r) Then
-       r.Value = CSng(r.Value)
-       r.NumberFormat = &quot;0.00&quot;
-    End If
-Next</code></pre>
-</div>
-</div>
-<div id="useful-excel-formulas" class="section level2">
-<h2><span class="header-section-number">2.4</span> Useful excel formulas</h2>
-</div>
-<div id="useful-bloomberg-formulas" class="section level2">
-<h2><span class="header-section-number">2.5</span> Useful Bloomberg formulas</h2>
-<p><strong>Import Rating with override function</strong></p>
-<pre><code>&#39;Approah to import rating for specific date
-
-=BDP(&quot;SAND SS equity&quot;;&quot;RTG_SP_LT_LC_ISSUER_CREDIT&quot;;&quot;RATING_AS_OF_DATE_OVERRIDE=&quot;&amp;&quot;2020-01-01&quot;)</code></pre>
-<p><strong>Formula for importing data to excel</strong></p>
-<pre><code>&#39;Import data from Bloomberg, 2 cols.
-
-=BDH(&quot;INJCJC Index&quot;;&quot;px_last&quot;;&quot;2015-07-02&quot;;&quot;&quot;;&quot;Dir=V&quot;;&quot;Dts=S&quot;;&quot;Sort=d&quot;;&quot;Quote=C&quot;;&quot;QtTyp=Y&quot;;&quot;Days=a&quot;;&quot;Per=cd&quot;;&quot;DtFmt=D&quot;;&quot;Fill=P&quot;;&quot;UseDPDF=Y&quot;;&quot;cols=2;rows=1826&quot;)
-</code></pre>
+<div id="scrapy" class="section level2">
+<h2><span class="header-section-number">6.2</span> Scrapy</h2>
 
 </div>
 </div>
@@ -428,8 +264,8 @@ Next</code></pre>
           </div>
         </div>
       </div>
-<a href="r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fi-fx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="html-css-and-javascript.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
