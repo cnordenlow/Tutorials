@@ -5,6 +5,8 @@
 
 ## Scrapy
 
+*pip install Scrapy*
+
 ### Shell commands
 
 *Run scrapy in shell: Write 'scrapy shell' in miniconda*
