@@ -227,7 +227,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="python.html"><a href="python.html"><i class="fa fa-check"></i><b>6</b> Python</a><ul>
 <li class="chapter" data-level="6.1" data-path="python.html"><a href="python.html#basic"><i class="fa fa-check"></i><b>6.1</b> Basic</a></li>
-<li class="chapter" data-level="6.2" data-path="python.html"><a href="python.html#scrapy"><i class="fa fa-check"></i><b>6.2</b> Scrapy</a></li>
+<li class="chapter" data-level="6.2" data-path="python.html"><a href="python.html#scrapy"><i class="fa fa-check"></i><b>6.2</b> Scrapy</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="python.html"><a href="python.html#shell-commands"><i class="fa fa-check"></i><b>6.2.1</b> Shell commands</a></li>
+<li class="chapter" data-level="6.2.2" data-path="python.html"><a href="python.html#scrape-table"><i class="fa fa-check"></i><b>6.2.2</b> Scrape table</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>7</b> Git</a><ul>
 <li class="chapter" data-level="7.1" data-path="git.html"><a href="git.html#basics"><i class="fa fa-check"></i><b>7.1</b> Basics</a></li>
@@ -256,7 +259,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="scrapy" class="section level2">
 <h2><span class="header-section-number">6.2</span> Scrapy</h2>
+<p><em>pip install Scrapy</em></p>
+<div id="shell-commands" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Shell commands</h3>
+<p><em>Run scrapy in shell: Write ‘scrapy shell’ in miniconda</em></p>
+<p><em>Fetch page: Write ‘Fetch (“<a href="https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/2020/results-of-auctions-2020-09-23/" class="uri">https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/2020/results-of-auctions-2020-09-23/</a>”)’</em></p>
+<p><em>Use view(response)</em></p>
+</div>
+<div id="scrape-table" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Scrape table</h3>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># Spider</span></a>
+<a class="sourceLine" id="cb98-2" title="2"></a>
+<a class="sourceLine" id="cb98-3" title="3"><span class="im">import</span> scrapy</a>
+<a class="sourceLine" id="cb98-4" title="4"></a>
+<a class="sourceLine" id="cb98-5" title="5"></a>
+<a class="sourceLine" id="cb98-6" title="6"><span class="kw">class</span> ToScrapeCSSSpider(scrapy.Spider):</a>
+<a class="sourceLine" id="cb98-7" title="7">    name <span class="op">=</span> <span class="st">&quot;rb_scrape2&quot;</span></a>
+<a class="sourceLine" id="cb98-8" title="8">    start_urls <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb98-9" title="9"></a>
+<a class="sourceLine" id="cb98-10" title="10">        <span class="st">&#39;https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/2020/results-of-auctions-2020-09-23/&#39;</span></a>
+<a class="sourceLine" id="cb98-11" title="11">    ]</a>
+<a class="sourceLine" id="cb98-12" title="12"></a>
+<a class="sourceLine" id="cb98-13" title="13">    <span class="kw">def</span> parse(<span class="va">self</span>, response):</a>
+<a class="sourceLine" id="cb98-14" title="14"></a>
+<a class="sourceLine" id="cb98-15" title="15"></a>
+<a class="sourceLine" id="cb98-16" title="16">        <span class="cf">for</span> item <span class="kw">in</span> response.xpath(<span class="st">&#39;//*[@class=&quot;page-base__main__body&quot;]//tr&#39;</span>):</a>
+<a class="sourceLine" id="cb98-17" title="17">            <span class="cf">yield</span> {</a>
+<a class="sourceLine" id="cb98-18" title="18"></a>
+<a class="sourceLine" id="cb98-19" title="19">            <span class="st">&#39;terms&#39;</span> : item.xpath(<span class="st">&#39;td[1]//text()&#39;</span>).extract(),</a>
+<a class="sourceLine" id="cb98-20" title="20">            <span class="st">&#39;auction&#39;</span> : item.xpath(<span class="st">&#39;td[2]//text()&#39;</span>).extract()</a>
+<a class="sourceLine" id="cb98-21" title="21"></a>
+<a class="sourceLine" id="cb98-22" title="22">            }</a>
+<a class="sourceLine" id="cb98-23" title="23"></a>
+<a class="sourceLine" id="cb98-24" title="24">        next_page_url <span class="op">=</span> response.css(<span class="st">&quot;li.next &gt; a::attr(href)&quot;</span>).extract_first()</a>
+<a class="sourceLine" id="cb98-25" title="25">        <span class="cf">if</span> next_page_url <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb98-26" title="26">            <span class="cf">yield</span> scrapy.Request(response.urljoin(next_page_url))</a>
+<a class="sourceLine" id="cb98-27" title="27"></a>
+<a class="sourceLine" id="cb98-28" title="28"></a>
+<a class="sourceLine" id="cb98-29" title="29"><span class="co"># Settings</span></a>
+<a class="sourceLine" id="cb98-30" title="30"></a>
+<a class="sourceLine" id="cb98-31" title="31"><span class="co">#Export as CSV Feed</span></a>
+<a class="sourceLine" id="cb98-32" title="32"><span class="co">#FEED_FORMAT = &quot;csv&quot;</span></a>
+<a class="sourceLine" id="cb98-33" title="33"><span class="co">#FEED_URI = &quot;rbbot.csv&quot;</span></a>
+<a class="sourceLine" id="cb98-34" title="34"></a>
+<a class="sourceLine" id="cb98-35" title="35"><span class="co">#Run crawler in miniconda with creating an csv (if its not in settings): scrapy crawl rb_scrape2 -o quotes.csv</span></a></code></pre></div>
 
+</div>
 </div>
 </div>
             </section>

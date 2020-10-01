@@ -18,7 +18,7 @@
 
 ### Scrape table
 
-```{python}
+```python
 # Spider
 
 import scrapy
