@@ -67,20 +67,43 @@ class ToScrapeCSSSpider(scrapy.Spider):
 import scrapy
 #from TreasuryScraper.items import TreasuryItem
 import json
-
 class TreasurySpider(scrapy.Spider):
     name = 'treasury'
     start_urls = [
-        'https://www.treasurydirect.gov/TA_WS/securities/jqsearch?format=json&filterscount=0&groupscount=0&pagenum=0&pagesize=10&recordstartindex=0&recordendindex=100',
-    ]  
-
+        'https://www.treasurydirect.gov/TA_WS/securities/jqsearch?format=json&filterscount=0&groupscount=0&pagenum=0&pagesize=1000&recordstartindex=0&recordendindex=1000',
+    ]
     def parse(self, response):
         jsonresponse = json.loads(response.text)
-
         for item in jsonresponse['securityList']:
             yield {
                 'cusip': item['cusip'],
-                'floatingRate': item['floatingRate']
+                'securityType': item['securityType'],
+                'securityTerm': item['securityTerm'],
+                'offeringAmount': item['offeringAmount'],
+                'tips': item['tips'],
+                'type': item['type'],
+                'pricePer100': item['pricePer100'],
+                'floatingRate': item['floatingRate'],
+                'reopening': item['reopening'],
+                'auctionDate': item['auctionDate'],
+                'maturityDate': item['maturityDate'],
+                'term': item['term'],
+                'competitiveAccepted': item['competitiveAccepted'],
+                'allocationPercentage': item['allocationPercentage'],
+                'averageMedianYield': item['averageMedianYield'],
+                'bidToCoverRatio': item['bidToCoverRatio'],
+                'competitiveAccepted': item['competitiveAccepted'],
+                'highYield': item['highYield'],
+                'lowYield': item['lowYield'],
+                'somaAccepted': item['somaAccepted'],
+                'somaHoldings': item['somaHoldings'],
+                'primaryDealerAccepted': item['primaryDealerAccepted'],
+                'directBidderAccepted': item['directBidderAccepted'],
+                'directBidderTendered': item['directBidderTendered'],
+                'indirectBidderAccepted': item['indirectBidderAccepted'],
+                'indirectBidderTendered': item['indirectBidderTendered'],
+                'interestPaymentFrequency': item['interestPaymentFrequency']
+
                 }
 
 #settings
