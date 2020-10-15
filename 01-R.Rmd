@@ -206,6 +206,18 @@ colnames(rix_saldo)[colnames(rix_saldo) == 'V2'] <- 'Saldo'
 ```
 
 
+**Import all excel files in a folder with condition of name**
+
+
+
+```{r, echo=T, eval=F}
+#Import a .xlsm files, one particular sheet.
+dir_loc <- '...\\Operations\\History_bokningssnurra'
+dir <-dir(dir_loc, full.names = T, pattern =".xlsm")
+rawData <- map_dfr(dir, read_xlsx, sheet = "indata_AUPD", col_names = TRUE, col_types = 'text')
+
+```
+
 
 **Import excel from web**
   
