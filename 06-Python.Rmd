@@ -120,3 +120,51 @@ class TreasurySpider(scrapy.Spider):
 #scrapy crawl treasury -o output.csv
 
 ```
+
+### Scrape table json auction results Riksbank
+```python
+
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+from RiksbankAuctionScraper.items import GovernmentBond
+
+def get_table_attr(response, x): # to handle strange tables
+  # using normalize-space() to avoid "\n" as matching xpath
+  xpaths = [
+    './/td[contains(text(),"{0}")]/following-sibling::td/text()[normalize-space()]', #if td contains, use following sibling
+    './/td[contains(text(),"{0}")]/following-sibling::td/p/text()[normalize-space()]',
+    './/th/span[contains(text(),"{0}")]/../following-sibling::td/span/text()[normalize-space()]' #if th/span contains text, use following sibbling
+  ]
+  xpath_str = '|'.join(xpaths).format(x)
+  return response.xpath(xpath_str).get()
+
+class RiksbankSpider(CrawlSpider):
+    name = "RiksbankAuctionScraper_v5"
+    allowed_domains = ['riksbank.se']
+    start_urls = [
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-statsobligationer/results-of-auctions'
+    ]
+    rules = (
+      Rule(LinkExtractor(
+        allow=('\/kop-av-statsobligationer\/results-of-auctions\/2020\/results-of-auctions-\d{4}-\d{2}-\d{2}\/$')
+      ), callback='parse_government_bond'),
+    )
+    
+    def parse_government_bond(self, response):
+        for selector in response.xpath("//table"):
+          item = GovernmentBond()
+          item['auction_type'] = 'statsobligationer' 
+          item['auction_date'] = get_table_attr(selector, "Auction date") #text to look for
+          item['loan_number'] = get_table_attr(selector, "Loan")
+          yield item
+          
+ #Items    
+# -*- coding: utf-8 -*-
+from scrapy import Item, Field
+
+class GovernmentBonds(Item):
+  auction_type = Field()
+  auction_date = Field()
+  loan_number= Field()         
+```
