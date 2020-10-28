@@ -176,7 +176,36 @@ or Each r In Sheets("Sheet1").UsedRange.SpecialCells(xlCellTypeConstants)
 Next
 ```
 
+ **Format from , to . even though it´s auto changing to ,**
+  
+*Format from text to number when excel "requires" a press of enter button.*
+
+``` 
+    Const myDecSep As String = "."
+Sub changeformats()
+'https://stackoverflow.com/questions/42532857/vba-display-decimals-with-point-and-not-coma
+
+ Dim S As String
+ Dim D As Double
+ Const myDecSep As String = "."
+
+D = 1234.56
+
+S = Format(D, "0.00") 'will format using the system separator
+
+S = Replace(S, Application.DecimalSeparator, myDecSep)
+
+'Range("e1") = S
+MsgBox S
+
+End Sub
+```
+
+
+
 ## Useful excel formulas 
+
+
 
 ## Useful Bloomberg formulas
 
