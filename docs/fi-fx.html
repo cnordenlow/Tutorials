@@ -264,93 +264,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.1.1.1</span> Calculate Forward Rates</h4>
 <p><strong>Calculate Forward Rates</strong></p>
 <p><em>Create a table with bond (or import real ones) and calculate forward rates.</em></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">library</span>(dplyr) </a>
-<a class="sourceLine" id="cb56-2" title="2"><span class="co">#Calculate Forward rate </span></a>
-<a class="sourceLine" id="cb56-3" title="3"><span class="co">#Create a table with plain vanilla bonds</span></a>
-<a class="sourceLine" id="cb56-4" title="4">df &lt;-<span class="st"> </span><span class="kw">tribble</span>( </a>
-<a class="sourceLine" id="cb56-5" title="5">  <span class="op">~</span>bond, <span class="op">~</span>maturity, <span class="op">~</span>yield, </a>
-<a class="sourceLine" id="cb56-6" title="6">  <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="fl">1.65</span>, </a>
-<a class="sourceLine" id="cb56-7" title="7">  <span class="dv">2</span>, <span class="dv">3</span>, <span class="fl">1.55</span>, </a>
-<a class="sourceLine" id="cb56-8" title="8">  <span class="dv">3</span>, <span class="dv">5</span>, <span class="fl">1.8</span>, </a>
-<a class="sourceLine" id="cb56-9" title="9">  <span class="dv">4</span>, <span class="dv">10</span>, <span class="fl">1.9</span> </a>
-<a class="sourceLine" id="cb56-10" title="10">) </a>
-<a class="sourceLine" id="cb56-11" title="11"><span class="co">#Create table with all bonds in columns for short vs long bond</span></a>
-<a class="sourceLine" id="cb56-12" title="12">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-13" title="13"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dummy =</span> 1L) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-14" title="14"><span class="st">  </span><span class="kw">inner_join</span>(., ., <span class="dt">by =</span> <span class="st">&quot;dummy&quot;</span>, <span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;_short&quot;</span>, <span class="st">&quot;_long&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-15" title="15"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>dummy) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-16" title="16"><span class="st">  </span><span class="kw">filter</span>(bond_short <span class="op">&lt;</span><span class="st"> </span>bond_long) </a>
-<a class="sourceLine" id="cb56-17" title="17"><span class="co">#Create column with maturity for length between bonds (not neccesary for below calculation)</span></a>
-<a class="sourceLine" id="cb56-18" title="18">df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">maturity_between_bonds =</span> (maturity_long  <span class="op">-</span><span class="st"> </span>maturity_short))</a>
-<a class="sourceLine" id="cb56-19" title="19">day_count &lt;-<span class="st"> </span><span class="dv">360</span></a>
-<a class="sourceLine" id="cb56-20" title="20"><span class="co">#Create function for calculating frw rate</span></a>
-<a class="sourceLine" id="cb56-21" title="21">calculate_forward_rate &lt;-<span class="st"> </span><span class="cf">function</span>(maturity_short, yield_short, maturity_long, yield_long, day_count){</a>
-<a class="sourceLine" id="cb56-22" title="22">  </a>
-<a class="sourceLine" id="cb56-23" title="23">  short_bond &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">+</span>yield_short<span class="op">/</span><span class="dv">100</span>)<span class="op">^</span>(maturity_short<span class="op">/</span>day_count)</a>
-<a class="sourceLine" id="cb56-24" title="24">  long_bond &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">+</span>yield_long<span class="op">/</span><span class="dv">100</span>)<span class="op">^</span>(maturity_long<span class="op">/</span>day_count)</a>
-<a class="sourceLine" id="cb56-25" title="25">  days_between &lt;-<span class="st"> </span>(maturity_long <span class="op">-</span><span class="st"> </span>maturity_short)</a>
-<a class="sourceLine" id="cb56-26" title="26">  forward_rate &lt;-<span class="st"> </span>((long_bond<span class="op">/</span>short_bond)<span class="op">^</span>(<span class="dv">360</span><span class="op">/</span>days_between)<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb56-27" title="27">  <span class="kw">return</span>(<span class="kw">round</span>(forward_rate, <span class="dt">digits=</span><span class="dv">2</span>))  </a>
-<a class="sourceLine" id="cb56-28" title="28">}</a>
-<a class="sourceLine" id="cb56-29" title="29"><span class="co">#run function</span></a>
-<a class="sourceLine" id="cb56-30" title="30">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb56-31" title="31"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">forward_rate =</span> <span class="kw">calculate_forward_rate</span>(</a>
-<a class="sourceLine" id="cb56-32" title="32">    maturity_short,</a>
-<a class="sourceLine" id="cb56-33" title="33">    yield_short,</a>
-<a class="sourceLine" id="cb56-34" title="34">    maturity_long,</a>
-<a class="sourceLine" id="cb56-35" title="35">    yield_long,</a>
-<a class="sourceLine" id="cb56-36" title="36">    day_count))</a>
-<a class="sourceLine" id="cb56-37" title="37"><span class="co">#Create a yield_diff. How much more/less the yield must be when its time to buy the subsequent bond       </span></a>
-<a class="sourceLine" id="cb56-38" title="38">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb56-39" title="39"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">yield_diff =</span> <span class="kw">if_else</span>(bond_short <span class="op">==</span><span class="st"> </span>bond_long, <span class="ot">NA_real_</span>, forward_rate <span class="op">-</span><span class="st"> </span>yield_short))</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">library</span>(dplyr) </a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="co">#Calculate Forward rate </span></a>
+<a class="sourceLine" id="cb57-3" title="3"><span class="co">#Create a table with plain vanilla bonds</span></a>
+<a class="sourceLine" id="cb57-4" title="4">df &lt;-<span class="st"> </span><span class="kw">tribble</span>( </a>
+<a class="sourceLine" id="cb57-5" title="5">  <span class="op">~</span>bond, <span class="op">~</span>maturity, <span class="op">~</span>yield, </a>
+<a class="sourceLine" id="cb57-6" title="6">  <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="fl">1.65</span>, </a>
+<a class="sourceLine" id="cb57-7" title="7">  <span class="dv">2</span>, <span class="dv">3</span>, <span class="fl">1.55</span>, </a>
+<a class="sourceLine" id="cb57-8" title="8">  <span class="dv">3</span>, <span class="dv">5</span>, <span class="fl">1.8</span>, </a>
+<a class="sourceLine" id="cb57-9" title="9">  <span class="dv">4</span>, <span class="dv">10</span>, <span class="fl">1.9</span> </a>
+<a class="sourceLine" id="cb57-10" title="10">) </a>
+<a class="sourceLine" id="cb57-11" title="11"><span class="co">#Create table with all bonds in columns for short vs long bond</span></a>
+<a class="sourceLine" id="cb57-12" title="12">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-13" title="13"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dummy =</span> 1L) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-14" title="14"><span class="st">  </span><span class="kw">inner_join</span>(., ., <span class="dt">by =</span> <span class="st">&quot;dummy&quot;</span>, <span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;_short&quot;</span>, <span class="st">&quot;_long&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-15" title="15"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>dummy) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-16" title="16"><span class="st">  </span><span class="kw">filter</span>(bond_short <span class="op">&lt;</span><span class="st"> </span>bond_long) </a>
+<a class="sourceLine" id="cb57-17" title="17"><span class="co">#Create column with maturity for length between bonds (not neccesary for below calculation)</span></a>
+<a class="sourceLine" id="cb57-18" title="18">df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">maturity_between_bonds =</span> (maturity_long  <span class="op">-</span><span class="st"> </span>maturity_short))</a>
+<a class="sourceLine" id="cb57-19" title="19">day_count &lt;-<span class="st"> </span><span class="dv">360</span></a>
+<a class="sourceLine" id="cb57-20" title="20"><span class="co">#Create function for calculating frw rate</span></a>
+<a class="sourceLine" id="cb57-21" title="21">calculate_forward_rate &lt;-<span class="st"> </span><span class="cf">function</span>(maturity_short, yield_short, maturity_long, yield_long, day_count){</a>
+<a class="sourceLine" id="cb57-22" title="22">  </a>
+<a class="sourceLine" id="cb57-23" title="23">  short_bond &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">+</span>yield_short<span class="op">/</span><span class="dv">100</span>)<span class="op">^</span>(maturity_short<span class="op">/</span>day_count)</a>
+<a class="sourceLine" id="cb57-24" title="24">  long_bond &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">+</span>yield_long<span class="op">/</span><span class="dv">100</span>)<span class="op">^</span>(maturity_long<span class="op">/</span>day_count)</a>
+<a class="sourceLine" id="cb57-25" title="25">  days_between &lt;-<span class="st"> </span>(maturity_long <span class="op">-</span><span class="st"> </span>maturity_short)</a>
+<a class="sourceLine" id="cb57-26" title="26">  forward_rate &lt;-<span class="st"> </span>((long_bond<span class="op">/</span>short_bond)<span class="op">^</span>(<span class="dv">360</span><span class="op">/</span>days_between)<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb57-27" title="27">  <span class="kw">return</span>(<span class="kw">round</span>(forward_rate, <span class="dt">digits=</span><span class="dv">2</span>))  </a>
+<a class="sourceLine" id="cb57-28" title="28">}</a>
+<a class="sourceLine" id="cb57-29" title="29"><span class="co">#run function</span></a>
+<a class="sourceLine" id="cb57-30" title="30">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-31" title="31"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">forward_rate =</span> <span class="kw">calculate_forward_rate</span>(</a>
+<a class="sourceLine" id="cb57-32" title="32">    maturity_short,</a>
+<a class="sourceLine" id="cb57-33" title="33">    yield_short,</a>
+<a class="sourceLine" id="cb57-34" title="34">    maturity_long,</a>
+<a class="sourceLine" id="cb57-35" title="35">    yield_long,</a>
+<a class="sourceLine" id="cb57-36" title="36">    day_count))</a>
+<a class="sourceLine" id="cb57-37" title="37"><span class="co">#Create a yield_diff. How much more/less the yield must be when its time to buy the subsequent bond       </span></a>
+<a class="sourceLine" id="cb57-38" title="38">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-39" title="39"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">yield_diff =</span> <span class="kw">if_else</span>(bond_short <span class="op">==</span><span class="st"> </span>bond_long, <span class="ot">NA_real_</span>, forward_rate <span class="op">-</span><span class="st"> </span>yield_short))</a></code></pre></div>
 </div>
 <div id="bond-converter" class="section level4">
 <h4><span class="header-section-number">3.1.1.2</span> Bond Converter</h4>
 <p><strong>Calculate Bond Price</strong></p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">Maturity &lt;-<span class="st"> &quot;2023-04-30&quot;</span></a>
-<a class="sourceLine" id="cb57-2" title="2">  Handle &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb57-3" title="3">  x32 &lt;-<span class="st"> </span><span class="dv">25</span></a>
-<a class="sourceLine" id="cb57-4" title="4">  x64 &lt;-<span class="st"> </span><span class="dv">24</span></a>
-<a class="sourceLine" id="cb57-5" title="5">  cpn &lt;-<span class="st"> </span><span class="fl">2.25</span></a>
-<a class="sourceLine" id="cb57-6" title="6">  </a>
-<a class="sourceLine" id="cb57-7" title="7">  ttm &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.Date</span>(Maturity) <span class="op">-</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">Sys.Date</span>())) <span class="op">/</span><span class="st"> </span><span class="dv">365</span></a>
-<a class="sourceLine" id="cb57-8" title="8">  FV &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb57-9" title="9">  </a>
-<a class="sourceLine" id="cb57-10" title="10">  calculate_price &lt;-<span class="st"> </span><span class="cf">function</span>(Handle, x32, x64){</a>
-<a class="sourceLine" id="cb57-11" title="11">    bond_price &lt;-<span class="st"> </span>Handle <span class="op">+</span><span class="st"> </span>((x32<span class="op">+</span>(x64<span class="op">/</span><span class="dv">64</span>))<span class="op">/</span><span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb57-12" title="12">    <span class="kw">return</span>(<span class="kw">format</span>(<span class="kw">round</span>(bond_price,<span class="dv">10</span>), <span class="dt">nsmall=</span><span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb57-13" title="13">  }</a>
-<a class="sourceLine" id="cb57-14" title="14">  </a>
-<a class="sourceLine" id="cb57-15" title="15"> bond_price &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">calculate_price</span>(Handle, x32, x64))</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">Maturity &lt;-<span class="st"> &quot;2023-04-30&quot;</span></a>
+<a class="sourceLine" id="cb58-2" title="2">  Handle &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb58-3" title="3">  x32 &lt;-<span class="st"> </span><span class="dv">25</span></a>
+<a class="sourceLine" id="cb58-4" title="4">  x64 &lt;-<span class="st"> </span><span class="dv">24</span></a>
+<a class="sourceLine" id="cb58-5" title="5">  cpn &lt;-<span class="st"> </span><span class="fl">2.25</span></a>
+<a class="sourceLine" id="cb58-6" title="6">  </a>
+<a class="sourceLine" id="cb58-7" title="7">  ttm &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.Date</span>(Maturity) <span class="op">-</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">Sys.Date</span>())) <span class="op">/</span><span class="st"> </span><span class="dv">365</span></a>
+<a class="sourceLine" id="cb58-8" title="8">  FV &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb58-9" title="9">  </a>
+<a class="sourceLine" id="cb58-10" title="10">  calculate_price &lt;-<span class="st"> </span><span class="cf">function</span>(Handle, x32, x64){</a>
+<a class="sourceLine" id="cb58-11" title="11">    bond_price &lt;-<span class="st"> </span>Handle <span class="op">+</span><span class="st"> </span>((x32<span class="op">+</span>(x64<span class="op">/</span><span class="dv">64</span>))<span class="op">/</span><span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb58-12" title="12">    <span class="kw">return</span>(<span class="kw">format</span>(<span class="kw">round</span>(bond_price,<span class="dv">10</span>), <span class="dt">nsmall=</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb58-13" title="13">  }</a>
+<a class="sourceLine" id="cb58-14" title="14">  </a>
+<a class="sourceLine" id="cb58-15" title="15"> bond_price &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">calculate_price</span>(Handle, x32, x64))</a></code></pre></div>
 <p><strong>Convert from Discount to Yield</strong></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">  discount  &lt;-<span class="st"> </span><span class="fl">1.69</span></a>
-<a class="sourceLine" id="cb58-2" title="2">  maturity_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2021-05-06&quot;</span>)</a>
-<a class="sourceLine" id="cb58-3" title="3">  settlement_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>() <span class="op">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb58-4" title="4">  day_count &lt;-<span class="st"> </span><span class="dv">360</span></a>
-<a class="sourceLine" id="cb58-5" title="5">  calculate_ytm_from_discount &lt;-<span class="st"> </span><span class="cf">function</span>(discount, maturity_date, settlement_date, day_count){</a>
-<a class="sourceLine" id="cb58-6" title="6"> </a>
-<a class="sourceLine" id="cb58-7" title="7">    days &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(maturity_date<span class="op">-</span>settlement_date)</a>
-<a class="sourceLine" id="cb58-8" title="8">    discount &lt;-<span class="st"> </span>discount <span class="op">/</span><span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb58-9" title="9">      yield_ &lt;-<span class="st"> </span>(discount <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>(discount <span class="op">*</span><span class="st"> </span>(days<span class="op">/</span>day_count))))</a>
-<a class="sourceLine" id="cb58-10" title="10">    <span class="kw">return</span>(<span class="kw">format</span>(<span class="kw">round</span>(yield_<span class="op">*</span><span class="dv">100</span>,<span class="dv">10</span>),<span class="dt">nsmall=</span><span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb58-11" title="11">  }</a>
-<a class="sourceLine" id="cb58-12" title="12">  </a>
-<a class="sourceLine" id="cb58-13" title="13">  <span class="kw">calculate_ytm_from_discount</span>(discount, maturity_date, settlement_date, day_count)</a></code></pre></div>
-<p><strong>Convert from Yield to Discount</strong></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">  yield  &lt;-<span class="st"> </span><span class="fl">1.719967</span></a>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">  discount  &lt;-<span class="st"> </span><span class="fl">1.69</span></a>
 <a class="sourceLine" id="cb59-2" title="2">  maturity_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2021-05-06&quot;</span>)</a>
-<a class="sourceLine" id="cb59-3" title="3">  settlement_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb59-3" title="3">  settlement_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>() <span class="op">+</span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb59-4" title="4">  day_count &lt;-<span class="st"> </span><span class="dv">360</span></a>
-<a class="sourceLine" id="cb59-5" title="5">  yield &lt;-<span class="st"> </span>yield <span class="op">/</span><span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb59-6" title="6">  calculate_disc_from_yield &lt;-<span class="st"> </span><span class="cf">function</span>(yield, maturity_date, settlement_date, day_count){</a>
-<a class="sourceLine" id="cb59-7" title="7">    </a>
-<a class="sourceLine" id="cb59-8" title="8">    days &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(maturity_date<span class="op">-</span>settlement_date)</a>
-<a class="sourceLine" id="cb59-9" title="9"> </a>
-<a class="sourceLine" id="cb59-10" title="10">    discount &lt;-<span class="st"> </span>(yield <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span><span class="op">+</span>(yield <span class="op">/</span>(day_count<span class="op">/</span>days))))</a>
-<a class="sourceLine" id="cb59-11" title="11">    <span class="kw">return</span>(<span class="kw">format</span>(<span class="kw">round</span>(discount<span class="op">*</span><span class="dv">100</span>,<span class="dv">10</span>),<span class="dt">nsmall=</span><span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb59-12" title="12">  }</a>
-<a class="sourceLine" id="cb59-13" title="13">  </a>
-<a class="sourceLine" id="cb59-14" title="14">  <span class="kw">calculate_disc_from_yield</span>(yield, maturity_date, settlement_date, day_count)</a></code></pre></div>
+<a class="sourceLine" id="cb59-5" title="5">  calculate_ytm_from_discount &lt;-<span class="st"> </span><span class="cf">function</span>(discount, maturity_date, settlement_date, day_count){</a>
+<a class="sourceLine" id="cb59-6" title="6"> </a>
+<a class="sourceLine" id="cb59-7" title="7">    days &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(maturity_date<span class="op">-</span>settlement_date)</a>
+<a class="sourceLine" id="cb59-8" title="8">    discount &lt;-<span class="st"> </span>discount <span class="op">/</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb59-9" title="9">      yield_ &lt;-<span class="st"> </span>(discount <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>(discount <span class="op">*</span><span class="st"> </span>(days<span class="op">/</span>day_count))))</a>
+<a class="sourceLine" id="cb59-10" title="10">    <span class="kw">return</span>(<span class="kw">format</span>(<span class="kw">round</span>(yield_<span class="op">*</span><span class="dv">100</span>,<span class="dv">10</span>),<span class="dt">nsmall=</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb59-11" title="11">  }</a>
+<a class="sourceLine" id="cb59-12" title="12">  </a>
+<a class="sourceLine" id="cb59-13" title="13">  <span class="kw">calculate_ytm_from_discount</span>(discount, maturity_date, settlement_date, day_count)</a></code></pre></div>
+<p><strong>Convert from Yield to Discount</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">  yield  &lt;-<span class="st"> </span><span class="fl">1.719967</span></a>
+<a class="sourceLine" id="cb60-2" title="2">  maturity_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2021-05-06&quot;</span>)</a>
+<a class="sourceLine" id="cb60-3" title="3">  settlement_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb60-4" title="4">  day_count &lt;-<span class="st"> </span><span class="dv">360</span></a>
+<a class="sourceLine" id="cb60-5" title="5">  yield &lt;-<span class="st"> </span>yield <span class="op">/</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb60-6" title="6">  calculate_disc_from_yield &lt;-<span class="st"> </span><span class="cf">function</span>(yield, maturity_date, settlement_date, day_count){</a>
+<a class="sourceLine" id="cb60-7" title="7">    </a>
+<a class="sourceLine" id="cb60-8" title="8">    days &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(maturity_date<span class="op">-</span>settlement_date)</a>
+<a class="sourceLine" id="cb60-9" title="9"> </a>
+<a class="sourceLine" id="cb60-10" title="10">    discount &lt;-<span class="st"> </span>(yield <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span><span class="op">+</span>(yield <span class="op">/</span>(day_count<span class="op">/</span>days))))</a>
+<a class="sourceLine" id="cb60-11" title="11">    <span class="kw">return</span>(<span class="kw">format</span>(<span class="kw">round</span>(discount<span class="op">*</span><span class="dv">100</span>,<span class="dv">10</span>),<span class="dt">nsmall=</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb60-12" title="12">  }</a>
+<a class="sourceLine" id="cb60-13" title="13">  </a>
+<a class="sourceLine" id="cb60-14" title="14">  <span class="kw">calculate_disc_from_yield</span>(yield, maturity_date, settlement_date, day_count)</a></code></pre></div>
 </div>
 </div>
 </div>

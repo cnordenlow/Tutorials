@@ -409,6 +409,26 @@ End Sub</code></pre>
        r.NumberFormat = &quot;0.00&quot;
     End If
 Next</code></pre>
+<p><strong>Format from , to . even though it´s auto changing to ,</strong></p>
+<p><em>Format from text to number when excel “requires” a press of enter button.</em></p>
+<pre><code>    Const myDecSep As String = &quot;.&quot;
+Sub changeformats()
+&#39;https://stackoverflow.com/questions/42532857/vba-display-decimals-with-point-and-not-coma
+
+ Dim S As String
+ Dim D As Double
+ Const myDecSep As String = &quot;.&quot;
+
+D = 1234.56
+
+S = Format(D, &quot;0.00&quot;) &#39;will format using the system separator
+
+S = Replace(S, Application.DecimalSeparator, myDecSep)
+
+&#39;Range(&quot;e1&quot;) = S
+MsgBox S
+
+End Sub</code></pre>
 </div>
 </div>
 <div id="useful-excel-formulas" class="section level2">

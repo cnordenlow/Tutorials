@@ -270,148 +270,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="scrape-table" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Scrape table</h3>
-<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># Spider</span></a>
-<a class="sourceLine" id="cb99-2" title="2"></a>
-<a class="sourceLine" id="cb99-3" title="3"><span class="im">import</span> scrapy</a>
-<a class="sourceLine" id="cb99-4" title="4"></a>
-<a class="sourceLine" id="cb99-5" title="5"></a>
-<a class="sourceLine" id="cb99-6" title="6"><span class="kw">class</span> ToScrapeCSSSpider(scrapy.Spider):</a>
-<a class="sourceLine" id="cb99-7" title="7">    name <span class="op">=</span> <span class="st">&quot;rb_scrape2&quot;</span></a>
-<a class="sourceLine" id="cb99-8" title="8">    start_urls <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb99-9" title="9"></a>
-<a class="sourceLine" id="cb99-10" title="10">        <span class="st">&#39;https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/2020/results-of-auctions-2020-09-23/&#39;</span></a>
-<a class="sourceLine" id="cb99-11" title="11">    ]</a>
-<a class="sourceLine" id="cb99-12" title="12"></a>
-<a class="sourceLine" id="cb99-13" title="13">    <span class="kw">def</span> parse(<span class="va">self</span>, response):</a>
-<a class="sourceLine" id="cb99-14" title="14"></a>
-<a class="sourceLine" id="cb99-15" title="15"></a>
-<a class="sourceLine" id="cb99-16" title="16">        <span class="cf">for</span> item <span class="kw">in</span> response.xpath(<span class="st">&#39;//*[@class=&quot;page-base__main__body&quot;]//tr&#39;</span>):</a>
-<a class="sourceLine" id="cb99-17" title="17">            <span class="cf">yield</span> {</a>
-<a class="sourceLine" id="cb99-18" title="18"></a>
-<a class="sourceLine" id="cb99-19" title="19">            <span class="st">&#39;terms&#39;</span> : item.xpath(<span class="st">&#39;td[1]//text()&#39;</span>).extract(),</a>
-<a class="sourceLine" id="cb99-20" title="20">            <span class="st">&#39;auction&#39;</span> : item.xpath(<span class="st">&#39;td[2]//text()&#39;</span>).extract()</a>
-<a class="sourceLine" id="cb99-21" title="21"></a>
-<a class="sourceLine" id="cb99-22" title="22">            }</a>
-<a class="sourceLine" id="cb99-23" title="23"></a>
-<a class="sourceLine" id="cb99-24" title="24">        next_page_url <span class="op">=</span> response.css(<span class="st">&quot;li.next &gt; a::attr(href)&quot;</span>).extract_first()</a>
-<a class="sourceLine" id="cb99-25" title="25">        <span class="cf">if</span> next_page_url <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</a>
-<a class="sourceLine" id="cb99-26" title="26">            <span class="cf">yield</span> scrapy.Request(response.urljoin(next_page_url))</a>
-<a class="sourceLine" id="cb99-27" title="27"></a>
-<a class="sourceLine" id="cb99-28" title="28"></a>
-<a class="sourceLine" id="cb99-29" title="29"><span class="co"># Settings</span></a>
-<a class="sourceLine" id="cb99-30" title="30"></a>
-<a class="sourceLine" id="cb99-31" title="31"><span class="co">#Export as CSV Feed</span></a>
-<a class="sourceLine" id="cb99-32" title="32"><span class="co">#FEED_FORMAT = &quot;csv&quot;</span></a>
-<a class="sourceLine" id="cb99-33" title="33"><span class="co">#FEED_URI = &quot;rbbot.csv&quot;</span></a>
-<a class="sourceLine" id="cb99-34" title="34"></a>
-<a class="sourceLine" id="cb99-35" title="35"><span class="co">#Run crawler in miniconda with creating an csv (if its not in settings): scrapy crawl rb_scrape2 -o quotes.csv</span></a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Spider</span></a>
+<a class="sourceLine" id="cb100-2" title="2"></a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="im">import</span> scrapy</a>
+<a class="sourceLine" id="cb100-4" title="4"></a>
+<a class="sourceLine" id="cb100-5" title="5"></a>
+<a class="sourceLine" id="cb100-6" title="6"><span class="kw">class</span> ToScrapeCSSSpider(scrapy.Spider):</a>
+<a class="sourceLine" id="cb100-7" title="7">    name <span class="op">=</span> <span class="st">&quot;rb_scrape2&quot;</span></a>
+<a class="sourceLine" id="cb100-8" title="8">    start_urls <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb100-9" title="9"></a>
+<a class="sourceLine" id="cb100-10" title="10">        <span class="st">&#39;https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/2020/results-of-auctions-2020-09-23/&#39;</span></a>
+<a class="sourceLine" id="cb100-11" title="11">    ]</a>
+<a class="sourceLine" id="cb100-12" title="12"></a>
+<a class="sourceLine" id="cb100-13" title="13">    <span class="kw">def</span> parse(<span class="va">self</span>, response):</a>
+<a class="sourceLine" id="cb100-14" title="14"></a>
+<a class="sourceLine" id="cb100-15" title="15"></a>
+<a class="sourceLine" id="cb100-16" title="16">        <span class="cf">for</span> item <span class="kw">in</span> response.xpath(<span class="st">&#39;//*[@class=&quot;page-base__main__body&quot;]//tr&#39;</span>):</a>
+<a class="sourceLine" id="cb100-17" title="17">            <span class="cf">yield</span> {</a>
+<a class="sourceLine" id="cb100-18" title="18"></a>
+<a class="sourceLine" id="cb100-19" title="19">            <span class="st">&#39;terms&#39;</span> : item.xpath(<span class="st">&#39;td[1]//text()&#39;</span>).extract(),</a>
+<a class="sourceLine" id="cb100-20" title="20">            <span class="st">&#39;auction&#39;</span> : item.xpath(<span class="st">&#39;td[2]//text()&#39;</span>).extract()</a>
+<a class="sourceLine" id="cb100-21" title="21"></a>
+<a class="sourceLine" id="cb100-22" title="22">            }</a>
+<a class="sourceLine" id="cb100-23" title="23"></a>
+<a class="sourceLine" id="cb100-24" title="24">        next_page_url <span class="op">=</span> response.css(<span class="st">&quot;li.next &gt; a::attr(href)&quot;</span>).extract_first()</a>
+<a class="sourceLine" id="cb100-25" title="25">        <span class="cf">if</span> next_page_url <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb100-26" title="26">            <span class="cf">yield</span> scrapy.Request(response.urljoin(next_page_url))</a>
+<a class="sourceLine" id="cb100-27" title="27"></a>
+<a class="sourceLine" id="cb100-28" title="28"></a>
+<a class="sourceLine" id="cb100-29" title="29"><span class="co"># Settings</span></a>
+<a class="sourceLine" id="cb100-30" title="30"></a>
+<a class="sourceLine" id="cb100-31" title="31"><span class="co">#Export as CSV Feed</span></a>
+<a class="sourceLine" id="cb100-32" title="32"><span class="co">#FEED_FORMAT = &quot;csv&quot;</span></a>
+<a class="sourceLine" id="cb100-33" title="33"><span class="co">#FEED_URI = &quot;rbbot.csv&quot;</span></a>
+<a class="sourceLine" id="cb100-34" title="34"></a>
+<a class="sourceLine" id="cb100-35" title="35"><span class="co">#Run crawler in miniconda with creating an csv (if its not in settings): scrapy crawl rb_scrape2 -o quotes.csv</span></a></code></pre></div>
 </div>
 <div id="scrape-table-json-treasury-scraper" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Scrape table json treasury scraper</h3>
-<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Spider</span></a>
-<a class="sourceLine" id="cb100-2" title="2"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb100-3" title="3"><span class="co">#from scrapy import BaseSpider</span></a>
-<a class="sourceLine" id="cb100-4" title="4"><span class="im">import</span> scrapy</a>
-<a class="sourceLine" id="cb100-5" title="5"><span class="co">#from TreasuryScraper.items import TreasuryItem</span></a>
-<a class="sourceLine" id="cb100-6" title="6"><span class="im">import</span> json</a>
-<a class="sourceLine" id="cb100-7" title="7"><span class="kw">class</span> TreasurySpider(scrapy.Spider):</a>
-<a class="sourceLine" id="cb100-8" title="8">    name <span class="op">=</span> <span class="st">&#39;treasury&#39;</span></a>
-<a class="sourceLine" id="cb100-9" title="9">    start_urls <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb100-10" title="10">        <span class="st">&#39;https://www.treasurydirect.gov/TA_WS/securities/jqsearch?format=json&amp;filterscount=0&amp;groupscount=0&amp;pagenum=0&amp;pagesize=1000&amp;recordstartindex=0&amp;recordendindex=1000&#39;</span>,</a>
-<a class="sourceLine" id="cb100-11" title="11">    ]</a>
-<a class="sourceLine" id="cb100-12" title="12">    <span class="kw">def</span> parse(<span class="va">self</span>, response):</a>
-<a class="sourceLine" id="cb100-13" title="13">        jsonresponse <span class="op">=</span> json.loads(response.text)</a>
-<a class="sourceLine" id="cb100-14" title="14">        <span class="cf">for</span> item <span class="kw">in</span> jsonresponse[<span class="st">&#39;securityList&#39;</span>]:</a>
-<a class="sourceLine" id="cb100-15" title="15">            <span class="cf">yield</span> {</a>
-<a class="sourceLine" id="cb100-16" title="16">                <span class="st">&#39;cusip&#39;</span>: item[<span class="st">&#39;cusip&#39;</span>],</a>
-<a class="sourceLine" id="cb100-17" title="17">                <span class="st">&#39;securityType&#39;</span>: item[<span class="st">&#39;securityType&#39;</span>],</a>
-<a class="sourceLine" id="cb100-18" title="18">                <span class="st">&#39;securityTerm&#39;</span>: item[<span class="st">&#39;securityTerm&#39;</span>],</a>
-<a class="sourceLine" id="cb100-19" title="19">                <span class="st">&#39;offeringAmount&#39;</span>: item[<span class="st">&#39;offeringAmount&#39;</span>],</a>
-<a class="sourceLine" id="cb100-20" title="20">                <span class="st">&#39;tips&#39;</span>: item[<span class="st">&#39;tips&#39;</span>],</a>
-<a class="sourceLine" id="cb100-21" title="21">                <span class="st">&#39;type&#39;</span>: item[<span class="st">&#39;type&#39;</span>],</a>
-<a class="sourceLine" id="cb100-22" title="22">                <span class="st">&#39;pricePer100&#39;</span>: item[<span class="st">&#39;pricePer100&#39;</span>],</a>
-<a class="sourceLine" id="cb100-23" title="23">                <span class="st">&#39;floatingRate&#39;</span>: item[<span class="st">&#39;floatingRate&#39;</span>],</a>
-<a class="sourceLine" id="cb100-24" title="24">                <span class="st">&#39;reopening&#39;</span>: item[<span class="st">&#39;reopening&#39;</span>],</a>
-<a class="sourceLine" id="cb100-25" title="25">                <span class="st">&#39;auctionDate&#39;</span>: item[<span class="st">&#39;auctionDate&#39;</span>],</a>
-<a class="sourceLine" id="cb100-26" title="26">                <span class="st">&#39;maturityDate&#39;</span>: item[<span class="st">&#39;maturityDate&#39;</span>],</a>
-<a class="sourceLine" id="cb100-27" title="27">                <span class="st">&#39;term&#39;</span>: item[<span class="st">&#39;term&#39;</span>],</a>
-<a class="sourceLine" id="cb100-28" title="28">                <span class="st">&#39;competitiveAccepted&#39;</span>: item[<span class="st">&#39;competitiveAccepted&#39;</span>],</a>
-<a class="sourceLine" id="cb100-29" title="29">                <span class="st">&#39;allocationPercentage&#39;</span>: item[<span class="st">&#39;allocationPercentage&#39;</span>],</a>
-<a class="sourceLine" id="cb100-30" title="30">                <span class="st">&#39;averageMedianYield&#39;</span>: item[<span class="st">&#39;averageMedianYield&#39;</span>],</a>
-<a class="sourceLine" id="cb100-31" title="31">                <span class="st">&#39;bidToCoverRatio&#39;</span>: item[<span class="st">&#39;bidToCoverRatio&#39;</span>],</a>
-<a class="sourceLine" id="cb100-32" title="32">                <span class="st">&#39;competitiveAccepted&#39;</span>: item[<span class="st">&#39;competitiveAccepted&#39;</span>],</a>
-<a class="sourceLine" id="cb100-33" title="33">                <span class="st">&#39;highYield&#39;</span>: item[<span class="st">&#39;highYield&#39;</span>],</a>
-<a class="sourceLine" id="cb100-34" title="34">                <span class="st">&#39;lowYield&#39;</span>: item[<span class="st">&#39;lowYield&#39;</span>],</a>
-<a class="sourceLine" id="cb100-35" title="35">                <span class="st">&#39;somaAccepted&#39;</span>: item[<span class="st">&#39;somaAccepted&#39;</span>],</a>
-<a class="sourceLine" id="cb100-36" title="36">                <span class="st">&#39;somaHoldings&#39;</span>: item[<span class="st">&#39;somaHoldings&#39;</span>],</a>
-<a class="sourceLine" id="cb100-37" title="37">                <span class="st">&#39;primaryDealerAccepted&#39;</span>: item[<span class="st">&#39;primaryDealerAccepted&#39;</span>],</a>
-<a class="sourceLine" id="cb100-38" title="38">                <span class="st">&#39;directBidderAccepted&#39;</span>: item[<span class="st">&#39;directBidderAccepted&#39;</span>],</a>
-<a class="sourceLine" id="cb100-39" title="39">                <span class="st">&#39;directBidderTendered&#39;</span>: item[<span class="st">&#39;directBidderTendered&#39;</span>],</a>
-<a class="sourceLine" id="cb100-40" title="40">                <span class="st">&#39;indirectBidderAccepted&#39;</span>: item[<span class="st">&#39;indirectBidderAccepted&#39;</span>],</a>
-<a class="sourceLine" id="cb100-41" title="41">                <span class="st">&#39;indirectBidderTendered&#39;</span>: item[<span class="st">&#39;indirectBidderTendered&#39;</span>],</a>
-<a class="sourceLine" id="cb100-42" title="42">                <span class="st">&#39;interestPaymentFrequency&#39;</span>: item[<span class="st">&#39;interestPaymentFrequency&#39;</span>]</a>
-<a class="sourceLine" id="cb100-43" title="43"></a>
-<a class="sourceLine" id="cb100-44" title="44">                }</a>
-<a class="sourceLine" id="cb100-45" title="45"></a>
-<a class="sourceLine" id="cb100-46" title="46"><span class="co">#settings</span></a>
-<a class="sourceLine" id="cb100-47" title="47"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb100-48" title="48"><span class="co">#BOT_NAME = &#39;TreasuryScraper&#39;</span></a>
-<a class="sourceLine" id="cb100-49" title="49"><span class="co">#SPIDER_MODULES = [&#39;TreasuryScraper.spiders&#39;]</span></a>
-<a class="sourceLine" id="cb100-50" title="50"><span class="co">#NEWSPIDER_MODULE = &#39;TreasuryScraper.spiders&#39;</span></a>
-<a class="sourceLine" id="cb100-51" title="51"><span class="co">#ROBOTSTXT_OBEY = False</span></a>
-<a class="sourceLine" id="cb100-52" title="52"><span class="co">#DOWNLOAD_DELAY = 60.0</span></a>
-<a class="sourceLine" id="cb100-53" title="53"><span class="co">#AUTOTHROTTLE_ENABLED = True</span></a>
-<a class="sourceLine" id="cb100-54" title="54"><span class="co">#HTTPCACHE_ENABLED = True </span></a>
-<a class="sourceLine" id="cb100-55" title="55"><span class="co">#FEED_EXPORT_ENCODING = &#39;utf-8&#39;</span></a>
-<a class="sourceLine" id="cb100-56" title="56"></a>
-<a class="sourceLine" id="cb100-57" title="57"><span class="co">#scrapy crawl treasury -o output.csv</span></a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># Spider</span></a>
+<a class="sourceLine" id="cb101-2" title="2"><span class="co"># -*- coding: utf-8 -*-</span></a>
+<a class="sourceLine" id="cb101-3" title="3"><span class="co">#from scrapy import BaseSpider</span></a>
+<a class="sourceLine" id="cb101-4" title="4"><span class="im">import</span> scrapy</a>
+<a class="sourceLine" id="cb101-5" title="5"><span class="co">#from TreasuryScraper.items import TreasuryItem</span></a>
+<a class="sourceLine" id="cb101-6" title="6"><span class="im">import</span> json</a>
+<a class="sourceLine" id="cb101-7" title="7"><span class="kw">class</span> TreasurySpider(scrapy.Spider):</a>
+<a class="sourceLine" id="cb101-8" title="8">    name <span class="op">=</span> <span class="st">&#39;treasury&#39;</span></a>
+<a class="sourceLine" id="cb101-9" title="9">    start_urls <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb101-10" title="10">        <span class="st">&#39;https://www.treasurydirect.gov/TA_WS/securities/jqsearch?format=json&amp;filterscount=0&amp;groupscount=0&amp;pagenum=0&amp;pagesize=1000&amp;recordstartindex=0&amp;recordendindex=1000&#39;</span>,</a>
+<a class="sourceLine" id="cb101-11" title="11">    ]</a>
+<a class="sourceLine" id="cb101-12" title="12">    <span class="kw">def</span> parse(<span class="va">self</span>, response):</a>
+<a class="sourceLine" id="cb101-13" title="13">        jsonresponse <span class="op">=</span> json.loads(response.text)</a>
+<a class="sourceLine" id="cb101-14" title="14">        <span class="cf">for</span> item <span class="kw">in</span> jsonresponse[<span class="st">&#39;securityList&#39;</span>]:</a>
+<a class="sourceLine" id="cb101-15" title="15">            <span class="cf">yield</span> {</a>
+<a class="sourceLine" id="cb101-16" title="16">                <span class="st">&#39;cusip&#39;</span>: item[<span class="st">&#39;cusip&#39;</span>],</a>
+<a class="sourceLine" id="cb101-17" title="17">                <span class="st">&#39;securityType&#39;</span>: item[<span class="st">&#39;securityType&#39;</span>],</a>
+<a class="sourceLine" id="cb101-18" title="18">                <span class="st">&#39;securityTerm&#39;</span>: item[<span class="st">&#39;securityTerm&#39;</span>],</a>
+<a class="sourceLine" id="cb101-19" title="19">                <span class="st">&#39;offeringAmount&#39;</span>: item[<span class="st">&#39;offeringAmount&#39;</span>],</a>
+<a class="sourceLine" id="cb101-20" title="20">                <span class="st">&#39;tips&#39;</span>: item[<span class="st">&#39;tips&#39;</span>],</a>
+<a class="sourceLine" id="cb101-21" title="21">                <span class="st">&#39;type&#39;</span>: item[<span class="st">&#39;type&#39;</span>],</a>
+<a class="sourceLine" id="cb101-22" title="22">                <span class="st">&#39;pricePer100&#39;</span>: item[<span class="st">&#39;pricePer100&#39;</span>],</a>
+<a class="sourceLine" id="cb101-23" title="23">                <span class="st">&#39;floatingRate&#39;</span>: item[<span class="st">&#39;floatingRate&#39;</span>],</a>
+<a class="sourceLine" id="cb101-24" title="24">                <span class="st">&#39;reopening&#39;</span>: item[<span class="st">&#39;reopening&#39;</span>],</a>
+<a class="sourceLine" id="cb101-25" title="25">                <span class="st">&#39;auctionDate&#39;</span>: item[<span class="st">&#39;auctionDate&#39;</span>],</a>
+<a class="sourceLine" id="cb101-26" title="26">                <span class="st">&#39;maturityDate&#39;</span>: item[<span class="st">&#39;maturityDate&#39;</span>],</a>
+<a class="sourceLine" id="cb101-27" title="27">                <span class="st">&#39;term&#39;</span>: item[<span class="st">&#39;term&#39;</span>],</a>
+<a class="sourceLine" id="cb101-28" title="28">                <span class="st">&#39;competitiveAccepted&#39;</span>: item[<span class="st">&#39;competitiveAccepted&#39;</span>],</a>
+<a class="sourceLine" id="cb101-29" title="29">                <span class="st">&#39;allocationPercentage&#39;</span>: item[<span class="st">&#39;allocationPercentage&#39;</span>],</a>
+<a class="sourceLine" id="cb101-30" title="30">                <span class="st">&#39;averageMedianYield&#39;</span>: item[<span class="st">&#39;averageMedianYield&#39;</span>],</a>
+<a class="sourceLine" id="cb101-31" title="31">                <span class="st">&#39;bidToCoverRatio&#39;</span>: item[<span class="st">&#39;bidToCoverRatio&#39;</span>],</a>
+<a class="sourceLine" id="cb101-32" title="32">                <span class="st">&#39;competitiveAccepted&#39;</span>: item[<span class="st">&#39;competitiveAccepted&#39;</span>],</a>
+<a class="sourceLine" id="cb101-33" title="33">                <span class="st">&#39;highYield&#39;</span>: item[<span class="st">&#39;highYield&#39;</span>],</a>
+<a class="sourceLine" id="cb101-34" title="34">                <span class="st">&#39;lowYield&#39;</span>: item[<span class="st">&#39;lowYield&#39;</span>],</a>
+<a class="sourceLine" id="cb101-35" title="35">                <span class="st">&#39;somaAccepted&#39;</span>: item[<span class="st">&#39;somaAccepted&#39;</span>],</a>
+<a class="sourceLine" id="cb101-36" title="36">                <span class="st">&#39;somaHoldings&#39;</span>: item[<span class="st">&#39;somaHoldings&#39;</span>],</a>
+<a class="sourceLine" id="cb101-37" title="37">                <span class="st">&#39;primaryDealerAccepted&#39;</span>: item[<span class="st">&#39;primaryDealerAccepted&#39;</span>],</a>
+<a class="sourceLine" id="cb101-38" title="38">                <span class="st">&#39;directBidderAccepted&#39;</span>: item[<span class="st">&#39;directBidderAccepted&#39;</span>],</a>
+<a class="sourceLine" id="cb101-39" title="39">                <span class="st">&#39;directBidderTendered&#39;</span>: item[<span class="st">&#39;directBidderTendered&#39;</span>],</a>
+<a class="sourceLine" id="cb101-40" title="40">                <span class="st">&#39;indirectBidderAccepted&#39;</span>: item[<span class="st">&#39;indirectBidderAccepted&#39;</span>],</a>
+<a class="sourceLine" id="cb101-41" title="41">                <span class="st">&#39;indirectBidderTendered&#39;</span>: item[<span class="st">&#39;indirectBidderTendered&#39;</span>],</a>
+<a class="sourceLine" id="cb101-42" title="42">                <span class="st">&#39;interestPaymentFrequency&#39;</span>: item[<span class="st">&#39;interestPaymentFrequency&#39;</span>]</a>
+<a class="sourceLine" id="cb101-43" title="43"></a>
+<a class="sourceLine" id="cb101-44" title="44">                }</a>
+<a class="sourceLine" id="cb101-45" title="45"></a>
+<a class="sourceLine" id="cb101-46" title="46"><span class="co">#settings</span></a>
+<a class="sourceLine" id="cb101-47" title="47"><span class="co"># -*- coding: utf-8 -*-</span></a>
+<a class="sourceLine" id="cb101-48" title="48"><span class="co">#BOT_NAME = &#39;TreasuryScraper&#39;</span></a>
+<a class="sourceLine" id="cb101-49" title="49"><span class="co">#SPIDER_MODULES = [&#39;TreasuryScraper.spiders&#39;]</span></a>
+<a class="sourceLine" id="cb101-50" title="50"><span class="co">#NEWSPIDER_MODULE = &#39;TreasuryScraper.spiders&#39;</span></a>
+<a class="sourceLine" id="cb101-51" title="51"><span class="co">#ROBOTSTXT_OBEY = False</span></a>
+<a class="sourceLine" id="cb101-52" title="52"><span class="co">#DOWNLOAD_DELAY = 60.0</span></a>
+<a class="sourceLine" id="cb101-53" title="53"><span class="co">#AUTOTHROTTLE_ENABLED = True</span></a>
+<a class="sourceLine" id="cb101-54" title="54"><span class="co">#HTTPCACHE_ENABLED = True </span></a>
+<a class="sourceLine" id="cb101-55" title="55"><span class="co">#FEED_EXPORT_ENCODING = &#39;utf-8&#39;</span></a>
+<a class="sourceLine" id="cb101-56" title="56"></a>
+<a class="sourceLine" id="cb101-57" title="57"><span class="co">#scrapy crawl treasury -o output.csv</span></a></code></pre></div>
 </div>
 <div id="scrape-table-json-auction-results-riksbank" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Scrape table json auction results Riksbank</h3>
-<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb101-1" title="1"></a>
-<a class="sourceLine" id="cb101-2" title="2"><span class="im">import</span> scrapy</a>
-<a class="sourceLine" id="cb101-3" title="3"><span class="im">from</span> scrapy.spiders <span class="im">import</span> CrawlSpider, Rule</a>
-<a class="sourceLine" id="cb101-4" title="4"><span class="im">from</span> scrapy.linkextractors <span class="im">import</span> LinkExtractor</a>
-<a class="sourceLine" id="cb101-5" title="5"><span class="im">from</span> RiksbankAuctionScraper.items <span class="im">import</span> GovernmentBond</a>
-<a class="sourceLine" id="cb101-6" title="6"></a>
-<a class="sourceLine" id="cb101-7" title="7"><span class="kw">def</span> get_table_attr(response, x): <span class="co"># to handle strange tables</span></a>
-<a class="sourceLine" id="cb101-8" title="8">  <span class="co"># using normalize-space() to avoid &quot;\n&quot; as matching xpath</span></a>
-<a class="sourceLine" id="cb101-9" title="9">  xpaths <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb101-10" title="10">    <span class="st">&#39;.//td[contains(text(),&quot;</span><span class="sc">{0}</span><span class="st">&quot;)]/following-sibling::td/text()[normalize-space()]&#39;</span>, <span class="co">#if td contains, use following sibling</span></a>
-<a class="sourceLine" id="cb101-11" title="11">    <span class="st">&#39;.//td[contains(text(),&quot;</span><span class="sc">{0}</span><span class="st">&quot;)]/following-sibling::td/p/text()[normalize-space()]&#39;</span>,</a>
-<a class="sourceLine" id="cb101-12" title="12">    <span class="st">&#39;.//th/span[contains(text(),&quot;</span><span class="sc">{0}</span><span class="st">&quot;)]/../following-sibling::td/span/text()[normalize-space()]&#39;</span> <span class="co">#if th/span contains text, use following sibbling</span></a>
-<a class="sourceLine" id="cb101-13" title="13">  ]</a>
-<a class="sourceLine" id="cb101-14" title="14">  xpath_str <span class="op">=</span> <span class="st">&#39;|&#39;</span>.join(xpaths).<span class="bu">format</span>(x)</a>
-<a class="sourceLine" id="cb101-15" title="15">  <span class="cf">return</span> response.xpath(xpath_str).get()</a>
-<a class="sourceLine" id="cb101-16" title="16"></a>
-<a class="sourceLine" id="cb101-17" title="17"><span class="kw">class</span> RiksbankSpider(CrawlSpider):</a>
-<a class="sourceLine" id="cb101-18" title="18">    name <span class="op">=</span> <span class="st">&quot;RiksbankAuctionScraper_v5&quot;</span></a>
-<a class="sourceLine" id="cb101-19" title="19">    allowed_domains <span class="op">=</span> [<span class="st">&#39;riksbank.se&#39;</span>]</a>
-<a class="sourceLine" id="cb101-20" title="20">    start_urls <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb101-21" title="21">      <span class="st">&#39;https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-statsobligationer/results-of-auctions&#39;</span></a>
-<a class="sourceLine" id="cb101-22" title="22">    ]</a>
-<a class="sourceLine" id="cb101-23" title="23">    rules <span class="op">=</span> (</a>
-<a class="sourceLine" id="cb101-24" title="24">      Rule(LinkExtractor(</a>
-<a class="sourceLine" id="cb101-25" title="25">        allow<span class="op">=</span>(<span class="st">&#39;\/kop-av-statsobligationer\/results-of-auctions\/2020\/results-of-auctions-\d</span><span class="sc">{4}</span><span class="st">-\d</span><span class="sc">{2}</span><span class="st">-\d</span><span class="sc">{2}</span><span class="st">\/$&#39;</span>)</a>
-<a class="sourceLine" id="cb101-26" title="26">      ), callback<span class="op">=</span><span class="st">&#39;parse_government_bond&#39;</span>),</a>
-<a class="sourceLine" id="cb101-27" title="27">    )</a>
-<a class="sourceLine" id="cb101-28" title="28">    </a>
-<a class="sourceLine" id="cb101-29" title="29">    <span class="kw">def</span> parse_government_bond(<span class="va">self</span>, response):</a>
-<a class="sourceLine" id="cb101-30" title="30">        <span class="cf">for</span> selector <span class="kw">in</span> response.xpath(<span class="st">&quot;//table&quot;</span>):</a>
-<a class="sourceLine" id="cb101-31" title="31">          item <span class="op">=</span> GovernmentBond()</a>
-<a class="sourceLine" id="cb101-32" title="32">          item[<span class="st">&#39;auction_type&#39;</span>] <span class="op">=</span> <span class="st">&#39;statsobligationer&#39;</span> </a>
-<a class="sourceLine" id="cb101-33" title="33">          item[<span class="st">&#39;auction_date&#39;</span>] <span class="op">=</span> get_table_attr(selector, <span class="st">&quot;Auction date&quot;</span>) <span class="co">#text to look for</span></a>
-<a class="sourceLine" id="cb101-34" title="34">          item[<span class="st">&#39;loan_number&#39;</span>] <span class="op">=</span> get_table_attr(selector, <span class="st">&quot;Loan&quot;</span>)</a>
-<a class="sourceLine" id="cb101-35" title="35">          <span class="cf">yield</span> item</a>
-<a class="sourceLine" id="cb101-36" title="36">          </a>
-<a class="sourceLine" id="cb101-37" title="37"> <span class="co">#Items    </span></a>
-<a class="sourceLine" id="cb101-38" title="38"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb101-39" title="39"><span class="im">from</span> scrapy <span class="im">import</span> Item, Field</a>
-<a class="sourceLine" id="cb101-40" title="40"></a>
-<a class="sourceLine" id="cb101-41" title="41"><span class="kw">class</span> GovernmentBonds(Item):</a>
-<a class="sourceLine" id="cb101-42" title="42">  auction_type <span class="op">=</span> Field()</a>
-<a class="sourceLine" id="cb101-43" title="43">  auction_date <span class="op">=</span> Field()</a>
-<a class="sourceLine" id="cb101-44" title="44">  loan_number<span class="op">=</span> Field()         </a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb102-1" title="1"></a>
+<a class="sourceLine" id="cb102-2" title="2"><span class="im">import</span> scrapy</a>
+<a class="sourceLine" id="cb102-3" title="3"><span class="im">from</span> scrapy.spiders <span class="im">import</span> CrawlSpider, Rule</a>
+<a class="sourceLine" id="cb102-4" title="4"><span class="im">from</span> scrapy.linkextractors <span class="im">import</span> LinkExtractor</a>
+<a class="sourceLine" id="cb102-5" title="5"><span class="im">from</span> RiksbankAuctionScraper.items <span class="im">import</span> GovernmentBond</a>
+<a class="sourceLine" id="cb102-6" title="6"></a>
+<a class="sourceLine" id="cb102-7" title="7"><span class="kw">def</span> get_table_attr(response, x): <span class="co"># to handle strange tables</span></a>
+<a class="sourceLine" id="cb102-8" title="8">  <span class="co"># using normalize-space() to avoid &quot;\n&quot; as matching xpath</span></a>
+<a class="sourceLine" id="cb102-9" title="9">  xpaths <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb102-10" title="10">    <span class="st">&#39;.//td[contains(text(),&quot;</span><span class="sc">{0}</span><span class="st">&quot;)]/following-sibling::td/text()[normalize-space()]&#39;</span>, <span class="co">#if td contains, use following sibling</span></a>
+<a class="sourceLine" id="cb102-11" title="11">    <span class="st">&#39;.//td[contains(text(),&quot;</span><span class="sc">{0}</span><span class="st">&quot;)]/following-sibling::td/p/text()[normalize-space()]&#39;</span>,</a>
+<a class="sourceLine" id="cb102-12" title="12">    <span class="st">&#39;.//th/span[contains(text(),&quot;</span><span class="sc">{0}</span><span class="st">&quot;)]/../following-sibling::td/span/text()[normalize-space()]&#39;</span> <span class="co">#if th/span contains text, use following sibbling</span></a>
+<a class="sourceLine" id="cb102-13" title="13">  ]</a>
+<a class="sourceLine" id="cb102-14" title="14">  xpath_str <span class="op">=</span> <span class="st">&#39;|&#39;</span>.join(xpaths).<span class="bu">format</span>(x)</a>
+<a class="sourceLine" id="cb102-15" title="15">  <span class="cf">return</span> response.xpath(xpath_str).get()</a>
+<a class="sourceLine" id="cb102-16" title="16"></a>
+<a class="sourceLine" id="cb102-17" title="17"><span class="kw">class</span> RiksbankSpider(CrawlSpider):</a>
+<a class="sourceLine" id="cb102-18" title="18">    name <span class="op">=</span> <span class="st">&quot;RiksbankAuctionScraper_v5&quot;</span></a>
+<a class="sourceLine" id="cb102-19" title="19">    allowed_domains <span class="op">=</span> [<span class="st">&#39;riksbank.se&#39;</span>]</a>
+<a class="sourceLine" id="cb102-20" title="20">    start_urls <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb102-21" title="21">      <span class="st">&#39;https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-statsobligationer/results-of-auctions&#39;</span></a>
+<a class="sourceLine" id="cb102-22" title="22">    ]</a>
+<a class="sourceLine" id="cb102-23" title="23">    rules <span class="op">=</span> (</a>
+<a class="sourceLine" id="cb102-24" title="24">      Rule(LinkExtractor(</a>
+<a class="sourceLine" id="cb102-25" title="25">        allow<span class="op">=</span>(<span class="st">&#39;\/kop-av-statsobligationer\/results-of-auctions\/2020\/results-of-auctions-\d</span><span class="sc">{4}</span><span class="st">-\d</span><span class="sc">{2}</span><span class="st">-\d</span><span class="sc">{2}</span><span class="st">\/$&#39;</span>)</a>
+<a class="sourceLine" id="cb102-26" title="26">      ), callback<span class="op">=</span><span class="st">&#39;parse_government_bond&#39;</span>),</a>
+<a class="sourceLine" id="cb102-27" title="27">    )</a>
+<a class="sourceLine" id="cb102-28" title="28">    </a>
+<a class="sourceLine" id="cb102-29" title="29">    <span class="kw">def</span> parse_government_bond(<span class="va">self</span>, response):</a>
+<a class="sourceLine" id="cb102-30" title="30">        <span class="cf">for</span> selector <span class="kw">in</span> response.xpath(<span class="st">&quot;//table&quot;</span>):</a>
+<a class="sourceLine" id="cb102-31" title="31">          item <span class="op">=</span> GovernmentBond()</a>
+<a class="sourceLine" id="cb102-32" title="32">          item[<span class="st">&#39;auction_type&#39;</span>] <span class="op">=</span> <span class="st">&#39;statsobligationer&#39;</span> </a>
+<a class="sourceLine" id="cb102-33" title="33">          item[<span class="st">&#39;auction_date&#39;</span>] <span class="op">=</span> get_table_attr(selector, <span class="st">&quot;Auction date&quot;</span>) <span class="co">#text to look for</span></a>
+<a class="sourceLine" id="cb102-34" title="34">          item[<span class="st">&#39;loan_number&#39;</span>] <span class="op">=</span> get_table_attr(selector, <span class="st">&quot;Loan&quot;</span>)</a>
+<a class="sourceLine" id="cb102-35" title="35">          <span class="cf">yield</span> item</a>
+<a class="sourceLine" id="cb102-36" title="36">          </a>
+<a class="sourceLine" id="cb102-37" title="37"> <span class="co">#Items    </span></a>
+<a class="sourceLine" id="cb102-38" title="38"><span class="co"># -*- coding: utf-8 -*-</span></a>
+<a class="sourceLine" id="cb102-39" title="39"><span class="im">from</span> scrapy <span class="im">import</span> Item, Field</a>
+<a class="sourceLine" id="cb102-40" title="40"></a>
+<a class="sourceLine" id="cb102-41" title="41"><span class="kw">class</span> GovernmentBonds(Item):</a>
+<a class="sourceLine" id="cb102-42" title="42">  auction_type <span class="op">=</span> Field()</a>
+<a class="sourceLine" id="cb102-43" title="43">  auction_date <span class="op">=</span> Field()</a>
+<a class="sourceLine" id="cb102-44" title="44">  loan_number<span class="op">=</span> Field()         </a></code></pre></div>
 
 </div>
 </div>
