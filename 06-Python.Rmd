@@ -3,6 +3,33 @@
 
 ## Basic
 
+### Regular Expressions
+
+
+<table>
+<tr>
+<th>Regular expressions</th>
+</tr>
+<tr><th>^</th><td>Matches the beginning of a line</td></tr>
+<tr><th>$</th><td>Matches the end of a line</td></tr>
+<tr><th>.</th><td>Matches any character</td></tr>
+<tr><th>backslash s</th><td>Matches whitespace</td></tr>
+<tr><th>backslash S</th><td>Matches any non-whitespace character</td></tr>
+<tr><th>*</th><td>Repeats a character zero or more times</td></tr>
+<tr><th>*?</th><td>Repeats a character zero or more times (non-greedy)</td></tr>
+<tr><th>+</th><td>Repeats a character one or more times</td></tr>
+<tr><th>+?</th><td>Repeats a character one or more times (non-greedy)</td></tr>
+<tr><th>[aeiou]</th><td>Matches a single character in the listed set</td></tr>
+<tr><th>[^YXZ]</th><td>Matches a single character not in the listed set</td></tr>
+<tr><th>[a-z0-9]</th><td>The set of characters can include a range</td></tr>
+<tr><th>(</th><td>Indicates where string extraction is to start</td></tr>
+<tr><th>)</th><td>Indicates where string extraction is to end</td></tr>
+
+</table>
+```python
+
+```
+
 ## Scrapy
 
 *pip install Scrapy*
