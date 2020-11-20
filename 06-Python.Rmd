@@ -195,3 +195,320 @@ class GovernmentBonds(Item):
   auction_date = Field()
   loan_number= Field()         
 ```
+
+### Scrape table RiksbankAuctionScraper
+
+```python
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+from RiksbankAuctionScraper.items import GovernmentBonds, SekLending, FundingForLending, CommercialPapers, UsLending, CoveredBonds, MunicipalBonds
+
+def get_table_attr(response, x):
+  # using normalize-space() to avoid "\n" as matching xpath
+  xpaths = [
+    './/td[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/following-sibling::td/text()[normalize-space()]',
+    './/td[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/following-sibling::td/*/text()',
+    './/td/span[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/../following-sibling::td/span/text()', 
+    './/th/span[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/../following-sibling::td/span/text()' 
+  ] 
+  xpath_str = '|'.join(xpaths).format(x)
+  return response.xpath(xpath_str).get()
+
+class RiksbankSpider(CrawlSpider):
+    name = "RiksbankAuctionScraper2"
+    allowed_domains = ['riksbank.se']
+    start_urls = [
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-kommunobligationer/auction-results/',
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-statsobligationer/results-of-auctions/',
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-sakerstallda-obligationer/results-of-auctions/',
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/',
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/lan-till-bankerna-for-vidareutlaning-till-foretag/auction-results/',
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/lan-i-amerikanska-dollar/auction-results/',
+      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/veckovisa-extraordinara-marknadsoperationer/auction-results/'
+    ]
+    rules = (
+      Rule(LinkExtractor(
+        allow=('\/kop-av-statsobligationer\/results-of-auctions\/')
+      ), callback='parse_bonds'),
+      Rule(LinkExtractor(
+        allow=('\/kop-av-sakerstallda-obligationer\/results-of-auctions\/2020\/')
+      ), callback='parse_covered_bonds'),   
+      Rule(LinkExtractor(
+        allow=('\/veckovisa-extraordinara-marknadsoperationer\/auction-results\/2020\/')
+      ), callback='parse_sek_lending'),
+      Rule(LinkExtractor(
+        allow=('\/kop-av-foretagscertifikat\/auction-results\/2020\/')
+      ), callback='parse_ftg_cert'),
+      Rule(LinkExtractor(
+        allow=('\/lan-till-bankerna-for-vidareutlaning-till-foretag\/auction-results\/2020\/')
+      ), callback='parse_ffl'),
+      Rule(LinkExtractor(
+        allow=('\/lan-i-amerikanska-dollar\/auction-results\/2020\/')
+      ), callback='parse_us_lending'),
+      Rule(LinkExtractor(
+        allow=('\/kop-av-kommunobligationer\/auction-results\/2020\/')
+      ), callback='parse_municipal'),
+    )
+
+    def parse_bonds(self, response):
+        for selector in response.xpath("//table"):
+          item = GovernmentBonds()
+          item['auction_type'] = 'governmentBonds'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['loan_number'] = get_table_attr(selector, "loan")
+          item['isin'] = get_table_attr(selector, "isin")
+          item['coupon'] = get_table_attr(selector, "coupon") 
+          item['tendered_volume'] = get_table_attr(selector, "tendered")
+          item['volume_offered'] = get_table_attr(selector, "offered")
+          item['volume_bought'] = get_table_attr(selector, "bought")
+          item['number_of_bids'] = get_table_attr(selector, "number of bids")
+          item['number_of_accepted_bids'] = get_table_attr(selector, "number of accepted bids")
+          item['average_yield'] = get_table_attr(selector, "average yield")
+          item['lowest_accepted_yield'] = get_table_attr(selector, "lowest accepted yield")
+          item['accepted_at_lowest_perc'] = get_table_attr(selector, "accepted at lowest")
+          yield item
+
+    def parse_covered_bonds(self, response):
+        for selector in response.xpath("//table"):
+          item = CoveredBonds()
+          item['auction_type'] = 'coveredBonds'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['loan_number'] = get_table_attr(selector, "loan")
+          item['isin'] = get_table_attr(selector, "isin")
+          item['coupon'] = get_table_attr(selector, "coupon")
+          item['tendered_volume'] = get_table_attr(selector, "tendered")
+          item['volume_offered'] = get_table_attr(selector, "offered")
+          item['volume_bought'] = get_table_attr(selector, "bought")
+          item['number_of_bids'] = get_table_attr(response, "number of bids")
+          item['number_of_accepted_bids'] = get_table_attr(selector, "number of accepted bids")
+          item['average_yield'] = get_table_attr(selector, "average yield")
+          item['lowest_accepted_yield'] = get_table_attr(selector, "lowest accepted yield")
+          item['accepted_at_lowest_perc'] = get_table_attr(selector, "accepted at lowest")
+          yield item
+
+
+    def parse_sek_lending(self, response):
+        for selector in response.xpath("//table"):
+          item = SekLending()
+          item['auction_type'] = 'sekLending'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['payment_date'] = get_table_attr(selector, "payment date")
+          item['maturity_date'] = get_table_attr(selector, "maturity date")
+          item['term'] = get_table_attr(selector, "term")
+          item['offered_volume'] = get_table_attr(selector, "offered volume")
+          item['total_bid_amount'] = get_table_attr(selector, "total bid amount")
+          item['number_of_bids'] = get_table_attr(selector, "number of bids")
+          item['allotment'] = get_table_attr(selector, "allotment")
+          item['interest_rate'] = get_table_attr(selector, "interest rate")
+          yield item
+
+    def parse_ftg_cert(self, response):
+        for selector in response.xpath("//table"):
+          item = CommercialPapers()
+          item['auction_type'] = 'commercialPapers'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['credit_rating_class'] = get_table_attr(selector, "credit rating class")
+          item['term'] = get_table_attr(selector, "term")
+          item['fixed_purchase_rate'] = get_table_attr(selector, "fixed purchase rate")
+          item['total_bid_amount'] = get_table_attr(selector, "total bid amount")
+          item['volume_bought'] = get_table_attr(selector, "accepted volume")
+          item['percentage_alloted'] = get_table_attr(selector, "percentage allotted")
+          item['number_of_bids'] = get_table_attr(selector, "number of bids")
+          yield item
+
+    def parse_ffl(self, response):
+        for selector in response.xpath("//table"):
+          item = FundingForLending()
+          item['auction_type'] = 'fundingForLending'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['settlement_date'] = get_table_attr(selector, "settlement date")
+          item['final_repayment_date'] = get_table_attr(selector, "final repayment date")
+          item['offered_volume'] = get_table_attr(selector, "offered volume")
+          item['total_bid_amount'] = get_table_attr(selector, "total bid amount")
+          item['number_of_bids'] = get_table_attr(selector, "number of bids")
+          item['allotment'] = get_table_attr(selector, "allotment")
+          item['interest_rate'] = get_table_attr(selector, "interest rate")
+          item['interest_rate_supplement'] = get_table_attr(selector, "interest rate supplement")
+          yield item
+
+    def parse_us_lending(self, response):
+        for selector in response.xpath("//table"):
+          item = UsLending()
+          item['auction_type'] = 'usLending'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['settlement_date'] = get_table_attr(selector, "settlement date")
+          item['maturity_date'] = get_table_attr(selector, "maturity date")
+          item['term'] = get_table_attr(selector, "term")
+          item['offered_volume'] = get_table_attr(selector, "offered volume")
+          item['marginal_interest_rate'] = get_table_attr(selector, "marginal interest rate")
+          item['allotment_at_marginal'] = get_table_attr(selector, "allotment at marginal")
+          item['total_bid_amount'] = get_table_attr(selector, "total bid amount")
+          item['number_of_bids'] = get_table_attr(selector, "number of bids")
+          item['allotment'] = get_table_attr(selector, "allotment") #if item['allotment] == none. hmm?
+          yield item
+
+    def parse_municipal(self, response):
+        for selector in response.xpath("//table"):
+          item = MunicipalBonds()
+          item['auction_type'] = 'municipalBonds'
+          item['auction_date'] = get_table_attr(selector, "auction date")
+          item['loan_number'] = get_table_attr(selector, "loan")
+          item['isin'] = get_table_attr(selector, "isin")
+          item['coupon'] = get_table_attr(selector, "coupon")
+          item['tendered_volume'] = get_table_attr(selector, "tendered")
+          item['volume_offered'] = get_table_attr(selector, "offered")
+          item['volume_bought'] = get_table_attr(selector, "bought")
+          item['number_of_bids'] = get_table_attr(selector, "number of bids")
+          item['number_of_accepted_bids'] = get_table_attr(selector, "number of accepted bids")
+          item['average_yield'] = get_table_attr(selector, "average yield")
+          item['lowest_accepted_yield'] = get_table_attr(selector, "lowest accepted yield")
+          item['accepted_at_lowest_perc'] = get_table_attr(selector, "accepted at lowest")
+          yield item
+
+
+
+#items
+# -*- coding: utf-8 -*-
+from scrapy import Item, Field
+
+class GovernmentBonds(Item):
+  auction_type = Field()
+  auction_date = Field()
+  loan_number = Field()
+  isin = Field()
+  coupon = Field()
+  tendered_volume = Field()
+  volume_offered = Field()
+  volume_bought = Field()
+  number_of_bids = Field()
+  number_of_accepted_bids = Field()
+  average_yield = Field()
+  lowest_accepted_yield = Field()
+  accepted_at_lowest_perc = Field()
+  #auction_date = Field()
+  auction_type = Field()
+
+class CoveredBonds(Item):
+  auction_type = Field()
+  auction_date = Field()
+  loan_number = Field()
+  isin = Field()
+  coupon = Field()
+  tendered_volume = Field()
+  volume_offered = Field()
+  volume_bought = Field()
+  number_of_bids = Field()
+  number_of_accepted_bids = Field()
+  average_yield = Field()
+  lowest_accepted_yield = Field()
+  accepted_at_lowest_perc = Field()
+  #auction_date = Field()
+  auction_type = Field()
+
+class MunicipalBonds(Item):
+  auction_type = Field()
+  auction_date = Field()
+  loan_number = Field()
+  isin = Field()
+  coupon = Field()
+  tendered_volume = Field()
+  volume_offered = Field()
+  volume_bought = Field()
+  number_of_bids = Field()
+  number_of_accepted_bids = Field()
+  average_yield = Field()
+  lowest_accepted_yield = Field()
+  accepted_at_lowest_perc = Field()
+  #auction_date = Field()
+  auction_type = Field()
+
+class SekLending(Item):
+  auction_type = Field()
+  auction_date = Field()
+  payment_date = Field()
+  maturity_date = Field()
+  term = Field()
+  offered_volume = Field()
+  total_bid_amount = Field()
+  number_of_bids = Field()
+  allotment = Field()
+  interest_rate = Field()
+
+class CommercialPapers(Item):
+  auction_type = Field()
+  auction_date = Field()
+  credit_rating_class = Field()
+  term = Field()
+  fixed_purchase_rate = Field()
+  total_bid_amount = Field()
+  volume_bought = Field()
+  percentage_alloted = Field()
+  number_of_bids = Field()
+
+class FundingForLending(Item):
+  auction_type = Field()
+  auction_date = Field()
+  settlement_date = Field()
+  final_repayment_date = Field()
+  offered_volume = Field()
+  total_bid_amount = Field()
+  number_of_bids = Field()
+  allotment = Field()
+  interest_rate = Field()
+  interest_rate_supplement = Field()
+
+class UsLending(Item):
+  auction_type = Field()
+  auction_date = Field()
+  settlement_date = Field()
+  maturity_date = Field()
+  term = Field()
+  offered_volume = Field()
+  marginal_interest_rate = Field()
+  allotment_at_marginal = Field()
+  total_bid_amount = Field()
+  number_of_bids = Field()
+  allotment = Field()
+
+
+#settings
+
+BOT_NAME = 'RiksbankAuctionScraper'
+
+SPIDER_MODULES = ['RiksbankAuctionScraper.spiders']
+NEWSPIDER_MODULE = 'RiksbankAuctionScraper.spiders'
+
+
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+#USER_AGENT = 'ReportScraper (+http://www.yourdomain.com)'
+
+# Obey robots.txt rules
+ROBOTSTXT_OBEY = True
+
+HTTPCACHE_ENABLED = True
+
+DOWNLOAD_DELAY = 10.0
+
+
+
+
+
+
+
+
+
+# Enable or disable extensions
+# See https://docs.scrapy.org/en/latest/topics/extensions.html
+#EXTENSIONS = {
+#    'scrapy.extensions.telnet.TelnetConsole': None,
+#}
+
+
+AUTOTHROTTLE_ENABLED = True
+
+FEED_EXPORT_ENCODING = 'utf-8'
+
+```
+
+
