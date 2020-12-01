@@ -226,5 +226,12 @@ End Sub
 
 ```
 
+**Formula importing all outstanding bonds**
 
+``` 
+'Import data from Bloomberg. BQL.
+
+=BQL("bonds(['1179Z SS Equity', 'SHBA SS Equity', '1684Z SS Equity', '1060Z SS Equity', '1000161Z SS Equity', '753385Z SS Equity', '1498692D SS Equity', 'SEBA SS Equity', '140362Z SS Equity'])";"id_isin().value, name().value, long_comp_name().value, amt_outstanding().value, crncy().value, series().value, payment_rank().value, cpn_typ().value, maturity().value";"cols=10;rows=2136")
+
+```
 
