@@ -226,12 +226,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="python.html"><a href="python.html"><i class="fa fa-check"></i><b>6</b> Python</a><ul>
-<li class="chapter" data-level="6.1" data-path="python.html"><a href="python.html#basic"><i class="fa fa-check"></i><b>6.1</b> Basic</a></li>
+<li class="chapter" data-level="6.1" data-path="python.html"><a href="python.html#basic"><i class="fa fa-check"></i><b>6.1</b> Basic</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="python.html"><a href="python.html#regular-expressions"><i class="fa fa-check"></i><b>6.1.1</b> Regular Expressions</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="python.html"><a href="python.html#scrapy"><i class="fa fa-check"></i><b>6.2</b> Scrapy</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="python.html"><a href="python.html#shell-commands"><i class="fa fa-check"></i><b>6.2.1</b> Shell commands</a></li>
 <li class="chapter" data-level="6.2.2" data-path="python.html"><a href="python.html#scrape-table"><i class="fa fa-check"></i><b>6.2.2</b> Scrape table</a></li>
 <li class="chapter" data-level="6.2.3" data-path="python.html"><a href="python.html#scrape-table-json-treasury-scraper"><i class="fa fa-check"></i><b>6.2.3</b> Scrape table json treasury scraper</a></li>
 <li class="chapter" data-level="6.2.4" data-path="python.html"><a href="python.html#scrape-table-json-auction-results-riksbank"><i class="fa fa-check"></i><b>6.2.4</b> Scrape table json auction results Riksbank</a></li>
+<li class="chapter" data-level="6.2.5" data-path="python.html"><a href="python.html#scrape-table-riksbankauctionscraper"><i class="fa fa-check"></i><b>6.2.5</b> Scrape table RiksbankAuctionScraper</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>7</b> Git</a><ul>
@@ -263,208 +266,208 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <em><a href="https://github.com/thomasnield/oreilly_getting_started_with_sql" class="uri">https://github.com/thomasnield/oreilly_getting_started_with_sql</a></em></p>
 <div id="select" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> SELECT</h3>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">SELECT <span class="op">*</span><span class="st"> </span>FROM CUSTOMER;</a>
-<a class="sourceLine" id="cb61-2" title="2"></a>
-<a class="sourceLine" id="cb61-3" title="3">SELECT CUSTOMER_ID,  NAME FROM CUSTOMER;</a>
-<a class="sourceLine" id="cb61-4" title="4"></a>
-<a class="sourceLine" id="cb61-5" title="5"><span class="co"># Generate a calculated column</span></a>
-<a class="sourceLine" id="cb61-6" title="6">SELECT</a>
-<a class="sourceLine" id="cb61-7" title="7">PRODUCT_ID,</a>
-<a class="sourceLine" id="cb61-8" title="8">DESCRIPTION,</a>
-<a class="sourceLine" id="cb61-9" title="9">PRICE AS UNTAXED_PRICE,</a>
-<a class="sourceLine" id="cb61-10" title="10"><span class="kw">round</span>(PRICE <span class="op">*</span><span class="st"> </span><span class="fl">1.07</span>,<span class="dv">2</span>) AS TAXED_PRICE</a>
-<a class="sourceLine" id="cb61-11" title="11">FROM PRODUCT;</a>
-<a class="sourceLine" id="cb61-12" title="12"></a>
-<a class="sourceLine" id="cb61-13" title="13"><span class="co"># Text concatenation. Concatenation works with any data type.</span></a>
-<a class="sourceLine" id="cb61-14" title="14">SELECT NAME,</a>
-<a class="sourceLine" id="cb61-15" title="15">CITY <span class="op">||</span><span class="st"> &#39;, &#39;</span> <span class="op">||</span><span class="st"> </span>STATE AS LOCATION</a>
-<a class="sourceLine" id="cb61-16" title="16">FROM CUSTOMER;</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">SELECT <span class="op">*</span><span class="st"> </span>FROM CUSTOMER;</a>
+<a class="sourceLine" id="cb62-2" title="2"></a>
+<a class="sourceLine" id="cb62-3" title="3">SELECT CUSTOMER_ID,  NAME FROM CUSTOMER;</a>
+<a class="sourceLine" id="cb62-4" title="4"></a>
+<a class="sourceLine" id="cb62-5" title="5"><span class="co"># Generate a calculated column</span></a>
+<a class="sourceLine" id="cb62-6" title="6">SELECT</a>
+<a class="sourceLine" id="cb62-7" title="7">PRODUCT_ID,</a>
+<a class="sourceLine" id="cb62-8" title="8">DESCRIPTION,</a>
+<a class="sourceLine" id="cb62-9" title="9">PRICE AS UNTAXED_PRICE,</a>
+<a class="sourceLine" id="cb62-10" title="10"><span class="kw">round</span>(PRICE <span class="op">*</span><span class="st"> </span><span class="fl">1.07</span>,<span class="dv">2</span>) AS TAXED_PRICE</a>
+<a class="sourceLine" id="cb62-11" title="11">FROM PRODUCT;</a>
+<a class="sourceLine" id="cb62-12" title="12"></a>
+<a class="sourceLine" id="cb62-13" title="13"><span class="co"># Text concatenation. Concatenation works with any data type.</span></a>
+<a class="sourceLine" id="cb62-14" title="14">SELECT NAME,</a>
+<a class="sourceLine" id="cb62-15" title="15">CITY <span class="op">||</span><span class="st"> &#39;, &#39;</span> <span class="op">||</span><span class="st"> </span>STATE AS LOCATION</a>
+<a class="sourceLine" id="cb62-16" title="16">FROM CUSTOMER;</a></code></pre></div>
 </div>
 <div id="where" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> WHERE</h3>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-2" title="2">WHERE year =<span class="st"> </span><span class="dv">2010</span>;</a>
-<a class="sourceLine" id="cb62-3" title="3"></a>
-<a class="sourceLine" id="cb62-4" title="4"><span class="co">#Use != or &lt;&gt; to get everything but 2010</span></a>
-<a class="sourceLine" id="cb62-5" title="5">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-6" title="6">WHERE year <span class="op">!=</span><span class="st"> </span><span class="dv">2010</span>;</a>
-<a class="sourceLine" id="cb62-7" title="7"></a>
-<a class="sourceLine" id="cb62-8" title="8"><span class="co">#AND, OR, IN statements</span></a>
-<a class="sourceLine" id="cb62-9" title="9">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-10" title="10">WHERE year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2005</span> AND year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2010</span>;</a>
-<a class="sourceLine" id="cb62-11" title="11"></a>
-<a class="sourceLine" id="cb62-12" title="12"><span class="co">#in</span></a>
-<a class="sourceLine" id="cb62-13" title="13">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-14" title="14">WHERE MONTH <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb62-15" title="15"></a>
-<a class="sourceLine" id="cb62-16" title="16"><span class="co">#not in</span></a>
-<a class="sourceLine" id="cb62-17" title="17">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-18" title="18">WHERE MONTH NOT <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb62-19" title="19"></a>
-<a class="sourceLine" id="cb62-20" title="20"><span class="co">#modulus operator</span></a>
-<a class="sourceLine" id="cb62-21" title="21"><span class="co">#modulus returns the remainder instead of the quotient. A remainder of 0 means there is no remainder at all</span></a>
-<a class="sourceLine" id="cb62-22" title="22">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-23" title="23">WHERE MONTH %  <span class="dv">3</span> =<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb62-24" title="24"></a>
-<a class="sourceLine" id="cb62-25" title="25"><span class="co">#using where on text</span></a>
-<a class="sourceLine" id="cb62-26" title="26">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-27" title="27">WHERE report_code <span class="cf">in</span> (<span class="st">&#39;513A63&#39;</span>, <span class="st">&#39;1F8A7B&#39;</span>)</a>
-<a class="sourceLine" id="cb62-28" title="28"></a>
-<a class="sourceLine" id="cb62-29" title="29">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-30" title="30">WHERE <span class="kw">length</span>(report_code) =<span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb62-31" title="31"></a>
-<a class="sourceLine" id="cb62-32" title="32"><span class="co">#wildcards</span></a>
-<a class="sourceLine" id="cb62-33" title="33">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-34" title="34">WHERE report_code LIKE <span class="st">&#39;A%&#39;</span></a>
-<a class="sourceLine" id="cb62-35" title="35"></a>
-<a class="sourceLine" id="cb62-36" title="36"><span class="co">#B as the first, C as the third letter</span></a>
-<a class="sourceLine" id="cb62-37" title="37"></a>
-<a class="sourceLine" id="cb62-38" title="38">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
-<a class="sourceLine" id="cb62-39" title="39">WHERE report_code LIKE <span class="st">&#39;B_C%&#39;</span></a>
-<a class="sourceLine" id="cb62-40" title="40"></a>
-<a class="sourceLine" id="cb62-41" title="41"><span class="co">#Other text functions as INSTR, SUBSTR, REPLACE ETC</span></a>
-<a class="sourceLine" id="cb62-42" title="42"></a>
-<a class="sourceLine" id="cb62-43" title="43">SELECT <span class="op">*</span><span class="st"> </span>FROM  station_data</a>
-<a class="sourceLine" id="cb62-44" title="44">WHERE snow_depth IS <span class="ot">NULL</span>;</a>
-<a class="sourceLine" id="cb62-45" title="45"></a>
-<a class="sourceLine" id="cb62-46" title="46"><span class="co">#Use coalesce to conert NULL to 0, &quot;N/A&quot; etc</span></a>
-<a class="sourceLine" id="cb62-47" title="47"></a>
-<a class="sourceLine" id="cb62-48" title="48">SELECT <span class="op">*</span><span class="st"> </span>FROM  station_data</a>
-<a class="sourceLine" id="cb62-49" title="49">WHERE <span class="kw">coalesce</span>(precipitation,<span class="dv">0</span>) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>;</a>
-<a class="sourceLine" id="cb62-50" title="50"></a>
-<a class="sourceLine" id="cb62-51" title="51">SELECT <span class="op">*</span><span class="st"> </span>FROM station_data</a>
-<a class="sourceLine" id="cb62-52" title="52"><span class="kw">WHERE</span> (<span class="dt">rain =</span> <span class="dv">1</span> AND temperature <span class="op">&lt;=</span><span class="st"> </span><span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb62-53" title="53">OR snow_depth <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-2" title="2">WHERE year =<span class="st"> </span><span class="dv">2010</span>;</a>
+<a class="sourceLine" id="cb63-3" title="3"></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="co">#Use != or &lt;&gt; to get everything but 2010</span></a>
+<a class="sourceLine" id="cb63-5" title="5">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-6" title="6">WHERE year <span class="op">!=</span><span class="st"> </span><span class="dv">2010</span>;</a>
+<a class="sourceLine" id="cb63-7" title="7"></a>
+<a class="sourceLine" id="cb63-8" title="8"><span class="co">#AND, OR, IN statements</span></a>
+<a class="sourceLine" id="cb63-9" title="9">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-10" title="10">WHERE year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2005</span> AND year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2010</span>;</a>
+<a class="sourceLine" id="cb63-11" title="11"></a>
+<a class="sourceLine" id="cb63-12" title="12"><span class="co">#in</span></a>
+<a class="sourceLine" id="cb63-13" title="13">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-14" title="14">WHERE MONTH <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb63-15" title="15"></a>
+<a class="sourceLine" id="cb63-16" title="16"><span class="co">#not in</span></a>
+<a class="sourceLine" id="cb63-17" title="17">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-18" title="18">WHERE MONTH NOT <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb63-19" title="19"></a>
+<a class="sourceLine" id="cb63-20" title="20"><span class="co">#modulus operator</span></a>
+<a class="sourceLine" id="cb63-21" title="21"><span class="co">#modulus returns the remainder instead of the quotient. A remainder of 0 means there is no remainder at all</span></a>
+<a class="sourceLine" id="cb63-22" title="22">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-23" title="23">WHERE MONTH %  <span class="dv">3</span> =<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb63-24" title="24"></a>
+<a class="sourceLine" id="cb63-25" title="25"><span class="co">#using where on text</span></a>
+<a class="sourceLine" id="cb63-26" title="26">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-27" title="27">WHERE report_code <span class="cf">in</span> (<span class="st">&#39;513A63&#39;</span>, <span class="st">&#39;1F8A7B&#39;</span>)</a>
+<a class="sourceLine" id="cb63-28" title="28"></a>
+<a class="sourceLine" id="cb63-29" title="29">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-30" title="30">WHERE <span class="kw">length</span>(report_code) =<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb63-31" title="31"></a>
+<a class="sourceLine" id="cb63-32" title="32"><span class="co">#wildcards</span></a>
+<a class="sourceLine" id="cb63-33" title="33">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-34" title="34">WHERE report_code LIKE <span class="st">&#39;A%&#39;</span></a>
+<a class="sourceLine" id="cb63-35" title="35"></a>
+<a class="sourceLine" id="cb63-36" title="36"><span class="co">#B as the first, C as the third letter</span></a>
+<a class="sourceLine" id="cb63-37" title="37"></a>
+<a class="sourceLine" id="cb63-38" title="38">SELECT <span class="op">*</span><span class="st"> </span>FROM STATION_DATA</a>
+<a class="sourceLine" id="cb63-39" title="39">WHERE report_code LIKE <span class="st">&#39;B_C%&#39;</span></a>
+<a class="sourceLine" id="cb63-40" title="40"></a>
+<a class="sourceLine" id="cb63-41" title="41"><span class="co">#Other text functions as INSTR, SUBSTR, REPLACE ETC</span></a>
+<a class="sourceLine" id="cb63-42" title="42"></a>
+<a class="sourceLine" id="cb63-43" title="43">SELECT <span class="op">*</span><span class="st"> </span>FROM  station_data</a>
+<a class="sourceLine" id="cb63-44" title="44">WHERE snow_depth IS <span class="ot">NULL</span>;</a>
+<a class="sourceLine" id="cb63-45" title="45"></a>
+<a class="sourceLine" id="cb63-46" title="46"><span class="co">#Use coalesce to conert NULL to 0, &quot;N/A&quot; etc</span></a>
+<a class="sourceLine" id="cb63-47" title="47"></a>
+<a class="sourceLine" id="cb63-48" title="48">SELECT <span class="op">*</span><span class="st"> </span>FROM  station_data</a>
+<a class="sourceLine" id="cb63-49" title="49">WHERE <span class="kw">coalesce</span>(precipitation,<span class="dv">0</span>) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>;</a>
+<a class="sourceLine" id="cb63-50" title="50"></a>
+<a class="sourceLine" id="cb63-51" title="51">SELECT <span class="op">*</span><span class="st"> </span>FROM station_data</a>
+<a class="sourceLine" id="cb63-52" title="52"><span class="kw">WHERE</span> (<span class="dt">rain =</span> <span class="dv">1</span> AND temperature <span class="op">&lt;=</span><span class="st"> </span><span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb63-53" title="53">OR snow_depth <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>;</a></code></pre></div>
 </div>
 <div id="group-by" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> GROUP BY</h3>
 <p><em>WHERE filters individual records while HAVING filters aggregations.</em></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">SELECT year, month, <span class="kw">COUNT</span>(<span class="op">*</span>) AS record_count FROM station_data</a>
-<a class="sourceLine" id="cb63-2" title="2">WHERE tornado =<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb63-3" title="3">GROUP BY year, month</a>
-<a class="sourceLine" id="cb63-4" title="4">ORDER BY year, month</a>
-<a class="sourceLine" id="cb63-5" title="5"></a>
-<a class="sourceLine" id="cb63-6" title="6"><span class="co">#aggregate</span></a>
-<a class="sourceLine" id="cb63-7" title="7">SELECT month, <span class="kw">AVG</span>(temperature) as avg_temp</a>
-<a class="sourceLine" id="cb63-8" title="8">FROM station_data</a>
-<a class="sourceLine" id="cb63-9" title="9">WHERE year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span></a>
-<a class="sourceLine" id="cb63-10" title="10">GROUP BY month</a>
-<a class="sourceLine" id="cb63-11" title="11"></a>
-<a class="sourceLine" id="cb63-12" title="12"><span class="co">#HAVING statement</span></a>
-<a class="sourceLine" id="cb63-13" title="13"><span class="co">#To be able to filter on aggregate data you need to use HAVING instead of WHERE</span></a>
-<a class="sourceLine" id="cb63-14" title="14"></a>
-<a class="sourceLine" id="cb63-15" title="15">SELECT year,</a>
-<a class="sourceLine" id="cb63-16" title="16"><span class="kw">SUM</span>(precipitation) as total_precipitation</a>
-<a class="sourceLine" id="cb63-17" title="17">FROM station_data</a>
-<a class="sourceLine" id="cb63-18" title="18">GROUP BY year</a>
-<a class="sourceLine" id="cb63-19" title="19">HAVING <span class="kw">sum</span>(precipitation) <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">SELECT year, month, <span class="kw">COUNT</span>(<span class="op">*</span>) AS record_count FROM station_data</a>
+<a class="sourceLine" id="cb64-2" title="2">WHERE tornado =<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb64-3" title="3">GROUP BY year, month</a>
+<a class="sourceLine" id="cb64-4" title="4">ORDER BY year, month</a>
+<a class="sourceLine" id="cb64-5" title="5"></a>
+<a class="sourceLine" id="cb64-6" title="6"><span class="co">#aggregate</span></a>
+<a class="sourceLine" id="cb64-7" title="7">SELECT month, <span class="kw">AVG</span>(temperature) as avg_temp</a>
+<a class="sourceLine" id="cb64-8" title="8">FROM station_data</a>
+<a class="sourceLine" id="cb64-9" title="9">WHERE year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span></a>
+<a class="sourceLine" id="cb64-10" title="10">GROUP BY month</a>
+<a class="sourceLine" id="cb64-11" title="11"></a>
+<a class="sourceLine" id="cb64-12" title="12"><span class="co">#HAVING statement</span></a>
+<a class="sourceLine" id="cb64-13" title="13"><span class="co">#To be able to filter on aggregate data you need to use HAVING instead of WHERE</span></a>
+<a class="sourceLine" id="cb64-14" title="14"></a>
+<a class="sourceLine" id="cb64-15" title="15">SELECT year,</a>
+<a class="sourceLine" id="cb64-16" title="16"><span class="kw">SUM</span>(precipitation) as total_precipitation</a>
+<a class="sourceLine" id="cb64-17" title="17">FROM station_data</a>
+<a class="sourceLine" id="cb64-18" title="18">GROUP BY year</a>
+<a class="sourceLine" id="cb64-19" title="19">HAVING <span class="kw">sum</span>(precipitation) <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
 </div>
 <div id="case-statements" class="section level3">
 <h3><span class="header-section-number">4.1.4</span> CASE statements</h3>
 <p><em>CASE statements are read from top to bottom, so the first true condition is the one it uses.</em>
 <em>A great benefit of CASE statements compared to WHERE is that you can apply different filters for different aggregate values.</em></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">SELECT report_code, year, month, day, wind_speed,</a>
-<a class="sourceLine" id="cb64-2" title="2"></a>
-<a class="sourceLine" id="cb64-3" title="3">CASE</a>
-<a class="sourceLine" id="cb64-4" title="4"> WHEN wind_speed <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span> THEN <span class="st">&#39;HIGH&#39;</span></a>
-<a class="sourceLine" id="cb64-5" title="5"> WHEN wind_speed <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span> THEN <span class="st">&#39;MODERATE&#39;</span></a>
-<a class="sourceLine" id="cb64-6" title="6"> ELSE <span class="st">&#39;LOW&#39;</span></a>
-<a class="sourceLine" id="cb64-7" title="7"> END as wind_severity</a>
-<a class="sourceLine" id="cb64-8" title="8"> </a>
-<a class="sourceLine" id="cb64-9" title="9">FROM station_data</a>
-<a class="sourceLine" id="cb64-10" title="10"></a>
-<a class="sourceLine" id="cb64-11" title="11"><span class="co"># Use of CASE to apply different filters</span></a>
-<a class="sourceLine" id="cb64-12" title="12">SELECT year, month,</a>
-<a class="sourceLine" id="cb64-13" title="13"></a>
-<a class="sourceLine" id="cb64-14" title="14"><span class="kw">SUM</span>(CASE WHEN <span class="dt">tornado =</span> <span class="dv">1</span> THEN precipitation ELSE <span class="dv">0</span> END) as tornado_precipitation,</a>
-<a class="sourceLine" id="cb64-15" title="15"></a>
-<a class="sourceLine" id="cb64-16" title="16"><span class="kw">SUM</span>(CASE WHEN <span class="dt">tornado =</span> <span class="dv">0</span> THEN precipitation ELSE <span class="dv">0</span> END) as non_tornado_precipitation</a>
-<a class="sourceLine" id="cb64-17" title="17"></a>
-<a class="sourceLine" id="cb64-18" title="18">FROM station_data</a>
-<a class="sourceLine" id="cb64-19" title="19">GROUP BY year, month</a>
-<a class="sourceLine" id="cb64-20" title="20"></a>
-<a class="sourceLine" id="cb64-21" title="21"><span class="co"># Use of boolean expression</span></a>
-<a class="sourceLine" id="cb64-22" title="22"></a>
-<a class="sourceLine" id="cb64-23" title="23">SELECT month, </a>
-<a class="sourceLine" id="cb64-24" title="24"></a>
-<a class="sourceLine" id="cb64-25" title="25"><span class="kw">AVG</span>(CASE WHEN rain OR hail THEN temperature ELSE null END) AS avg_precipitation_temp,</a>
-<a class="sourceLine" id="cb64-26" title="26"></a>
-<a class="sourceLine" id="cb64-27" title="27"><span class="kw">AVG</span>(CASE WHEN <span class="kw">NOT</span> (rain OR hail) THEN temperature ELSE null END) AS avg_non_precipitation_temp</a>
-<a class="sourceLine" id="cb64-28" title="28"></a>
-<a class="sourceLine" id="cb64-29" title="29">FROM station_data</a>
-<a class="sourceLine" id="cb64-30" title="30">WHERE year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2000</span></a>
-<a class="sourceLine" id="cb64-31" title="31">GROUP BY month</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">SELECT report_code, year, month, day, wind_speed,</a>
+<a class="sourceLine" id="cb65-2" title="2"></a>
+<a class="sourceLine" id="cb65-3" title="3">CASE</a>
+<a class="sourceLine" id="cb65-4" title="4"> WHEN wind_speed <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span> THEN <span class="st">&#39;HIGH&#39;</span></a>
+<a class="sourceLine" id="cb65-5" title="5"> WHEN wind_speed <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span> THEN <span class="st">&#39;MODERATE&#39;</span></a>
+<a class="sourceLine" id="cb65-6" title="6"> ELSE <span class="st">&#39;LOW&#39;</span></a>
+<a class="sourceLine" id="cb65-7" title="7"> END as wind_severity</a>
+<a class="sourceLine" id="cb65-8" title="8"> </a>
+<a class="sourceLine" id="cb65-9" title="9">FROM station_data</a>
+<a class="sourceLine" id="cb65-10" title="10"></a>
+<a class="sourceLine" id="cb65-11" title="11"><span class="co"># Use of CASE to apply different filters</span></a>
+<a class="sourceLine" id="cb65-12" title="12">SELECT year, month,</a>
+<a class="sourceLine" id="cb65-13" title="13"></a>
+<a class="sourceLine" id="cb65-14" title="14"><span class="kw">SUM</span>(CASE WHEN <span class="dt">tornado =</span> <span class="dv">1</span> THEN precipitation ELSE <span class="dv">0</span> END) as tornado_precipitation,</a>
+<a class="sourceLine" id="cb65-15" title="15"></a>
+<a class="sourceLine" id="cb65-16" title="16"><span class="kw">SUM</span>(CASE WHEN <span class="dt">tornado =</span> <span class="dv">0</span> THEN precipitation ELSE <span class="dv">0</span> END) as non_tornado_precipitation</a>
+<a class="sourceLine" id="cb65-17" title="17"></a>
+<a class="sourceLine" id="cb65-18" title="18">FROM station_data</a>
+<a class="sourceLine" id="cb65-19" title="19">GROUP BY year, month</a>
+<a class="sourceLine" id="cb65-20" title="20"></a>
+<a class="sourceLine" id="cb65-21" title="21"><span class="co"># Use of boolean expression</span></a>
+<a class="sourceLine" id="cb65-22" title="22"></a>
+<a class="sourceLine" id="cb65-23" title="23">SELECT month, </a>
+<a class="sourceLine" id="cb65-24" title="24"></a>
+<a class="sourceLine" id="cb65-25" title="25"><span class="kw">AVG</span>(CASE WHEN rain OR hail THEN temperature ELSE null END) AS avg_precipitation_temp,</a>
+<a class="sourceLine" id="cb65-26" title="26"></a>
+<a class="sourceLine" id="cb65-27" title="27"><span class="kw">AVG</span>(CASE WHEN <span class="kw">NOT</span> (rain OR hail) THEN temperature ELSE null END) AS avg_non_precipitation_temp</a>
+<a class="sourceLine" id="cb65-28" title="28"></a>
+<a class="sourceLine" id="cb65-29" title="29">FROM station_data</a>
+<a class="sourceLine" id="cb65-30" title="30">WHERE year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2000</span></a>
+<a class="sourceLine" id="cb65-31" title="31">GROUP BY month</a></code></pre></div>
 </div>
 <div id="join" class="section level3">
 <h3><span class="header-section-number">4.1.5</span> JOIN</h3>
 <p><em>In multiple joins, it may be erroundous to mix LEFT JOIN with INNER JOIN. This is becasue null values cannot be inner joined on and will get filtered out. LEFT JOIN tolerates null values.</em></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co">#INNER JOIN</span></a>
-<a class="sourceLine" id="cb65-2" title="2">SELECT ORDER_ID,</a>
-<a class="sourceLine" id="cb65-3" title="3">CUSTOMER.CUSTOMER_ID,</a>
-<a class="sourceLine" id="cb65-4" title="4">ORDER_DATE,</a>
-<a class="sourceLine" id="cb65-5" title="5">ORDER_QTY</a>
-<a class="sourceLine" id="cb65-6" title="6"></a>
-<a class="sourceLine" id="cb65-7" title="7">FROM CUSTOMER INNER JOIN CUSTOMER_ORDER</a>
-<a class="sourceLine" id="cb65-8" title="8">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
-<a class="sourceLine" id="cb65-9" title="9"></a>
-<a class="sourceLine" id="cb65-10" title="10"></a>
-<a class="sourceLine" id="cb65-11" title="11"><span class="co">#LEFT JOIN</span></a>
-<a class="sourceLine" id="cb65-12" title="12"></a>
-<a class="sourceLine" id="cb65-13" title="13">SELECT ORDER_ID,</a>
-<a class="sourceLine" id="cb65-14" title="14">CUSTOMER.CUSTOMER_ID,</a>
-<a class="sourceLine" id="cb65-15" title="15">ORDER_DATE,</a>
-<a class="sourceLine" id="cb65-16" title="16">ORDER_QTY</a>
-<a class="sourceLine" id="cb65-17" title="17"></a>
-<a class="sourceLine" id="cb65-18" title="18">FROM CUSTOMER LEFT JOIN CUSTOMER_ORDER</a>
-<a class="sourceLine" id="cb65-19" title="19">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
-<a class="sourceLine" id="cb65-20" title="20"></a>
-<a class="sourceLine" id="cb65-21" title="21"><span class="co">#Checking for NULL values</span></a>
-<a class="sourceLine" id="cb65-22" title="22">SELECT CUSTOMER.CUSTOMER_ID,</a>
-<a class="sourceLine" id="cb65-23" title="23">NAME AS CUSTOMER_NAME</a>
-<a class="sourceLine" id="cb65-24" title="24"></a>
-<a class="sourceLine" id="cb65-25" title="25">FROM CUSTOMER LEFT JOIN CUSTOMER_ORDER</a>
-<a class="sourceLine" id="cb65-26" title="26">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
-<a class="sourceLine" id="cb65-27" title="27"></a>
-<a class="sourceLine" id="cb65-28" title="28">WHERE ORDER_ID IS <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb65-29" title="29"></a>
-<a class="sourceLine" id="cb65-30" title="30"><span class="co">#Multiple joins</span></a>
-<a class="sourceLine" id="cb65-31" title="31">SELECT</a>
-<a class="sourceLine" id="cb65-32" title="32">ORDER_ID,</a>
-<a class="sourceLine" id="cb65-33" title="33">CUSTOMER.CUSTOMER_ID,</a>
-<a class="sourceLine" id="cb65-34" title="34"><span class="st">&#39;NAME AS CUSTOMER.NAME,&#39;</span></a>
-<a class="sourceLine" id="cb65-35" title="35">STREET_ADDRESS,</a>
-<a class="sourceLine" id="cb65-36" title="36">CITY,</a>
-<a class="sourceLine" id="cb65-37" title="37">STATE,</a>
-<a class="sourceLine" id="cb65-38" title="38">ZIP,</a>
-<a class="sourceLine" id="cb65-39" title="39">ORDER_DATE,</a>
-<a class="sourceLine" id="cb65-40" title="40">PRODUCT_ID,</a>
-<a class="sourceLine" id="cb65-41" title="41">DESCRIPTION,</a>
-<a class="sourceLine" id="cb65-42" title="42">ORDER_QTY</a>
-<a class="sourceLine" id="cb65-43" title="43"></a>
-<a class="sourceLine" id="cb65-44" title="44">FROM CUSTOMER</a>
-<a class="sourceLine" id="cb65-45" title="45"></a>
-<a class="sourceLine" id="cb65-46" title="46">INNER JOIN </a>
-<a class="sourceLine" id="cb65-47" title="47">CUSTOMER_ORDER ON CUSTOMER_ORDER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER.CUSTOMER_ID</a>
-<a class="sourceLine" id="cb65-48" title="48"></a>
-<a class="sourceLine" id="cb65-49" title="49">INNER JOIN </a>
-<a class="sourceLine" id="cb65-50" title="50">PRODUCT ON CUSTOMER_ORDER.PRODUCT_ID =<span class="st"> </span>PRODUCT.PRODUCT_ID</a>
-<a class="sourceLine" id="cb65-51" title="51"></a>
-<a class="sourceLine" id="cb65-52" title="52"><span class="co">#Use coalesce() to turn nulls into zeros.</span></a>
-<a class="sourceLine" id="cb65-53" title="53"></a>
-<a class="sourceLine" id="cb65-54" title="54">SELECT</a>
-<a class="sourceLine" id="cb65-55" title="55">CUSTOMER.CUSTOMER_ID,</a>
-<a class="sourceLine" id="cb65-56" title="56">NAME AS CUSTOMER_NAME,</a>
-<a class="sourceLine" id="cb65-57" title="57"><span class="kw">coalesce</span>(<span class="kw">sum</span>(ORDER_QTY <span class="op">*</span><span class="st"> </span>PRICE), <span class="dv">0</span>) as TOTAL_REVENUE</a>
-<a class="sourceLine" id="cb65-58" title="58"></a>
-<a class="sourceLine" id="cb65-59" title="59">FROM CUSTOMER</a>
-<a class="sourceLine" id="cb65-60" title="60"></a>
-<a class="sourceLine" id="cb65-61" title="61">LEFT JOIN CUSTOMER_ORDER</a>
-<a class="sourceLine" id="cb65-62" title="62">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
-<a class="sourceLine" id="cb65-63" title="63"></a>
-<a class="sourceLine" id="cb65-64" title="64">LEFT JOIN PRODUCT</a>
-<a class="sourceLine" id="cb65-65" title="65">ON CUSTOMER_ORDER.PRODUCT_ID =<span class="st"> </span>PRODUCT.PRODUCT_ID</a>
-<a class="sourceLine" id="cb65-66" title="66"></a>
-<a class="sourceLine" id="cb65-67" title="67">GROUP BY <span class="dv">1</span>,<span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co">#INNER JOIN</span></a>
+<a class="sourceLine" id="cb66-2" title="2">SELECT ORDER_ID,</a>
+<a class="sourceLine" id="cb66-3" title="3">CUSTOMER.CUSTOMER_ID,</a>
+<a class="sourceLine" id="cb66-4" title="4">ORDER_DATE,</a>
+<a class="sourceLine" id="cb66-5" title="5">ORDER_QTY</a>
+<a class="sourceLine" id="cb66-6" title="6"></a>
+<a class="sourceLine" id="cb66-7" title="7">FROM CUSTOMER INNER JOIN CUSTOMER_ORDER</a>
+<a class="sourceLine" id="cb66-8" title="8">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
+<a class="sourceLine" id="cb66-9" title="9"></a>
+<a class="sourceLine" id="cb66-10" title="10"></a>
+<a class="sourceLine" id="cb66-11" title="11"><span class="co">#LEFT JOIN</span></a>
+<a class="sourceLine" id="cb66-12" title="12"></a>
+<a class="sourceLine" id="cb66-13" title="13">SELECT ORDER_ID,</a>
+<a class="sourceLine" id="cb66-14" title="14">CUSTOMER.CUSTOMER_ID,</a>
+<a class="sourceLine" id="cb66-15" title="15">ORDER_DATE,</a>
+<a class="sourceLine" id="cb66-16" title="16">ORDER_QTY</a>
+<a class="sourceLine" id="cb66-17" title="17"></a>
+<a class="sourceLine" id="cb66-18" title="18">FROM CUSTOMER LEFT JOIN CUSTOMER_ORDER</a>
+<a class="sourceLine" id="cb66-19" title="19">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
+<a class="sourceLine" id="cb66-20" title="20"></a>
+<a class="sourceLine" id="cb66-21" title="21"><span class="co">#Checking for NULL values</span></a>
+<a class="sourceLine" id="cb66-22" title="22">SELECT CUSTOMER.CUSTOMER_ID,</a>
+<a class="sourceLine" id="cb66-23" title="23">NAME AS CUSTOMER_NAME</a>
+<a class="sourceLine" id="cb66-24" title="24"></a>
+<a class="sourceLine" id="cb66-25" title="25">FROM CUSTOMER LEFT JOIN CUSTOMER_ORDER</a>
+<a class="sourceLine" id="cb66-26" title="26">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
+<a class="sourceLine" id="cb66-27" title="27"></a>
+<a class="sourceLine" id="cb66-28" title="28">WHERE ORDER_ID IS <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb66-29" title="29"></a>
+<a class="sourceLine" id="cb66-30" title="30"><span class="co">#Multiple joins</span></a>
+<a class="sourceLine" id="cb66-31" title="31">SELECT</a>
+<a class="sourceLine" id="cb66-32" title="32">ORDER_ID,</a>
+<a class="sourceLine" id="cb66-33" title="33">CUSTOMER.CUSTOMER_ID,</a>
+<a class="sourceLine" id="cb66-34" title="34"><span class="st">&#39;NAME AS CUSTOMER.NAME,&#39;</span></a>
+<a class="sourceLine" id="cb66-35" title="35">STREET_ADDRESS,</a>
+<a class="sourceLine" id="cb66-36" title="36">CITY,</a>
+<a class="sourceLine" id="cb66-37" title="37">STATE,</a>
+<a class="sourceLine" id="cb66-38" title="38">ZIP,</a>
+<a class="sourceLine" id="cb66-39" title="39">ORDER_DATE,</a>
+<a class="sourceLine" id="cb66-40" title="40">PRODUCT_ID,</a>
+<a class="sourceLine" id="cb66-41" title="41">DESCRIPTION,</a>
+<a class="sourceLine" id="cb66-42" title="42">ORDER_QTY</a>
+<a class="sourceLine" id="cb66-43" title="43"></a>
+<a class="sourceLine" id="cb66-44" title="44">FROM CUSTOMER</a>
+<a class="sourceLine" id="cb66-45" title="45"></a>
+<a class="sourceLine" id="cb66-46" title="46">INNER JOIN </a>
+<a class="sourceLine" id="cb66-47" title="47">CUSTOMER_ORDER ON CUSTOMER_ORDER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER.CUSTOMER_ID</a>
+<a class="sourceLine" id="cb66-48" title="48"></a>
+<a class="sourceLine" id="cb66-49" title="49">INNER JOIN </a>
+<a class="sourceLine" id="cb66-50" title="50">PRODUCT ON CUSTOMER_ORDER.PRODUCT_ID =<span class="st"> </span>PRODUCT.PRODUCT_ID</a>
+<a class="sourceLine" id="cb66-51" title="51"></a>
+<a class="sourceLine" id="cb66-52" title="52"><span class="co">#Use coalesce() to turn nulls into zeros.</span></a>
+<a class="sourceLine" id="cb66-53" title="53"></a>
+<a class="sourceLine" id="cb66-54" title="54">SELECT</a>
+<a class="sourceLine" id="cb66-55" title="55">CUSTOMER.CUSTOMER_ID,</a>
+<a class="sourceLine" id="cb66-56" title="56">NAME AS CUSTOMER_NAME,</a>
+<a class="sourceLine" id="cb66-57" title="57"><span class="kw">coalesce</span>(<span class="kw">sum</span>(ORDER_QTY <span class="op">*</span><span class="st"> </span>PRICE), <span class="dv">0</span>) as TOTAL_REVENUE</a>
+<a class="sourceLine" id="cb66-58" title="58"></a>
+<a class="sourceLine" id="cb66-59" title="59">FROM CUSTOMER</a>
+<a class="sourceLine" id="cb66-60" title="60"></a>
+<a class="sourceLine" id="cb66-61" title="61">LEFT JOIN CUSTOMER_ORDER</a>
+<a class="sourceLine" id="cb66-62" title="62">ON CUSTOMER.CUSTOMER_ID =<span class="st"> </span>CUSTOMER_ORDER.CUSTOMER_ID</a>
+<a class="sourceLine" id="cb66-63" title="63"></a>
+<a class="sourceLine" id="cb66-64" title="64">LEFT JOIN PRODUCT</a>
+<a class="sourceLine" id="cb66-65" title="65">ON CUSTOMER_ORDER.PRODUCT_ID =<span class="st"> </span>PRODUCT.PRODUCT_ID</a>
+<a class="sourceLine" id="cb66-66" title="66"></a>
+<a class="sourceLine" id="cb66-67" title="67">GROUP BY <span class="dv">1</span>,<span class="dv">2</span></a></code></pre></div>
 </div>
 </div>
 <div id="setting-up-a-database" class="section level2">
@@ -473,132 +476,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <em>A database schema is a diagram showing tables, their columns, and their relationships.</em></p>
 <div id="creating-tables" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Creating tables</h3>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co">#Autoincrement allows a unique number to be generated automatically when a new record is inserted into a table. Not needed for SQLite, but for MySQL and some other platforms.</span></a>
-<a class="sourceLine" id="cb66-2" title="2"><span class="co">#Allowing fields to be NULL can be done for fields that are not mandatory, while using NOT NULL should be done for fields that needs to be populated.</span></a>
-<a class="sourceLine" id="cb66-3" title="3"></a>
-<a class="sourceLine" id="cb66-4" title="4">CREATE TABLE <span class="kw">COMPANY</span> (</a>
-<a class="sourceLine" id="cb66-5" title="5">COMPANY_ID             INTEGER PRIMARY KEY AUTOINCREMENT,</a>
-<a class="sourceLine" id="cb66-6" title="6">NAME                   <span class="kw">VARCHAR</span>(<span class="dv">30</span>) NOT <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb66-7" title="7">DESCRIPTION            <span class="kw">VARCHAR</span>(<span class="dv">60</span>),</a>
-<a class="sourceLine" id="cb66-8" title="8">PRIMARY_CONTACT_ID     INTEGER NOT <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb66-9" title="9">);</a>
-<a class="sourceLine" id="cb66-10" title="10"></a>
-<a class="sourceLine" id="cb66-11" title="11">CREATE TABLE <span class="kw">ROOM</span> (</a>
-<a class="sourceLine" id="cb66-12" title="12">ROOM_ID        INTEGER PRIMARY KEY AUTOINCREMENT,</a>
-<a class="sourceLine" id="cb66-13" title="13">FLOOR_NUMBE    INTEGER NOT <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb66-14" title="14">SEAT_CAPASITY  INTEGER NOT <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb66-15" title="15">);</a>
-<a class="sourceLine" id="cb66-16" title="16"></a>
-<a class="sourceLine" id="cb66-17" title="17">CREATE TABLE <span class="kw">PRESENTATION</span> (</a>
-<a class="sourceLine" id="cb66-18" title="18">PRESENTATION_ID   INTEGER PRIMARY KEY AUTOINCREMENT,</a>
-<a class="sourceLine" id="cb66-19" title="19">BOOKED_COMPANY_ID INTEGER NOT <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb66-20" title="20">BOOK_ROOM_ID      INTEGER NOT <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb66-21" title="21">START_TIME        TIME,</a>
-<a class="sourceLine" id="cb66-22" title="22">END_TIME          TIME</a>
-<a class="sourceLine" id="cb66-23" title="23">);</a>
-<a class="sourceLine" id="cb66-24" title="24"></a>
-<a class="sourceLine" id="cb66-25" title="25">CREATE TABLE <span class="kw">ATTENDEE</span> (</a>
-<a class="sourceLine" id="cb66-26" title="26">ATTENDEE_ID       INTEGER PRIMARY KEY AUTOINCREMENT,</a>
-<a class="sourceLine" id="cb66-27" title="27">FIRST_NAME        <span class="kw">VARCHAR</span> (<span class="dv">30</span>) NOT <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb66-28" title="28">LAST_NAME         <span class="kw">VARCHAR</span> (<span class="dv">30</span>) NOT <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb66-29" title="29">PHONE             INTEGER,</a>
-<a class="sourceLine" id="cb66-30" title="30">EMAIL             <span class="kw">VARCHAR</span> (<span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb66-31" title="31">VIP               BOOLEAN <span class="kw">DEFAULT</span>(<span class="dv">0</span>) <span class="st">&#39;BOOLEAN MAKE DEFAULT FALSE (0)&#39;</span></a>
-<a class="sourceLine" id="cb66-32" title="32">);</a>
-<a class="sourceLine" id="cb66-33" title="33"></a>
-<a class="sourceLine" id="cb66-34" title="34">CREATE TABLE <span class="kw">PRESENTAION_ATTENDANCE</span> (</a>
-<a class="sourceLine" id="cb66-35" title="35">TICKET_id         INTEGER PRIMARY KEY AUTOINCREMENT,</a>
-<a class="sourceLine" id="cb66-36" title="36">PRESENTATION_ID   INTEGER,</a>
-<a class="sourceLine" id="cb66-37" title="37">ATTENDEE_ID       INTEGER</a>
-<a class="sourceLine" id="cb66-38" title="38">);</a>
-<a class="sourceLine" id="cb66-39" title="39"></a>
-<a class="sourceLine" id="cb66-40" title="40"><span class="co">#Foreign keys in a child table should be tied to primary key of a parent table. Setting up foreign keys by double clicking on the varible to modify and link this to a primary key of a parent table.</span></a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co">#Autoincrement allows a unique number to be generated automatically when a new record is inserted into a table. Not needed for SQLite, but for MySQL and some other platforms.</span></a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="co">#Allowing fields to be NULL can be done for fields that are not mandatory, while using NOT NULL should be done for fields that needs to be populated.</span></a>
+<a class="sourceLine" id="cb67-3" title="3"></a>
+<a class="sourceLine" id="cb67-4" title="4">CREATE TABLE <span class="kw">COMPANY</span> (</a>
+<a class="sourceLine" id="cb67-5" title="5">COMPANY_ID             INTEGER PRIMARY KEY AUTOINCREMENT,</a>
+<a class="sourceLine" id="cb67-6" title="6">NAME                   <span class="kw">VARCHAR</span>(<span class="dv">30</span>) NOT <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb67-7" title="7">DESCRIPTION            <span class="kw">VARCHAR</span>(<span class="dv">60</span>),</a>
+<a class="sourceLine" id="cb67-8" title="8">PRIMARY_CONTACT_ID     INTEGER NOT <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb67-9" title="9">);</a>
+<a class="sourceLine" id="cb67-10" title="10"></a>
+<a class="sourceLine" id="cb67-11" title="11">CREATE TABLE <span class="kw">ROOM</span> (</a>
+<a class="sourceLine" id="cb67-12" title="12">ROOM_ID        INTEGER PRIMARY KEY AUTOINCREMENT,</a>
+<a class="sourceLine" id="cb67-13" title="13">FLOOR_NUMBE    INTEGER NOT <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb67-14" title="14">SEAT_CAPASITY  INTEGER NOT <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb67-15" title="15">);</a>
+<a class="sourceLine" id="cb67-16" title="16"></a>
+<a class="sourceLine" id="cb67-17" title="17">CREATE TABLE <span class="kw">PRESENTATION</span> (</a>
+<a class="sourceLine" id="cb67-18" title="18">PRESENTATION_ID   INTEGER PRIMARY KEY AUTOINCREMENT,</a>
+<a class="sourceLine" id="cb67-19" title="19">BOOKED_COMPANY_ID INTEGER NOT <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb67-20" title="20">BOOK_ROOM_ID      INTEGER NOT <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb67-21" title="21">START_TIME        TIME,</a>
+<a class="sourceLine" id="cb67-22" title="22">END_TIME          TIME</a>
+<a class="sourceLine" id="cb67-23" title="23">);</a>
+<a class="sourceLine" id="cb67-24" title="24"></a>
+<a class="sourceLine" id="cb67-25" title="25">CREATE TABLE <span class="kw">ATTENDEE</span> (</a>
+<a class="sourceLine" id="cb67-26" title="26">ATTENDEE_ID       INTEGER PRIMARY KEY AUTOINCREMENT,</a>
+<a class="sourceLine" id="cb67-27" title="27">FIRST_NAME        <span class="kw">VARCHAR</span> (<span class="dv">30</span>) NOT <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb67-28" title="28">LAST_NAME         <span class="kw">VARCHAR</span> (<span class="dv">30</span>) NOT <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb67-29" title="29">PHONE             INTEGER,</a>
+<a class="sourceLine" id="cb67-30" title="30">EMAIL             <span class="kw">VARCHAR</span> (<span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb67-31" title="31">VIP               BOOLEAN <span class="kw">DEFAULT</span>(<span class="dv">0</span>) <span class="st">&#39;BOOLEAN MAKE DEFAULT FALSE (0)&#39;</span></a>
+<a class="sourceLine" id="cb67-32" title="32">);</a>
+<a class="sourceLine" id="cb67-33" title="33"></a>
+<a class="sourceLine" id="cb67-34" title="34">CREATE TABLE <span class="kw">PRESENTAION_ATTENDANCE</span> (</a>
+<a class="sourceLine" id="cb67-35" title="35">TICKET_id         INTEGER PRIMARY KEY AUTOINCREMENT,</a>
+<a class="sourceLine" id="cb67-36" title="36">PRESENTATION_ID   INTEGER,</a>
+<a class="sourceLine" id="cb67-37" title="37">ATTENDEE_ID       INTEGER</a>
+<a class="sourceLine" id="cb67-38" title="38">);</a>
+<a class="sourceLine" id="cb67-39" title="39"></a>
+<a class="sourceLine" id="cb67-40" title="40"><span class="co">#Foreign keys in a child table should be tied to primary key of a parent table. Setting up foreign keys by double clicking on the varible to modify and link this to a primary key of a parent table.</span></a></code></pre></div>
 </div>
 <div id="creating-views" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Creating views</h3>
 <p><em>Creating views stores querys in the database so it can easily be called upon.</em></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">CREATE VIEW PRESENTATION_VW AS</a>
-<a class="sourceLine" id="cb67-2" title="2">    SELECT COMPANY.NAME AS BOOKED_COMPANY,</a>
-<a class="sourceLine" id="cb67-3" title="3">           ROOM.ROOM_ID AS ROOM_NUMBER,</a>
-<a class="sourceLine" id="cb67-4" title="4">           ROOM.FLOOR_NUMBE AS FLOOR,</a>
-<a class="sourceLine" id="cb67-5" title="5">           ROOM.SEAT_CAPASITY AS SEATS,</a>
-<a class="sourceLine" id="cb67-6" title="6">           START_TIME,</a>
-<a class="sourceLine" id="cb67-7" title="7">           END_TIME</a>
-<a class="sourceLine" id="cb67-8" title="8">      FROM PRESENTATION</a>
-<a class="sourceLine" id="cb67-9" title="9">           INNER JOIN</a>
-<a class="sourceLine" id="cb67-10" title="10">           COMPANY ON PRESENTATION.BOOKED_COMPANY_ID =<span class="st"> </span>COMPANY.COMPANY_ID</a>
-<a class="sourceLine" id="cb67-11" title="11">           INNER JOIN</a>
-<a class="sourceLine" id="cb67-12" title="12">           ROOM ON PRESENTATION.BOOK_ROOM_ID =<span class="st"> </span>ROOM.ROOM_ID;</a>
-<a class="sourceLine" id="cb67-13" title="13"></a>
-<a class="sourceLine" id="cb67-14" title="14"></a>
-<a class="sourceLine" id="cb67-15" title="15"><span class="co"># Queryn from a view</span></a>
-<a class="sourceLine" id="cb67-16" title="16"></a>
-<a class="sourceLine" id="cb67-17" title="17">SELECT <span class="op">*</span><span class="st"> </span>FROM PRESENTATION_VW</a>
-<a class="sourceLine" id="cb67-18" title="18">WHERE SEAT_CAPACITY <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">CREATE VIEW PRESENTATION_VW AS</a>
+<a class="sourceLine" id="cb68-2" title="2">    SELECT COMPANY.NAME AS BOOKED_COMPANY,</a>
+<a class="sourceLine" id="cb68-3" title="3">           ROOM.ROOM_ID AS ROOM_NUMBER,</a>
+<a class="sourceLine" id="cb68-4" title="4">           ROOM.FLOOR_NUMBE AS FLOOR,</a>
+<a class="sourceLine" id="cb68-5" title="5">           ROOM.SEAT_CAPASITY AS SEATS,</a>
+<a class="sourceLine" id="cb68-6" title="6">           START_TIME,</a>
+<a class="sourceLine" id="cb68-7" title="7">           END_TIME</a>
+<a class="sourceLine" id="cb68-8" title="8">      FROM PRESENTATION</a>
+<a class="sourceLine" id="cb68-9" title="9">           INNER JOIN</a>
+<a class="sourceLine" id="cb68-10" title="10">           COMPANY ON PRESENTATION.BOOKED_COMPANY_ID =<span class="st"> </span>COMPANY.COMPANY_ID</a>
+<a class="sourceLine" id="cb68-11" title="11">           INNER JOIN</a>
+<a class="sourceLine" id="cb68-12" title="12">           ROOM ON PRESENTATION.BOOK_ROOM_ID =<span class="st"> </span>ROOM.ROOM_ID;</a>
+<a class="sourceLine" id="cb68-13" title="13"></a>
+<a class="sourceLine" id="cb68-14" title="14"></a>
+<a class="sourceLine" id="cb68-15" title="15"><span class="co"># Queryn from a view</span></a>
+<a class="sourceLine" id="cb68-16" title="16"></a>
+<a class="sourceLine" id="cb68-17" title="17">SELECT <span class="op">*</span><span class="st"> </span>FROM PRESENTATION_VW</a>
+<a class="sourceLine" id="cb68-18" title="18">WHERE SEAT_CAPACITY <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
 </div>
 <div id="populating-database" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Populating database</h3>
 <div id="insert" class="section level4">
 <h4><span class="header-section-number">4.2.3.1</span> INSERT</h4>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">INSERT INTO <span class="kw">ATTENDEE</span> (FIRST_NAME, LAST_NAME)</a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="kw">VALUES</span> (<span class="st">&#39;THOMAS&#39;</span>, <span class="st">&#39;NIELD&#39;</span>)</a>
-<a class="sourceLine" id="cb68-3" title="3"></a>
-<a class="sourceLine" id="cb68-4" title="4">SELECT <span class="op">*</span><span class="st"> </span>FROM ATTENDEE</a>
-<a class="sourceLine" id="cb68-5" title="5"></a>
-<a class="sourceLine" id="cb68-6" title="6"><span class="co">#Multiple inserts. Can be used with Python to populate large amounts of data.</span></a>
-<a class="sourceLine" id="cb68-7" title="7"></a>
-<a class="sourceLine" id="cb68-8" title="8">INSERT INTO <span class="kw">ATTENDEE</span> (FIRST_NAME, LAST_NAME, PHONE, EMAIL, VIP)</a>
-<a class="sourceLine" id="cb68-9" title="9">VALUES</a>
-<a class="sourceLine" id="cb68-10" title="10">(<span class="st">&#39;Jon&#39;</span>, <span class="st">&#39;Skeeter&#39;</span>, <span class="dv">3525253523</span>, <span class="st">&#39;john.skeeter@rex.net&#39;</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb68-11" title="11">(<span class="st">&#39;Sam&#39;</span>, <span class="st">&#39;Jones&#39;</span>, <span class="dv">25235235235</span>, <span class="st">&#39;sam.jones@hej.se&#39;</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb68-12" title="12">(<span class="st">&#39;Karl&#39;</span>, <span class="st">&#39;Andersson&#39;</span>, <span class="dv">5235235</span>, <span class="st">&#39;karl.andersson@gmail.com&#39;</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb68-13" title="13"></a>
-<a class="sourceLine" id="cb68-14" title="14"><span class="co">#Inserting with a SELECT from another table</span></a>
-<a class="sourceLine" id="cb68-15" title="15"></a>
-<a class="sourceLine" id="cb68-16" title="16">INSERT INTO <span class="kw">ATTENDEE</span> (FIRST_NAME, LAST_NAME, PHONE, EMAIL)</a>
-<a class="sourceLine" id="cb68-17" title="17">SELECT FIRST_NAME, LAST_NAME, PHONE, EMAIL</a>
-<a class="sourceLine" id="cb68-18" title="18">FROM ANOTHER_TABLE</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">INSERT INTO <span class="kw">ATTENDEE</span> (FIRST_NAME, LAST_NAME)</a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="kw">VALUES</span> (<span class="st">&#39;THOMAS&#39;</span>, <span class="st">&#39;NIELD&#39;</span>)</a>
+<a class="sourceLine" id="cb69-3" title="3"></a>
+<a class="sourceLine" id="cb69-4" title="4">SELECT <span class="op">*</span><span class="st"> </span>FROM ATTENDEE</a>
+<a class="sourceLine" id="cb69-5" title="5"></a>
+<a class="sourceLine" id="cb69-6" title="6"><span class="co">#Multiple inserts. Can be used with Python to populate large amounts of data.</span></a>
+<a class="sourceLine" id="cb69-7" title="7"></a>
+<a class="sourceLine" id="cb69-8" title="8">INSERT INTO <span class="kw">ATTENDEE</span> (FIRST_NAME, LAST_NAME, PHONE, EMAIL, VIP)</a>
+<a class="sourceLine" id="cb69-9" title="9">VALUES</a>
+<a class="sourceLine" id="cb69-10" title="10">(<span class="st">&#39;Jon&#39;</span>, <span class="st">&#39;Skeeter&#39;</span>, <span class="dv">3525253523</span>, <span class="st">&#39;john.skeeter@rex.net&#39;</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb69-11" title="11">(<span class="st">&#39;Sam&#39;</span>, <span class="st">&#39;Jones&#39;</span>, <span class="dv">25235235235</span>, <span class="st">&#39;sam.jones@hej.se&#39;</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb69-12" title="12">(<span class="st">&#39;Karl&#39;</span>, <span class="st">&#39;Andersson&#39;</span>, <span class="dv">5235235</span>, <span class="st">&#39;karl.andersson@gmail.com&#39;</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb69-13" title="13"></a>
+<a class="sourceLine" id="cb69-14" title="14"><span class="co">#Inserting with a SELECT from another table</span></a>
+<a class="sourceLine" id="cb69-15" title="15"></a>
+<a class="sourceLine" id="cb69-16" title="16">INSERT INTO <span class="kw">ATTENDEE</span> (FIRST_NAME, LAST_NAME, PHONE, EMAIL)</a>
+<a class="sourceLine" id="cb69-17" title="17">SELECT FIRST_NAME, LAST_NAME, PHONE, EMAIL</a>
+<a class="sourceLine" id="cb69-18" title="18">FROM ANOTHER_TABLE</a></code></pre></div>
 </div>
 <div id="delete" class="section level4">
 <h4><span class="header-section-number">4.2.3.2</span> DELETE</h4>
 <p><em>Combining DELETE with WHERE. It could be good to replace DELETE with SELECT to get a preview what will be deleted.</em></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">DELETE FROM ATTENDEE</a>
-<a class="sourceLine" id="cb69-2" title="2">WHERE PHONE IS <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb69-3" title="3">AND EMAIL IS <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb69-4" title="4"></a>
-<a class="sourceLine" id="cb69-5" title="5"><span class="co"># On some platforms the preferred way to delete all records from a table is to use TRUNCATE TABLE.</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">DELETE FROM ATTENDEE</a>
+<a class="sourceLine" id="cb70-2" title="2">WHERE PHONE IS <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb70-3" title="3">AND EMAIL IS <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb70-4" title="4"></a>
+<a class="sourceLine" id="cb70-5" title="5"><span class="co"># On some platforms the preferred way to delete all records from a table is to use TRUNCATE TABLE.</span></a></code></pre></div>
 </div>
 <div id="update" class="section level4">
 <h4><span class="header-section-number">4.2.3.3</span> UPDATE</h4>
 <p><em>UPDATE modifies existing records.</em></p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">UPDATE ATTENDEE SET FIRST_NAME =<span class="st"> </span><span class="kw">UPPER</span>(FIRST_NAME),</a>
-<a class="sourceLine" id="cb70-2" title="2">LAST_NAME =<span class="st"> </span><span class="kw">UPPER</span>(LAST_NAME)</a>
-<a class="sourceLine" id="cb70-3" title="3"></a>
-<a class="sourceLine" id="cb70-4" title="4">UPDATE ATTENDEE SET VIP =<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb70-5" title="5">WHERE ATTENDEE_ID <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">UPDATE ATTENDEE SET FIRST_NAME =<span class="st"> </span><span class="kw">UPPER</span>(FIRST_NAME),</a>
+<a class="sourceLine" id="cb71-2" title="2">LAST_NAME =<span class="st"> </span><span class="kw">UPPER</span>(LAST_NAME)</a>
+<a class="sourceLine" id="cb71-3" title="3"></a>
+<a class="sourceLine" id="cb71-4" title="4">UPDATE ATTENDEE SET VIP =<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb71-5" title="5">WHERE ATTENDEE_ID <span class="kw">IN</span> (<span class="dv">3</span>,<span class="dv">4</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="connecting-to-database-from-r" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Connecting to database from R</h3>
 <p><em>Connecting to the database from R.</em></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co">#https://db.rstudio.com/dplyr/</span></a>
-<a class="sourceLine" id="cb71-2" title="2"></a>
-<a class="sourceLine" id="cb71-3" title="3"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb71-4" title="4"><span class="kw">library</span>(DBI)</a>
-<a class="sourceLine" id="cb71-5" title="5"><span class="kw">library</span>(RSQLite)</a>
-<a class="sourceLine" id="cb71-6" title="6">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="kw">SQLite</span>(), <span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">chris</span><span class="ch">\\</span><span class="st">Documents</span><span class="ch">\\</span><span class="st">oreilly_getting_started_with_sql-master</span><span class="ch">\\</span><span class="st">surgetech_conferencev2.db&quot;</span>)</a>
-<a class="sourceLine" id="cb71-7" title="7"></a>
-<a class="sourceLine" id="cb71-8" title="8"><span class="co">#Show list of table</span></a>
-<a class="sourceLine" id="cb71-9" title="9"><span class="kw">as.data.frame</span>(<span class="kw">dbListTables</span>(con))</a>
-<a class="sourceLine" id="cb71-10" title="10"></a>
-<a class="sourceLine" id="cb71-11" title="11"><span class="co">#get data in data frame with sql syntax</span></a>
-<a class="sourceLine" id="cb71-12" title="12">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">tbl</span>(con, <span class="kw">sql</span>(<span class="st">&quot;SELECT * FROM ATTENDEE&quot;</span>)))</a>
-<a class="sourceLine" id="cb71-13" title="13"></a>
-<a class="sourceLine" id="cb71-14" title="14"><span class="co">#with dplyr syntax</span></a>
-<a class="sourceLine" id="cb71-15" title="15">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">tbl</span>(con, <span class="st">&quot;ATTENDEE&quot;</span>))</a>
-<a class="sourceLine" id="cb71-16" title="16"></a>
-<a class="sourceLine" id="cb71-17" title="17"><span class="co"># When data is fetched, disconnect to db.</span></a>
-<a class="sourceLine" id="cb71-18" title="18"><span class="kw">dbDisconnect</span>(con)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co">#https://db.rstudio.com/dplyr/</span></a>
+<a class="sourceLine" id="cb72-2" title="2"></a>
+<a class="sourceLine" id="cb72-3" title="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb72-4" title="4"><span class="kw">library</span>(DBI)</a>
+<a class="sourceLine" id="cb72-5" title="5"><span class="kw">library</span>(RSQLite)</a>
+<a class="sourceLine" id="cb72-6" title="6">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="kw">SQLite</span>(), <span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">chris</span><span class="ch">\\</span><span class="st">Documents</span><span class="ch">\\</span><span class="st">oreilly_getting_started_with_sql-master</span><span class="ch">\\</span><span class="st">surgetech_conferencev2.db&quot;</span>)</a>
+<a class="sourceLine" id="cb72-7" title="7"></a>
+<a class="sourceLine" id="cb72-8" title="8"><span class="co">#Show list of table</span></a>
+<a class="sourceLine" id="cb72-9" title="9"><span class="kw">as.data.frame</span>(<span class="kw">dbListTables</span>(con))</a>
+<a class="sourceLine" id="cb72-10" title="10"></a>
+<a class="sourceLine" id="cb72-11" title="11"><span class="co">#get data in data frame with sql syntax</span></a>
+<a class="sourceLine" id="cb72-12" title="12">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">tbl</span>(con, <span class="kw">sql</span>(<span class="st">&quot;SELECT * FROM ATTENDEE&quot;</span>)))</a>
+<a class="sourceLine" id="cb72-13" title="13"></a>
+<a class="sourceLine" id="cb72-14" title="14"><span class="co">#with dplyr syntax</span></a>
+<a class="sourceLine" id="cb72-15" title="15">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">tbl</span>(con, <span class="st">&quot;ATTENDEE&quot;</span>))</a>
+<a class="sourceLine" id="cb72-16" title="16"></a>
+<a class="sourceLine" id="cb72-17" title="17"><span class="co"># When data is fetched, disconnect to db.</span></a>
+<a class="sourceLine" id="cb72-18" title="18"><span class="kw">dbDisconnect</span>(con)</a></code></pre></div>
 </div>
 </div>
 <div id="useful-expressions" class="section level2">
@@ -692,80 +695,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>Access a database from R.</em>
 <em>The problem with dplyr is that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connection essentially removes that limitation.</em>
 <em>Accessing a temp database by downloading it. Dplyr and dbplyr are used in R to point to the database.</em></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co">#https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html</span></a>
-<a class="sourceLine" id="cb72-2" title="2"><span class="kw">library</span>(<span class="st">&quot;RSQLite&quot;</span>)</a>
-<a class="sourceLine" id="cb72-3" title="3"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
-<a class="sourceLine" id="cb72-4" title="4"><span class="kw">library</span>(<span class="st">&quot;dbplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb72-5" title="5"></a>
-<a class="sourceLine" id="cb72-6" title="6"><span class="co"># Downloading database for test</span></a>
-<a class="sourceLine" id="cb72-7" title="7"><span class="kw">dir.create</span>(<span class="st">&quot;data_raw&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb72-8" title="8"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://ndownloader.figshare.com/files/2292171&quot;</span>,</a>
-<a class="sourceLine" id="cb72-9" title="9">              <span class="dt">destfile =</span> <span class="st">&quot;data_raw/portal_mammals.sqlite&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</a>
-<a class="sourceLine" id="cb72-10" title="10"></a>
-<a class="sourceLine" id="cb72-11" title="11"><span class="co"># Connect to databse</span></a>
-<a class="sourceLine" id="cb72-12" title="12">mammals &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), <span class="st">&quot;data_raw/portal_mammals.sqlite&quot;</span>)</a>
-<a class="sourceLine" id="cb72-13" title="13"></a>
-<a class="sourceLine" id="cb72-14" title="14"><span class="co"># Querying with SQL-syntax vs dplyr syntax</span></a>
-<a class="sourceLine" id="cb72-15" title="15"></a>
-<a class="sourceLine" id="cb72-16" title="16"><span class="co">#sql</span></a>
-<a class="sourceLine" id="cb72-17" title="17"><span class="kw">tbl</span>(mammals, <span class="kw">sql</span>(<span class="st">&quot;SELECT year, species_id, plot_id FROM surveys&quot;</span>))</a>
-<a class="sourceLine" id="cb72-18" title="18"></a>
-<a class="sourceLine" id="cb72-19" title="19"><span class="co">#dplyr</span></a>
-<a class="sourceLine" id="cb72-20" title="20">surveys &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;surveys&quot;</span>)</a>
-<a class="sourceLine" id="cb72-21" title="21">surveys <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb72-22" title="22"><span class="st">  </span><span class="kw">select</span>(year, species_id, plot_id)</a>
-<a class="sourceLine" id="cb72-23" title="23"></a>
-<a class="sourceLine" id="cb72-24" title="24"><span class="co">#Checking head(surveys, n = 10) and nrow(surveys) we see that the  surveys at first glance looks like a data frame but there are some differences.*</span></a>
-<a class="sourceLine" id="cb72-25" title="25"><span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb72-26" title="26"><span class="kw">nrow</span>(surveys)</a>
-<a class="sourceLine" id="cb72-27" title="27"></a>
-<a class="sourceLine" id="cb72-28" title="28"><span class="co">#The reason for this is that dplyr dosen´t see the full dataset, only what was asked for when the question in dplyr was translated into SQL.</span></a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co">#https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="kw">library</span>(<span class="st">&quot;RSQLite&quot;</span>)</a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)</a>
+<a class="sourceLine" id="cb73-4" title="4"><span class="kw">library</span>(<span class="st">&quot;dbplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb73-5" title="5"></a>
+<a class="sourceLine" id="cb73-6" title="6"><span class="co"># Downloading database for test</span></a>
+<a class="sourceLine" id="cb73-7" title="7"><span class="kw">dir.create</span>(<span class="st">&quot;data_raw&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb73-8" title="8"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://ndownloader.figshare.com/files/2292171&quot;</span>,</a>
+<a class="sourceLine" id="cb73-9" title="9">              <span class="dt">destfile =</span> <span class="st">&quot;data_raw/portal_mammals.sqlite&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</a>
+<a class="sourceLine" id="cb73-10" title="10"></a>
+<a class="sourceLine" id="cb73-11" title="11"><span class="co"># Connect to databse</span></a>
+<a class="sourceLine" id="cb73-12" title="12">mammals &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), <span class="st">&quot;data_raw/portal_mammals.sqlite&quot;</span>)</a>
+<a class="sourceLine" id="cb73-13" title="13"></a>
+<a class="sourceLine" id="cb73-14" title="14"><span class="co"># Querying with SQL-syntax vs dplyr syntax</span></a>
+<a class="sourceLine" id="cb73-15" title="15"></a>
+<a class="sourceLine" id="cb73-16" title="16"><span class="co">#sql</span></a>
+<a class="sourceLine" id="cb73-17" title="17"><span class="kw">tbl</span>(mammals, <span class="kw">sql</span>(<span class="st">&quot;SELECT year, species_id, plot_id FROM surveys&quot;</span>))</a>
+<a class="sourceLine" id="cb73-18" title="18"></a>
+<a class="sourceLine" id="cb73-19" title="19"><span class="co">#dplyr</span></a>
+<a class="sourceLine" id="cb73-20" title="20">surveys &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;surveys&quot;</span>)</a>
+<a class="sourceLine" id="cb73-21" title="21">surveys <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-22" title="22"><span class="st">  </span><span class="kw">select</span>(year, species_id, plot_id)</a>
+<a class="sourceLine" id="cb73-23" title="23"></a>
+<a class="sourceLine" id="cb73-24" title="24"><span class="co">#Checking head(surveys, n = 10) and nrow(surveys) we see that the  surveys at first glance looks like a data frame but there are some differences.*</span></a>
+<a class="sourceLine" id="cb73-25" title="25"><span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb73-26" title="26"><span class="kw">nrow</span>(surveys)</a>
+<a class="sourceLine" id="cb73-27" title="27"></a>
+<a class="sourceLine" id="cb73-28" title="28"><span class="co">#The reason for this is that dplyr dosen´t see the full dataset, only what was asked for when the question in dplyr was translated into SQL.</span></a></code></pre></div>
 </div>
 <div id="running-sql-syntax-in-r" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> Running SQL syntax in R</h3>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">library</span>(sqldf)</a>
-<a class="sourceLine" id="cb73-2" title="2"><span class="co">#https://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html#introduction</span></a>
-<a class="sourceLine" id="cb73-3" title="3"></a>
-<a class="sourceLine" id="cb73-4" title="4"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</a>
-<a class="sourceLine" id="cb73-5" title="5"></a>
-<a class="sourceLine" id="cb73-6" title="6"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</a>
-<a class="sourceLine" id="cb73-7" title="7"></a>
-<a class="sourceLine" id="cb73-8" title="8"><span class="co">#example</span></a>
-<a class="sourceLine" id="cb73-9" title="9"><span class="kw">data</span>(BOD)</a>
-<a class="sourceLine" id="cb73-10" title="10">BOD</a>
-<a class="sourceLine" id="cb73-11" title="11"></a>
-<a class="sourceLine" id="cb73-12" title="12"><span class="co">#Wildcard: used to extract everything</span></a>
-<a class="sourceLine" id="cb73-13" title="13">bod2 &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</a>
-<a class="sourceLine" id="cb73-14" title="14">bod2</a>
-<a class="sourceLine" id="cb73-15" title="15"></a>
-<a class="sourceLine" id="cb73-16" title="16"><span class="co">#LIMIT controls the number of results</span></a>
-<a class="sourceLine" id="cb73-17" title="17"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</a>
-<a class="sourceLine" id="cb73-18" title="18"></a>
-<a class="sourceLine" id="cb73-19" title="19"><span class="co">#ORDER BY syntax: ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}</span></a>
-<a class="sourceLine" id="cb73-20" title="20"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</a>
-<a class="sourceLine" id="cb73-21" title="21"></a>
-<a class="sourceLine" id="cb73-22" title="22"><span class="co">#Where can be used to add conditional statements</span></a>
-<a class="sourceLine" id="cb73-23" title="23"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</a>
-<a class="sourceLine" id="cb73-24" title="24"></a>
-<a class="sourceLine" id="cb73-25" title="25"><span class="co">#WHERE with AND and OR</span></a>
-<a class="sourceLine" id="cb73-26" title="26"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</a>
-<a class="sourceLine" id="cb73-27" title="27"></a>
-<a class="sourceLine" id="cb73-28" title="28"><span class="co">#IN is used to similiar to %in%</span></a>
-<a class="sourceLine" id="cb73-29" title="29"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</a>
-<a class="sourceLine" id="cb73-30" title="30"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</a>
-<a class="sourceLine" id="cb73-31" title="31"></a>
-<a class="sourceLine" id="cb73-32" title="32"><span class="co">#LIKE weak expression command</span></a>
-<a class="sourceLine" id="cb73-33" title="33"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a>
-<a class="sourceLine" id="cb73-34" title="34"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a>
-<a class="sourceLine" id="cb73-35" title="35"></a>
-<a class="sourceLine" id="cb73-36" title="36"><span class="co">#Aggregated data: AVG, MEDIAN, MAX, MIN, SUM</span></a>
-<a class="sourceLine" id="cb73-37" title="37"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT AVG(circumference) FROM Orange&quot;</span>)</a>
-<a class="sourceLine" id="cb73-38" title="38"></a>
-<a class="sourceLine" id="cb73-39" title="39"><span class="co">#SELECT COUNT</span></a>
-<a class="sourceLine" id="cb73-40" title="40">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb73-41" title="41">d</a>
-<a class="sourceLine" id="cb73-42" title="42"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT COUNT() as numrows FROM d&quot;</span>)</a>
-<a class="sourceLine" id="cb73-43" title="43"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT COUNT(b) FROM d&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">library</span>(sqldf)</a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="co">#https://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html#introduction</span></a>
+<a class="sourceLine" id="cb74-3" title="3"></a>
+<a class="sourceLine" id="cb74-4" title="4"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC&#39;</span>)</a>
+<a class="sourceLine" id="cb74-5" title="5"></a>
+<a class="sourceLine" id="cb74-6" title="6"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM iris&quot;</span>)</a>
+<a class="sourceLine" id="cb74-7" title="7"></a>
+<a class="sourceLine" id="cb74-8" title="8"><span class="co">#example</span></a>
+<a class="sourceLine" id="cb74-9" title="9"><span class="kw">data</span>(BOD)</a>
+<a class="sourceLine" id="cb74-10" title="10">BOD</a>
+<a class="sourceLine" id="cb74-11" title="11"></a>
+<a class="sourceLine" id="cb74-12" title="12"><span class="co">#Wildcard: used to extract everything</span></a>
+<a class="sourceLine" id="cb74-13" title="13">bod2 &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD&#39;</span>)</a>
+<a class="sourceLine" id="cb74-14" title="14">bod2</a>
+<a class="sourceLine" id="cb74-15" title="15"></a>
+<a class="sourceLine" id="cb74-16" title="16"><span class="co">#LIMIT controls the number of results</span></a>
+<a class="sourceLine" id="cb74-17" title="17"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM iris LIMIT 5&#39;</span>)</a>
+<a class="sourceLine" id="cb74-18" title="18"></a>
+<a class="sourceLine" id="cb74-19" title="19"><span class="co">#ORDER BY syntax: ORDER BY var1 {ASC/DESC}, var2 {ASC/DESC}</span></a>
+<a class="sourceLine" id="cb74-20" title="20"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM Orange ORDER BY age ASC, circumference DESC LIMIT 5&quot;</span>)</a>
+<a class="sourceLine" id="cb74-21" title="21"></a>
+<a class="sourceLine" id="cb74-22" title="22"><span class="co">#Where can be used to add conditional statements</span></a>
+<a class="sourceLine" id="cb74-23" title="23"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT demand FROM BOD WHERE Time &lt; 3&#39;</span>)</a>
+<a class="sourceLine" id="cb74-24" title="24"></a>
+<a class="sourceLine" id="cb74-25" title="25"><span class="co">#WHERE with AND and OR</span></a>
+<a class="sourceLine" id="cb74-26" title="26"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM rock WHERE (peri &gt; 5000 AND shape &lt; .05) OR perm &gt; 1000&#39;</span>)</a>
+<a class="sourceLine" id="cb74-27" title="27"></a>
+<a class="sourceLine" id="cb74-28" title="28"><span class="co">#IN is used to similiar to %in%</span></a>
+<a class="sourceLine" id="cb74-29" title="29"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time IN (1,7)&#39;</span>)</a>
+<a class="sourceLine" id="cb74-30" title="30"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM BOD WHERE Time NOT IN (1,7)&#39;</span>)</a>
+<a class="sourceLine" id="cb74-31" title="31"></a>
+<a class="sourceLine" id="cb74-32" title="32"><span class="co">#LIKE weak expression command</span></a>
+<a class="sourceLine" id="cb74-33" title="33"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a>
+<a class="sourceLine" id="cb74-34" title="34"><span class="kw">sqldf</span>(<span class="st">&#39;SELECT * FROM chickwts WHERE feed NOT LIKE &quot;%bean&quot; LIMIT 5&#39;</span>)</a>
+<a class="sourceLine" id="cb74-35" title="35"></a>
+<a class="sourceLine" id="cb74-36" title="36"><span class="co">#Aggregated data: AVG, MEDIAN, MAX, MIN, SUM</span></a>
+<a class="sourceLine" id="cb74-37" title="37"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT AVG(circumference) FROM Orange&quot;</span>)</a>
+<a class="sourceLine" id="cb74-38" title="38"></a>
+<a class="sourceLine" id="cb74-39" title="39"><span class="co">#SELECT COUNT</span></a>
+<a class="sourceLine" id="cb74-40" title="40">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb74-41" title="41">d</a>
+<a class="sourceLine" id="cb74-42" title="42"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT COUNT() as numrows FROM d&quot;</span>)</a>
+<a class="sourceLine" id="cb74-43" title="43"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT COUNT(b) FROM d&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>

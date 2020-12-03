@@ -234,6 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.2" data-path="python.html"><a href="python.html#scrape-table"><i class="fa fa-check"></i><b>6.2.2</b> Scrape table</a></li>
 <li class="chapter" data-level="6.2.3" data-path="python.html"><a href="python.html#scrape-table-json-treasury-scraper"><i class="fa fa-check"></i><b>6.2.3</b> Scrape table json treasury scraper</a></li>
 <li class="chapter" data-level="6.2.4" data-path="python.html"><a href="python.html#scrape-table-json-auction-results-riksbank"><i class="fa fa-check"></i><b>6.2.4</b> Scrape table json auction results Riksbank</a></li>
+<li class="chapter" data-level="6.2.5" data-path="python.html"><a href="python.html#scrape-table-riksbankauctionscraper"><i class="fa fa-check"></i><b>6.2.5</b> Scrape table RiksbankAuctionScraper</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="git.html"><a href="git.html"><i class="fa fa-check"></i><b>7</b> Git</a><ul>
@@ -446,6 +447,11 @@ End Sub</code></pre>
 <pre><code>&#39;Import data from Bloomberg, 2 cols.
 
 =BDH(&quot;INJCJC Index&quot;;&quot;px_last&quot;;&quot;2015-07-02&quot;;&quot;&quot;;&quot;Dir=V&quot;;&quot;Dts=S&quot;;&quot;Sort=d&quot;;&quot;Quote=C&quot;;&quot;QtTyp=Y&quot;;&quot;Days=a&quot;;&quot;Per=cd&quot;;&quot;DtFmt=D&quot;;&quot;Fill=P&quot;;&quot;UseDPDF=Y&quot;;&quot;cols=2;rows=1826&quot;)
+</code></pre>
+<p><strong>Formula importing all outstanding bonds</strong></p>
+<pre><code>&#39;Import data from Bloomberg. BQL.
+
+=BQL(&quot;bonds([&#39;1179Z SS Equity&#39;, &#39;SHBA SS Equity&#39;, &#39;1684Z SS Equity&#39;, &#39;1060Z SS Equity&#39;, &#39;1000161Z SS Equity&#39;, &#39;753385Z SS Equity&#39;, &#39;1498692D SS Equity&#39;, &#39;SEBA SS Equity&#39;, &#39;140362Z SS Equity&#39;])&quot;;&quot;id_isin().value, name().value, long_comp_name().value, amt_outstanding().value, crncy().value, series().value, payment_rank().value, cpn_typ().value, maturity().value&quot;;&quot;cols=10;rows=2136&quot;)
 </code></pre>
 
 </div>
