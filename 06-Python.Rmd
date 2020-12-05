@@ -26,7 +26,83 @@
 <tr><th>)</th><td>Indicates where string extraction is to end</td></tr>
 
 </table>
+
+### Working with Text and Strings
+
+
 ```python
+#Working with Text
+
+text1 = "Since February 2015, the Riksbank has purchased government bonds with the aim of making monetary policy more expansionary."
+
+len(text1) #get number of charactets
+
+text2 = text1.split(' ') #split into words
+len(text2) #get number of words
+print(text2)
+
+#finding specific words_fomc
+print([w for w in text2 if len(w) > 3]) #get all words longer then 3 characters
+
+#capitalized words
+print([w for w in text2 if w.istitle()]) #use istitle to get words with capitalized first character
+
+#words that end with s
+print([w for w in text2 if w.endswith('s')]) #words that end with s
+
+
+#Finding unique words
+text3 = 'To be or not to be'
+text4 = text3.split(' ')
+print(len(text4))
+
+print(set(text4)) ##finding unique words with set (but caps sensitive)
+
+print(len(set([w.lower() for w in text4]))) ##only get lower
+print(set([w.lower() for w in text4]))
+#minut 4.
+
+##check what it is
+#s.startwidth(t)
+#s.endswith(t)
+#t in s #if a substring is in a bigger
+#s.isupper(); s.islower(); s.istitle()
+#s.isalpha(); s.isdigit(); s.isalnum() #if string is alphabetical, numerical, or both
+
+##string operations (change the string)
+#s.lower(); s.upper(); s.titlecase()
+#s.split(t) #split depending on t
+#s.splitlines() #split sentence line on new line character or end of line character
+#s.join(t) #takes word t and join with s
+#s.strip(); s.rstrip() ##strip, take out for example space. strip from front, rstrip from endswith
+#s.find(t); s.rfind(t)
+#s.replace(u,v)
+
+###from words to characters
+text5 = 'ouagadougou'
+text6 = text5.split('ou') #split on ou
+print(text6)
+text6 = 'ou'.join(text6) #now you get back the full. split and join opposite.
+print(text6)
+
+#get all of the characters, do it as a list
+print(list(text5))
+print([c for c in text5])
+
+###Cleaning text
+text8 = '    A quick brown fox jumped over the lazy dog. '
+
+text9 = text8.strip() #strips out white characters
+print(text9.split(' ')) #split on space
+
+###Changing text1
+#find and replace
+text9 = '    A quick brown fox jumped over the lazy dog. '
+print(text9.find('o')) #starts from start
+
+print(text9.rfind('o')) #starts from end
+
+print(text9.replace('o', 'O')) #replace small letters with capital
 
 ```
 
