@@ -567,7 +567,13 @@ HTTPCACHE_ENABLED = True
 DOWNLOAD_DELAY = 10.0
 
 
+#crawl
+#scrapy crawl RiksbankAuctionScraper -o output.json
 
+###import it to R
+library("rjson")
+output <- fromJSON(file = "C:\\Users\\chris\\Documents\\Python\\Projects\\RiksbankAuctionScraper\\output.json")
+output <- rbindlist(output, idcol = TRUE)
 
 
 
