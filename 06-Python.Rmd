@@ -629,3 +629,40 @@ FEED_EXPORT_ENCODING = 'utf-8'
 ```
 
 
+
+### BeautifulSoup
+
+```python
+
+mport urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = 'https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm'
+html = urllib.request.urlopen(url, context=ctx).read()
+soup = BeautifulSoup(html, 'html.parser')
+
+#text = soup.get_text() ##get all text
+#print(text) ##print all text
+
+#tables = soup.find_all("table") #find all tables
+#print(tables)
+
+#print(tables[1]["style"]) ##get the style element
+
+#lists = soup.find_all("li") #find all list elements
+#print(len(lists)) ##print number of list
+
+
+links = soup.select("a[href*=minutes]")
+#print(links)
+for link in links:
+    print(link.get('href'))
+
+```
