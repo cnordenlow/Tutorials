@@ -285,23 +285,23 @@ def get_table_attr(response, x):
   xpaths = [
     './/td[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/following-sibling::td/text()[normalize-space()]',
     './/td[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/following-sibling::td/*/text()',
-    './/td/span[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/../following-sibling::td/span/text()', 
-    './/th/span[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/../following-sibling::td/span/text()' 
-  ] 
+    './/td/span[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/../following-sibling::td/span/text()',
+    './/th/span[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"),"{0}")]/../following-sibling::td/span/text()'
+  ]
   xpath_str = '|'.join(xpaths).format(x)
   return response.xpath(xpath_str).get()
 
 class RiksbankSpider(CrawlSpider):
-    name = "RiksbankAuctionScraper2"
+    name = "RiksbankAuctionScraper"
     allowed_domains = ['riksbank.se']
     start_urls = [
-      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-kommunobligationer/auction-results/',
-      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-statsobligationer/results-of-auctions/',
+     # 'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-kommunobligationer/auction-results/',
+     # 'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-statsobligationer/results-of-auctions/',
       'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-sakerstallda-obligationer/results-of-auctions/',
-      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/',
-      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/lan-till-bankerna-for-vidareutlaning-till-foretag/auction-results/',
-      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/lan-i-amerikanska-dollar/auction-results/',
-      'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/veckovisa-extraordinara-marknadsoperationer/auction-results/'
+      #'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/kop-av-foretagscertifikat/auction-results/',
+      #'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/lan-till-bankerna-for-vidareutlaning-till-foretag/auction-results/',
+     # 'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/lan-i-amerikanska-dollar/auction-results/',
+    #  'https://www.riksbank.se/sv/penningpolitik/penningpolitiska-instrument/veckovisa-extraordinara-marknadsoperationer/auction-results/'
     ]
     rules = (
       Rule(LinkExtractor(
@@ -309,7 +309,7 @@ class RiksbankSpider(CrawlSpider):
       ), callback='parse_bonds'),
       Rule(LinkExtractor(
         allow=('\/kop-av-sakerstallda-obligationer\/results-of-auctions\/2020\/')
-      ), callback='parse_covered_bonds'),   
+      ), callback='parse_covered_bonds'),
       Rule(LinkExtractor(
         allow=('\/veckovisa-extraordinara-marknadsoperationer\/auction-results\/2020\/')
       ), callback='parse_sek_lending'),
@@ -334,7 +334,7 @@ class RiksbankSpider(CrawlSpider):
           item['auction_date'] = get_table_attr(selector, "auction date")
           item['loan_number'] = get_table_attr(selector, "loan")
           item['isin'] = get_table_attr(selector, "isin")
-          item['coupon'] = get_table_attr(selector, "coupon") 
+          item['coupon'] = get_table_attr(selector, "coupon")
           item['tendered_volume'] = get_table_attr(selector, "tendered")
           item['volume_offered'] = get_table_attr(selector, "offered")
           item['volume_bought'] = get_table_attr(selector, "bought")
@@ -342,6 +342,7 @@ class RiksbankSpider(CrawlSpider):
           item['number_of_accepted_bids'] = get_table_attr(selector, "number of accepted bids")
           item['average_yield'] = get_table_attr(selector, "average yield")
           item['lowest_accepted_yield'] = get_table_attr(selector, "lowest accepted yield")
+          item['highest_accepted_yield'] = get_table_attr(selector, "highest yield")
           item['accepted_at_lowest_perc'] = get_table_attr(selector, "accepted at lowest")
           yield item
 
@@ -360,6 +361,7 @@ class RiksbankSpider(CrawlSpider):
           item['number_of_accepted_bids'] = get_table_attr(selector, "number of accepted bids")
           item['average_yield'] = get_table_attr(selector, "average yield")
           item['lowest_accepted_yield'] = get_table_attr(selector, "lowest accepted yield")
+          item['highest_accepted_yield'] = get_table_attr(selector, "highest yield")
           item['accepted_at_lowest_perc'] = get_table_attr(selector, "accepted at lowest")
           yield item
 
@@ -439,9 +441,9 @@ class RiksbankSpider(CrawlSpider):
           item['number_of_accepted_bids'] = get_table_attr(selector, "number of accepted bids")
           item['average_yield'] = get_table_attr(selector, "average yield")
           item['lowest_accepted_yield'] = get_table_attr(selector, "lowest accepted yield")
+          item['highest_accepted_yield'] = get_table_attr(selector, "highest yield")
           item['accepted_at_lowest_perc'] = get_table_attr(selector, "accepted at lowest")
           yield item
-
 
 
 #items
@@ -461,6 +463,7 @@ class GovernmentBonds(Item):
   number_of_accepted_bids = Field()
   average_yield = Field()
   lowest_accepted_yield = Field()
+  highest_accepted_yield = Field()
   accepted_at_lowest_perc = Field()
   #auction_date = Field()
   auction_type = Field()
@@ -478,6 +481,7 @@ class CoveredBonds(Item):
   number_of_accepted_bids = Field()
   average_yield = Field()
   lowest_accepted_yield = Field()
+  highest_accepted_yield = Field()
   accepted_at_lowest_perc = Field()
   #auction_date = Field()
   auction_type = Field()
@@ -494,6 +498,7 @@ class MunicipalBonds(Item):
   number_of_bids = Field()
   number_of_accepted_bids = Field()
   average_yield = Field()
+  highest_accepted_yield = Field()
   lowest_accepted_yield = Field()
   accepted_at_lowest_perc = Field()
   #auction_date = Field()
