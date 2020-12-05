@@ -35,7 +35,7 @@
 
 text1 = "Since February 2015, the Riksbank has purchased government bonds with the aim of making monetary policy more expansionary."
 
-len(text1) #get number of charactets
+len(text1) #get number of characters
 
 text2 = text1.split(' ') #split into words
 len(text2) #get number of words
