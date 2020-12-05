@@ -25,7 +25,37 @@
 <tr><th>(</th><td>Indicates where string extraction is to start</td></tr>
 <tr><th>)</th><td>Indicates where string extraction is to end</td></tr>
 
+<tr><th>\b</th><td>Matches word boundary</td></tr>
+<tr><th>\d</th><td>any digit</td></tr>
+<tr><th>\D</th><td>any non-digit</td></tr>
+<tr><th>\s</th><td>any whitespace</td></tr>
+<tr><th>\S</th><td>any non-whitespace</td></tr>
+<tr><th>\w</th><td>any alphanumerical character</td></tr>
+<tr><th>\W</th><td>any non-alphanumerical character</td></tr>
+
+
+<tr><th>{n}</th><td>Exactly n repetitions</td></tr>
+<tr><th>{n,}</th><td>At least n repetitions</td></tr>
+<tr><th>{,n}</th><td>At most n repetitions</td></tr>
+<tr><th>{m,n}</th><td>At least m and at most n repetitions</td></tr>
+
 </table>
+
+#### Regex working with dates
+```python
+###Regular expression for dates
+#date variations are many
+dateStr  = '23-10-2002\n23/10/2002\n23/10/02\n10/23/2002\nOct 23, 2002\nOctober 23, 2002\n23 October 2002'
+
+print(re.findall(r'\d{1,2}[/-]\d{1,2}[/-]\d{4}', dateStr)) ###matches any of first 1-2 digits, then either -/ then 1-2 digits, then either, then two digits
+print(re.findall(r'\d{1,2}[/-]\d{1,2}[/-]\d{2,4}', dateStr))  ##at least 2 and max 4
+
+print(re.findall(r'\d{1,2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{2,4}', dateStr)) ###Using ? says that it should not just give the information in the ()
+#starts with the characters but can have more characters after1
+print(re.findall(r'(?:\d{1,2} )?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug| Sep|Oct|Nov|Dec)[a-z]* (?:\d{1,2}, )?\d{2,4}', dateStr)) #the above says it may have information at the start or at the expanded
+
+```
+
 
 ### Working with Text and Strings
 
