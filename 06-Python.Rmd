@@ -666,3 +666,20 @@ for link in links:
     print(link.get('href'))
 
 ```
+
+## Misc
+
+### Python in R Markdown
+
+```python
+
+#```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+py_install("pandas") ##install packages
+
+#https://rstudio.github.io/reticulate/articles/python_packages.html
+
+#https://stackoverflow.com/questions/54261906/reticulate-importerror-no-module-named-pandas-in-rstudio-version-1-2
+
+```
