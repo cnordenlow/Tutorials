@@ -891,6 +891,9 @@ sum_table
 library(tidyverse)
 library(dplyr)
 library(lubridate)
+library(slider)
+library(dplyr, warn.conflicts = FALSE)
+library(lubridate, warn.conflicts = FALSE)
 df <- tibble(
 Date = seq.Date(Sys.Date()-19, Sys.Date(), by="day"),
 indicator = c(rep(1,10),rep(2,10)),
