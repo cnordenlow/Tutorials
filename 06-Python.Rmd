@@ -610,7 +610,8 @@ library("rjson")
 output <- fromJSON(file = "C:\\Users\\chris\\Documents\\Python\\Projects\\RiksbankAuctionScraper\\output.json")
 output <- rbindlist(output, idcol = TRUE)
 
-
+library(data.table)
+df <- rbindlist(output, idcol = TRUE)
 
 
 
