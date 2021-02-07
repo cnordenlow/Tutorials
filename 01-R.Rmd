@@ -42,6 +42,15 @@ df %>%
   rand = seq(10,90,1) +runif(81, min=-10, max=15)
 ) 
 ``` 
+**Create df with dates by end of quarter**
+  
+ ```{r, echo=T, eval=F}
+####Create dataframe  with dates by quarter. end of quarter
+dates <- data.frame(
+  date = seq(as.Date('2010-02-01'), Sys.Date(), by = 'quarter')-1
+)
+``` 
+
 
 
 **Create a list and bind together, only 1 column*
@@ -880,7 +889,22 @@ sum_table
 ## Misc
 
 
+### Various small things
 
+```{r, echo=T, eval=F}
+
+library(tidyverse)
+df <- mtcars
+
+# Contains /  grepl
+df %>%  
+ mutate(group = case_when(grepl("0", vs) ~ "Group0",
+                         grepl("1", vs, ignore.case = TRUE) ~"Group1"))
+
+
+
+
+```  
 ### Moving average
 
 **Create a moving average**
