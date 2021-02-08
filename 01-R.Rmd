@@ -913,7 +913,12 @@ df <- tibble(
 df <- df %>%
   fill(names(df), .direction = "down")
 
-
+##Change from na to 0 
+df <- tibble(
+  date = c("2020-01-31", "2020-02-29", "2020-03-30"),
+  values = c(1, 5, NA)
+)
+df$values[is.na(df$values)] <- 0
 
 ```  
 ### Moving average
