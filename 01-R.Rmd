@@ -894,6 +894,7 @@ sum_table
 ```{r, echo=T, eval=F}
 
 library(tidyverse)
+library(lubridate)
 df <- mtcars
 
 # Contains /  grepl
@@ -920,7 +921,17 @@ df <- tibble(
 )
 df$values[is.na(df$values)] <- 0
 
+
+#Create vector
+
+last_update = "2020-01-01" 
+
+years <- c(year(last_update):year(Sys.Date()))
+years <- toString(paste0(years) ) ##to make it a vector
 ```  
+
+
+
 ### Moving average
 
 **Create a moving average**
