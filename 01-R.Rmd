@@ -930,6 +930,32 @@ years <- c(year(last_update):year(Sys.Date()))
 years <- toString(paste0(years) ) ##to make it a vector
 ```  
 
+### Crossing
+
+**Cross two tables for all combinations**
+```{r, echo=T, eval=F}
+
+library(tidyverse)
+
+dates <- data.frame(
+  date = seq(as.Date("2020-04-01"), Sys.Date(), by = 'months')-1   #create date table,
+) 
+
+
+
+df_bonds <- tribble(~value, ~bond, ~maturity,
+                      1, "SCBC", "2022-12-31",
+                      2, "Danske", "2020-12-31",
+                      3, "Danske2", "2022-12-31",
+                       4, "HB", "2021-12-31",
+                      5, "Nordea", "2023-12-31",
+                      6, "SCBC", "2022-12-31")
+
+
+
+df3 <- crossing(df_bonds, dates) 
+
+```  
 
 
 ### Moving average
