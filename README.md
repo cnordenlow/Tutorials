@@ -3,10 +3,11 @@
 
 Instructions for publishing a bookdown on Github
 
-1) Create a rmd-file called Index.rmd as below.
-2) Create an repository on GitHub.
-3) Clone to Repository using R-studio and Git (create new project) and create a local folder.
-4) In Github-repository, create a file named "_bookdown.yml"_ with the code output_dir: "docs".
+
+1) Create an repository on GitHub.
+2) Clone to Repository using R-studio and Git (create new project) and create a local folder.
+3) In Github-repository, create a file named "_ _bookdown.yml"_ with the code output_dir: "docs".
+4) Create a rmd-file called Index.rmd as below.
 5) In R-studio, run bookdown::render_book("index.Rmd") 
 6) In R-studio, go to the tab Git -> Commit -> Commit -> Pull -> Push to push the created bookdown-files to Github.
 7) In GIthub, create a file named .nojekyll in the docs folder containing info below:
