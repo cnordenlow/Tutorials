@@ -56,6 +56,19 @@ print(re.findall(r'(?:\d{1,2} )?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug| Sep|Oct|Nov|
 
 ```
 
+### Create temp table Pandas
+
+```python
+import pandas as pd
+
+data = {'month': ['January','February','March','April','May','June','July','August','September','October','November','December'],
+        'days_in_month': [31,28,31,30,31,30,31,31,30,31,30,31]
+        }
+
+df = pd.DataFrame(data, columns = ['month', 'days_in_month'])
+print (df)
+```
+
 
 ### Working with Text and Strings
 
