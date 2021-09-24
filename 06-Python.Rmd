@@ -149,6 +149,39 @@ print(text9.replace('o', 'O')) #replace small letters with capital
 
 ```
 
+
+
+### Case_when equivalent in Python
+
+```python
+# Case_when equivalent with contains-statement
+
+
+import pandas as pd
+import numpy as np
+
+dict = {'instrument_name':["volvo to2", "volvo", "skandia", "skandia teckningsratt hej", "seb bta"],
+        'direction': ["buy", "sell", "buy", "sell", "buy"]}
+
+# creating a dataframe from a dictionary
+df = pd.DataFrame(dict, columns = ['instrument_name', 'direction'])
+
+conditions = [
+    (df['instrument_name'].str.contains("to2")),
+    (df['instrument_name'].str.contains("bta")),
+    (df['instrument_name'].str.contains("teckningsratt")),
+    (df['instrument_name'].str.contains("teckningsratter")),
+    (df['instrument_name'].str.contains("teckningsoption")),
+
+]
+choices = ["subscription_option","subscription_option","subscription_option","subscription_option", "subscription_option"]
+df["type"] = np.select(conditions, choices)
+print(df)
+```
+
+
+
+
 ## Scrapy
 
 *pip install Scrapy*
