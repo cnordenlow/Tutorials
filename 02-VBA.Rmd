@@ -235,3 +235,12 @@ End Sub
 
 ```
 
+
+**Refresh Bloomberg links from VBA**
+
+``` 
+Application.Run "RefreshAllWorkbooks"
+Application.Run "RefreshAllStaticData
+
+```
+
