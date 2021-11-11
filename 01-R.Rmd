@@ -889,7 +889,30 @@ sum_table
 ## Misc
 
 
-### Various small things
+### Convert Column to List Vector
+
+
+```{r, echo=T, eval=F}
+
+library(tidyverse)
+
+
+df <- tibble(
+  ticker = c("USGG2YR Index",
+"USGG10YR Index",
+"USGG5YR Index",
+"GSGB2YR Index",
+"GSGB5YR Index"
+))
+
+df_vector <- df %>% 
+  mutate(ticker = map_chr(ticker, paste, collapse = ','))
+
+```
+
+
+
+
 
 ```{r, echo=T, eval=F}
 
