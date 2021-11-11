@@ -888,6 +888,69 @@ sum_table
 
 ## Misc
 
+### Create Spread between two variables
+
+```{r, echo=T, eval=F}
+
+library(tidyverse
+
+#Create temp table
+df <- tibble(
+  date= sample(seq(as.Date('2020/06/01'), as.Date('2025/01/01'), by="day"), 81),
+  value = seq(10,90,1)+runif(81, min=-1, max=5), 
+  rand = seq(10,90,1) +runif(81, min=-10, max=15)
+) %>%
+  arrange(date) %>%
+  pivot_longer(
+             !date, 
+             names_to = "variables",
+             values_to = "values")
+
+
+
+## Creat spread function
+variable_1 = "value"
+variable_2 = "rand"
+create_ticker = "Spread"
+create_name = "SpreadName"
+create_country = "Sweden"
+
+create_spread <- function(df, variable_1, variable_2,create_ticker,create_name, create_country) {
+  
+  
+  df <- df %>%
+    filter(variables %in% c(variable_1, variable_2)) %>%
+    mutate(var = case_when( #this is done for in the formula always using variable_1 - variable_2
+      variables == variable_1 ~ "var_1",
+      variables == variable_2 ~ "var_2",
+    ))
+  
+  
+  #calculate spread
+  
+  df <- df %>%
+    pivot_wider(
+      c("date"),
+      #cols = -c(date, name, country),
+      names_from =  var,
+      values_from =  values, 
+    ) %>%
+    mutate(values = var_1 - var_2,
+           ticker = create_ticker,
+           name = create_name,
+           country= create_country) %>%
+    select(-c("var_1", "var_2"))
+  
+  return(df)
+  
+}
+
+
+df <- create_spread(df, variable_1, variable_2,create_ticker,create_name, create_country)
+
+
+
+```
 
 ### Convert Column to List Vector
 
