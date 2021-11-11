@@ -151,11 +151,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="r.html"><a href="r.html#different-tables"><i class="fa fa-check"></i><b>1.5.2</b> Different tables</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="r.html"><a href="r.html#misc"><i class="fa fa-check"></i><b>1.6</b> Misc</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="r.html"><a href="r.html#various-small-things"><i class="fa fa-check"></i><b>1.6.1</b> Various small things</a></li>
-<li class="chapter" data-level="1.6.2" data-path="r.html"><a href="r.html#moving-average"><i class="fa fa-check"></i><b>1.6.2</b> Moving average</a></li>
-<li class="chapter" data-level="1.6.3" data-path="r.html"><a href="r.html#number-rows-within-group"><i class="fa fa-check"></i><b>1.6.3</b> Number rows within group</a></li>
-<li class="chapter" data-level="1.6.4" data-path="r.html"><a href="r.html#date-formating"><i class="fa fa-check"></i><b>1.6.4</b> Date Formating</a></li>
-<li class="chapter" data-level="1.6.5" data-path="r.html"><a href="r.html#loops"><i class="fa fa-check"></i><b>1.6.5</b> Loops</a></li>
+<li class="chapter" data-level="1.6.1" data-path="r.html"><a href="r.html#create-spread-between-two-variables"><i class="fa fa-check"></i><b>1.6.1</b> Create Spread between two variables</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r.html"><a href="r.html#convert-column-to-list-vector"><i class="fa fa-check"></i><b>1.6.2</b> Convert Column to List Vector</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r.html"><a href="r.html#crossing"><i class="fa fa-check"></i><b>1.6.3</b> Crossing</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r.html"><a href="r.html#moving-average"><i class="fa fa-check"></i><b>1.6.4</b> Moving average</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r.html"><a href="r.html#number-rows-within-group"><i class="fa fa-check"></i><b>1.6.5</b> Number rows within group</a></li>
+<li class="chapter" data-level="1.6.6" data-path="r.html"><a href="r.html#date-formating"><i class="fa fa-check"></i><b>1.6.6</b> Date Formating</a></li>
+<li class="chapter" data-level="1.6.7" data-path="r.html"><a href="r.html#loops"><i class="fa fa-check"></i><b>1.6.7</b> Loops</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="r.html"><a href="r.html#r-markdown"><i class="fa fa-check"></i><b>1.7</b> R Markdown</a><ul>
 <li class="chapter" data-level="1.7.1" data-path="r.html"><a href="r.html#render-multiple-reports"><i class="fa fa-check"></i><b>1.7.1</b> Render multiple reports</a></li>
@@ -229,7 +231,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="python.html"><a href="python.html"><i class="fa fa-check"></i><b>6</b> Python</a><ul>
 <li class="chapter" data-level="6.1" data-path="python.html"><a href="python.html#basic"><i class="fa fa-check"></i><b>6.1</b> Basic</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="python.html"><a href="python.html#regular-expressions"><i class="fa fa-check"></i><b>6.1.1</b> Regular Expressions</a></li>
-<li class="chapter" data-level="6.1.2" data-path="python.html"><a href="python.html#working-with-text-and-strings"><i class="fa fa-check"></i><b>6.1.2</b> Working with Text and Strings</a></li>
+<li class="chapter" data-level="6.1.2" data-path="python.html"><a href="python.html#create-temp-table-pandas"><i class="fa fa-check"></i><b>6.1.2</b> Create temp table Pandas</a></li>
+<li class="chapter" data-level="6.1.3" data-path="python.html"><a href="python.html#working-with-text-and-strings"><i class="fa fa-check"></i><b>6.1.3</b> Working with Text and Strings</a></li>
+<li class="chapter" data-level="6.1.4" data-path="python.html"><a href="python.html#case_when-equivalent-in-python"><i class="fa fa-check"></i><b>6.1.4</b> Case_when equivalent in Python</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="python.html"><a href="python.html#scrapy"><i class="fa fa-check"></i><b>6.2</b> Scrapy</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="python.html"><a href="python.html#shell-commands"><i class="fa fa-check"></i><b>6.2.1</b> Shell commands</a></li>
@@ -458,6 +462,10 @@ End Sub</code></pre>
 <pre><code>&#39;Import data from Bloomberg. BQL.
 
 =BQL(&quot;bonds([&#39;1179Z SS Equity&#39;, &#39;SHBA SS Equity&#39;, &#39;1684Z SS Equity&#39;, &#39;1060Z SS Equity&#39;, &#39;1000161Z SS Equity&#39;, &#39;753385Z SS Equity&#39;, &#39;1498692D SS Equity&#39;, &#39;SEBA SS Equity&#39;, &#39;140362Z SS Equity&#39;])&quot;;&quot;id_isin().value, name().value, long_comp_name().value, amt_outstanding().value, crncy().value, series().value, payment_rank().value, cpn_typ().value, maturity().value&quot;;&quot;cols=10;rows=2136&quot;)
+</code></pre>
+<p><strong>Refresh Bloomberg links from VBA</strong></p>
+<pre><code>Application.Run &quot;RefreshAllWorkbooks&quot;
+Application.Run &quot;RefreshAllStaticData
 </code></pre>
 
 </div>
