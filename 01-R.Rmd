@@ -888,6 +888,23 @@ sum_table
 
 ## Misc
 
+### Reference column name using !!sym
+
+```{r, echo=T, eval=F}
+library(tidyverse
+
+df <- tibble(
+  variable = c("A", "B"),
+  value = as.numeric(c(10, 5))
+)
+
+
+variable_reference = "value"
+
+df %>%
+  mutate(sum = !!sym(variable_reference) + 5)
+```
+
 ### Create Spread between two variables
 
 ```{r, echo=T, eval=F}
