@@ -888,6 +888,12 @@ sum_table
 
 ## Misc
 
+
+### Convert comma to dot
+```{r, echo=T, eval=F}
+as.numeric(sub(",", ".", sub(".", ",", dataOmxTemp$Close, fixed=TRUE), fixed=TRUE))
+```
+
 ### Reference column name using !!sym
 
 ```{r, echo=T, eval=F}
