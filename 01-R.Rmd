@@ -888,6 +888,20 @@ sum_table
 
 ## Misc
 
+### Create moving average function
+
+```{r, echo=T, eval=F}
+library(tidyverse)
+
+df <- mtcars
+
+moving_average <- function(x, n = 3) {             # Create user-defined function
+  stats::filter(x, rep(1 / n, n), sides = 1)
+}
+
+df$my_moving_average_1 <- moving_average(df$hp) 
+```
+
 
 ### Convert comma to dot
 ```{r, echo=T, eval=F}
