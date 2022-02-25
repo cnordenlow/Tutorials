@@ -1120,7 +1120,16 @@ mtcars %>%
 ### Date Formating
 
 **Different ways to format dates**
-  
+
+*dmy*
+```{r, echo=T, eval=F}
+library(lubridate)
+mdy("4/1/17")
+ymd(20101215)
+```  
+
+
+
 *Dates*
 
 
