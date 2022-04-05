@@ -220,9 +220,17 @@ End Sub
 **Formula for importing data to excel**
 
 ``` 
-'Import data from Bloomberg, 2 cols.
+'Import data from Bloomberg
 
 =BDH("INJCJC Index";"px_last";"2015-07-02";"";"Dir=V";"Dts=S";"Sort=d";"Quote=C";"QtTyp=Y";"Days=a";"Per=cd";"DtFmt=D";"Fill=P";"UseDPDF=Y";"cols=2;rows=1826")
+
+'Import two cols, monthly
+=@BDH("EUR BGN Curncy";"px_last";"2020-01-01";"";"per=m";"cols=2;rows=27")
+
+'Import one cols, monthly
+=@BDH("EUR BGN Curncy";"px_last";"2020-01-01";"";"per=m";"Dts=H";"cols=1;rows=27")
+
+
 
 ```
 
