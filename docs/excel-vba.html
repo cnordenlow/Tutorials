@@ -151,13 +151,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="r.html"><a href="r.html#different-tables"><i class="fa fa-check"></i><b>1.5.2</b> Different tables</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="r.html"><a href="r.html#misc"><i class="fa fa-check"></i><b>1.6</b> Misc</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="r.html"><a href="r.html#create-spread-between-two-variables"><i class="fa fa-check"></i><b>1.6.1</b> Create Spread between two variables</a></li>
-<li class="chapter" data-level="1.6.2" data-path="r.html"><a href="r.html#convert-column-to-list-vector"><i class="fa fa-check"></i><b>1.6.2</b> Convert Column to List Vector</a></li>
-<li class="chapter" data-level="1.6.3" data-path="r.html"><a href="r.html#crossing"><i class="fa fa-check"></i><b>1.6.3</b> Crossing</a></li>
-<li class="chapter" data-level="1.6.4" data-path="r.html"><a href="r.html#moving-average"><i class="fa fa-check"></i><b>1.6.4</b> Moving average</a></li>
-<li class="chapter" data-level="1.6.5" data-path="r.html"><a href="r.html#number-rows-within-group"><i class="fa fa-check"></i><b>1.6.5</b> Number rows within group</a></li>
-<li class="chapter" data-level="1.6.6" data-path="r.html"><a href="r.html#date-formating"><i class="fa fa-check"></i><b>1.6.6</b> Date Formating</a></li>
-<li class="chapter" data-level="1.6.7" data-path="r.html"><a href="r.html#loops"><i class="fa fa-check"></i><b>1.6.7</b> Loops</a></li>
+<li class="chapter" data-level="1.6.1" data-path="r.html"><a href="r.html#create-moving-average-function"><i class="fa fa-check"></i><b>1.6.1</b> Create moving average function</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r.html"><a href="r.html#convert-comma-to-dot"><i class="fa fa-check"></i><b>1.6.2</b> Convert comma to dot</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r.html"><a href="r.html#reference-column-name-using-sym"><i class="fa fa-check"></i><b>1.6.3</b> Reference column name using !!sym</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r.html"><a href="r.html#create-spread-between-two-variables"><i class="fa fa-check"></i><b>1.6.4</b> Create Spread between two variables</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r.html"><a href="r.html#convert-column-to-list-vector"><i class="fa fa-check"></i><b>1.6.5</b> Convert Column to List Vector</a></li>
+<li class="chapter" data-level="1.6.6" data-path="r.html"><a href="r.html#crossing"><i class="fa fa-check"></i><b>1.6.6</b> Crossing</a></li>
+<li class="chapter" data-level="1.6.7" data-path="r.html"><a href="r.html#moving-average"><i class="fa fa-check"></i><b>1.6.7</b> Moving average</a></li>
+<li class="chapter" data-level="1.6.8" data-path="r.html"><a href="r.html#number-rows-within-group"><i class="fa fa-check"></i><b>1.6.8</b> Number rows within group</a></li>
+<li class="chapter" data-level="1.6.9" data-path="r.html"><a href="r.html#date-formating"><i class="fa fa-check"></i><b>1.6.9</b> Date Formating</a></li>
+<li class="chapter" data-level="1.6.10" data-path="r.html"><a href="r.html#loops"><i class="fa fa-check"></i><b>1.6.10</b> Loops</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="r.html"><a href="r.html#r-markdown"><i class="fa fa-check"></i><b>1.7</b> R Markdown</a><ul>
 <li class="chapter" data-level="1.7.1" data-path="r.html"><a href="r.html#render-multiple-reports"><i class="fa fa-check"></i><b>1.7.1</b> Render multiple reports</a></li>
@@ -454,9 +457,17 @@ End Sub</code></pre>
 
 =BDP(&quot;SAND SS equity&quot;;&quot;RTG_SP_LT_LC_ISSUER_CREDIT&quot;;&quot;RATING_AS_OF_DATE_OVERRIDE=&quot;&amp;&quot;2020-01-01&quot;)</code></pre>
 <p><strong>Formula for importing data to excel</strong></p>
-<pre><code>&#39;Import data from Bloomberg, 2 cols.
+<pre><code>&#39;Import data from Bloomberg
 
 =BDH(&quot;INJCJC Index&quot;;&quot;px_last&quot;;&quot;2015-07-02&quot;;&quot;&quot;;&quot;Dir=V&quot;;&quot;Dts=S&quot;;&quot;Sort=d&quot;;&quot;Quote=C&quot;;&quot;QtTyp=Y&quot;;&quot;Days=a&quot;;&quot;Per=cd&quot;;&quot;DtFmt=D&quot;;&quot;Fill=P&quot;;&quot;UseDPDF=Y&quot;;&quot;cols=2;rows=1826&quot;)
+
+&#39;Import two cols, monthly
+=@BDH(&quot;EUR BGN Curncy&quot;;&quot;px_last&quot;;&quot;2020-01-01&quot;;&quot;&quot;;&quot;per=m&quot;;&quot;cols=2;rows=27&quot;)
+
+&#39;Import one cols, monthly
+=@BDH(&quot;EUR BGN Curncy&quot;;&quot;px_last&quot;;&quot;2020-01-01&quot;;&quot;&quot;;&quot;per=m&quot;;&quot;Dts=H&quot;;&quot;cols=1;rows=27&quot;)
+
+
 </code></pre>
 <p><strong>Formula importing all outstanding bonds</strong></p>
 <pre><code>&#39;Import data from Bloomberg. BQL.
